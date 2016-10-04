@@ -1,0 +1,17 @@
+package tiger.parse;
+
+terminal String ID, STRING;
+terminal Integer INT;
+terminal COMMA, COLON, SEMICOLON, LPAREN, RPAREN, 
+	LBRACK, RBRACK, LBRACE, RBRACE, DOT, PLUS, MINUS, 
+	TIMES, DIVIDE, EQ, NEQ, LT, LE, GT, GE, AND, OR, 
+	ASSIGN, 
+    ARRAY, BREAK, DO, ELSE, END, FOR, FUNCTION, IF, 
+	IN, LET, NIL, OF, THEN, TO, TYPE, VAR, WHILE;
+
+non terminal program;
+
+start with program;
+
+program ::= COMMA
+         ;
