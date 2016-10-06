@@ -16,3 +16,4 @@ tiger/parse/Yylex.java
 tiger/parse/Yylex.java~
 tiger/parse/parser.java
 tiger/parse/sym.java
+bin/

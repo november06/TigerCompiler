@@ -16,7 +16,7 @@ public class LexerTest {
 
 		do {
 			tok = lexer.next_token();
-			System.out.println(symnames[tok.sym] + " " + tok.left);
+			System.out.println(symnames[tok.sym] + " " + tok.left + " " + tok.right);
 		} while (tok.sym != sym.EOF);
 
 		inp.close();

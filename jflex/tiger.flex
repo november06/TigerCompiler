@@ -35,13 +35,13 @@ import java_cup.runtime.*;
        the current token, the token will have no value in this
        case. */
     private Symbol symbol(int type) {
-        return new Symbol(type, yyline, yycolumn);
+        return new Symbol(type, yyline + 1, yycolumn + 1);
     }
     
     /* Also creates a new java_cup.runtime.Symbol with information
        about the current token, but this object has a value. */
     private Symbol symbol(int type, Object value) {
-        return new Symbol(type, yyline, yycolumn, value);
+        return new Symbol(type, yyline + 1, yycolumn + 1, value);
         // return new java_cup.runtime.Symbol(kind, yychar, yychar+yylength(), value);
     }
 
