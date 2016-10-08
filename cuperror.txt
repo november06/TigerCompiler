@@ -6,600 +6,590 @@ Building parse tables...
   Computing first sets...
   Building state machine...
   Filling in tables...
-*** Shift/Reduce conflict found in state #124
+*** Shift/Reduce conflict found in state #122
   between expr ::= WHILE expr DO expr (*) 
   and     binary_operator ::= (*) PLUS 
   under symbol PLUS
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #124
+*** Shift/Reduce conflict found in state #122
   between expr ::= WHILE expr DO expr (*) 
   and     binary_operator ::= (*) MINUS 
   under symbol MINUS
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #124
+*** Shift/Reduce conflict found in state #122
   between expr ::= WHILE expr DO expr (*) 
   and     binary_operator ::= (*) TIMES 
   under symbol TIMES
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #124
+*** Shift/Reduce conflict found in state #122
   between expr ::= WHILE expr DO expr (*) 
   and     binary_operator ::= (*) DIVIDE 
   under symbol DIVIDE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #124
+*** Shift/Reduce conflict found in state #122
   between expr ::= WHILE expr DO expr (*) 
   and     binary_operator ::= (*) EQ 
   under symbol EQ
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #124
+*** Shift/Reduce conflict found in state #122
   between expr ::= WHILE expr DO expr (*) 
   and     binary_operator ::= (*) NEQ 
   under symbol NEQ
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #124
+*** Shift/Reduce conflict found in state #122
   between expr ::= WHILE expr DO expr (*) 
   and     binary_operator ::= (*) LT 
   under symbol LT
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #124
+*** Shift/Reduce conflict found in state #122
   between expr ::= WHILE expr DO expr (*) 
   and     binary_operator ::= (*) LE 
   under symbol LE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #124
+*** Shift/Reduce conflict found in state #122
   between expr ::= WHILE expr DO expr (*) 
   and     binary_operator ::= (*) GT 
   under symbol GT
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #124
+*** Shift/Reduce conflict found in state #122
   between expr ::= WHILE expr DO expr (*) 
   and     binary_operator ::= (*) GE 
   under symbol GE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #124
+*** Shift/Reduce conflict found in state #122
   between expr ::= WHILE expr DO expr (*) 
   and     binary_operator ::= (*) AND 
   under symbol AND
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #124
+*** Shift/Reduce conflict found in state #122
   between expr ::= WHILE expr DO expr (*) 
   and     binary_operator ::= (*) OR 
   under symbol OR
   Resolved in favor of shifting.
 
-*** Reduce/Reduce conflict found in state #9
-  between lvalue ::= ID (*) 
-  and     type_id ::= ID (*) 
-  under symbols: {LBRACK}
-  Resolved in favor of the first production.
-
-*** Shift/Reduce conflict found in state #9
-  between lvalue ::= ID (*) 
-  under symbol LBRACK
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #9
-  between type_id ::= ID (*) 
-  under symbol LBRACK
-  Resolved in favor of shifting.
-
-*** Shift/Reduce conflict found in state #20
+*** Shift/Reduce conflict found in state #19
   between expr ::= lvalue ASSIGN expr (*) 
   and     binary_operator ::= (*) PLUS 
   under symbol PLUS
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #20
+*** Shift/Reduce conflict found in state #19
   between expr ::= lvalue ASSIGN expr (*) 
   and     binary_operator ::= (*) MINUS 
   under symbol MINUS
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #20
+*** Shift/Reduce conflict found in state #19
   between expr ::= lvalue ASSIGN expr (*) 
   and     binary_operator ::= (*) TIMES 
   under symbol TIMES
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #20
+*** Shift/Reduce conflict found in state #19
   between expr ::= lvalue ASSIGN expr (*) 
   and     binary_operator ::= (*) DIVIDE 
   under symbol DIVIDE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #20
+*** Shift/Reduce conflict found in state #19
   between expr ::= lvalue ASSIGN expr (*) 
   and     binary_operator ::= (*) EQ 
   under symbol EQ
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #20
+*** Shift/Reduce conflict found in state #19
   between expr ::= lvalue ASSIGN expr (*) 
   and     binary_operator ::= (*) NEQ 
   under symbol NEQ
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #20
+*** Shift/Reduce conflict found in state #19
   between expr ::= lvalue ASSIGN expr (*) 
   and     binary_operator ::= (*) LT 
   under symbol LT
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #20
+*** Shift/Reduce conflict found in state #19
   between expr ::= lvalue ASSIGN expr (*) 
   and     binary_operator ::= (*) LE 
   under symbol LE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #20
+*** Shift/Reduce conflict found in state #19
   between expr ::= lvalue ASSIGN expr (*) 
   and     binary_operator ::= (*) GT 
   under symbol GT
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #20
+*** Shift/Reduce conflict found in state #19
   between expr ::= lvalue ASSIGN expr (*) 
   and     binary_operator ::= (*) GE 
   under symbol GE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #20
+*** Shift/Reduce conflict found in state #19
   between expr ::= lvalue ASSIGN expr (*) 
   and     binary_operator ::= (*) AND 
   under symbol AND
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #20
+*** Shift/Reduce conflict found in state #19
   between expr ::= lvalue ASSIGN expr (*) 
   and     binary_operator ::= (*) OR 
   under symbol OR
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #111
+*** Shift/Reduce conflict found in state #109
   between expr ::= IF expr THEN expr (*) 
   and     binary_operator ::= (*) PLUS 
   under symbol PLUS
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #111
+*** Shift/Reduce conflict found in state #109
   between expr ::= IF expr THEN expr (*) 
   and     binary_operator ::= (*) MINUS 
   under symbol MINUS
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #111
+*** Shift/Reduce conflict found in state #109
   between expr ::= IF expr THEN expr (*) 
   and     binary_operator ::= (*) TIMES 
   under symbol TIMES
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #111
+*** Shift/Reduce conflict found in state #109
   between expr ::= IF expr THEN expr (*) 
   and     binary_operator ::= (*) DIVIDE 
   under symbol DIVIDE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #111
+*** Shift/Reduce conflict found in state #109
   between expr ::= IF expr THEN expr (*) 
   and     binary_operator ::= (*) EQ 
   under symbol EQ
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #111
+*** Shift/Reduce conflict found in state #109
   between expr ::= IF expr THEN expr (*) 
   and     binary_operator ::= (*) NEQ 
   under symbol NEQ
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #111
+*** Shift/Reduce conflict found in state #109
   between expr ::= IF expr THEN expr (*) 
   and     binary_operator ::= (*) LT 
   under symbol LT
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #111
+*** Shift/Reduce conflict found in state #109
   between expr ::= IF expr THEN expr (*) 
   and     binary_operator ::= (*) LE 
   under symbol LE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #111
+*** Shift/Reduce conflict found in state #109
   between expr ::= IF expr THEN expr (*) 
   and     binary_operator ::= (*) GT 
   under symbol GT
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #111
+*** Shift/Reduce conflict found in state #109
   between expr ::= IF expr THEN expr (*) 
   and     binary_operator ::= (*) GE 
   under symbol GE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #111
+*** Shift/Reduce conflict found in state #109
   between expr ::= IF expr THEN expr (*) 
   and     binary_operator ::= (*) AND 
   under symbol AND
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #111
+*** Shift/Reduce conflict found in state #109
   between expr ::= IF expr THEN expr (*) 
   and     binary_operator ::= (*) OR 
   under symbol OR
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #111
+*** Shift/Reduce conflict found in state #109
   between expr ::= IF expr THEN expr (*) 
   and     expr ::= IF expr THEN expr (*) ELSE expr 
   under symbol ELSE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #121
+*** Shift/Reduce conflict found in state #119
   between expr ::= FOR ID ASSIGN expr TO expr DO expr (*) 
   and     binary_operator ::= (*) PLUS 
   under symbol PLUS
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #121
+*** Shift/Reduce conflict found in state #119
   between expr ::= FOR ID ASSIGN expr TO expr DO expr (*) 
   and     binary_operator ::= (*) MINUS 
   under symbol MINUS
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #121
+*** Shift/Reduce conflict found in state #119
   between expr ::= FOR ID ASSIGN expr TO expr DO expr (*) 
   and     binary_operator ::= (*) TIMES 
   under symbol TIMES
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #121
+*** Shift/Reduce conflict found in state #119
   between expr ::= FOR ID ASSIGN expr TO expr DO expr (*) 
   and     binary_operator ::= (*) DIVIDE 
   under symbol DIVIDE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #121
+*** Shift/Reduce conflict found in state #119
   between expr ::= FOR ID ASSIGN expr TO expr DO expr (*) 
   and     binary_operator ::= (*) EQ 
   under symbol EQ
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #121
+*** Shift/Reduce conflict found in state #119
   between expr ::= FOR ID ASSIGN expr TO expr DO expr (*) 
   and     binary_operator ::= (*) NEQ 
   under symbol NEQ
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #121
+*** Shift/Reduce conflict found in state #119
   between expr ::= FOR ID ASSIGN expr TO expr DO expr (*) 
   and     binary_operator ::= (*) LT 
   under symbol LT
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #121
+*** Shift/Reduce conflict found in state #119
   between expr ::= FOR ID ASSIGN expr TO expr DO expr (*) 
   and     binary_operator ::= (*) LE 
   under symbol LE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #121
+*** Shift/Reduce conflict found in state #119
   between expr ::= FOR ID ASSIGN expr TO expr DO expr (*) 
   and     binary_operator ::= (*) GT 
   under symbol GT
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #121
+*** Shift/Reduce conflict found in state #119
   between expr ::= FOR ID ASSIGN expr TO expr DO expr (*) 
   and     binary_operator ::= (*) GE 
   under symbol GE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #121
+*** Shift/Reduce conflict found in state #119
   between expr ::= FOR ID ASSIGN expr TO expr DO expr (*) 
   and     binary_operator ::= (*) AND 
   under symbol AND
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #121
+*** Shift/Reduce conflict found in state #119
   between expr ::= FOR ID ASSIGN expr TO expr DO expr (*) 
   and     binary_operator ::= (*) OR 
   under symbol OR
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #125
+*** Shift/Reduce conflict found in state #123
   between expr ::= MINUS expr (*) 
   and     binary_operator ::= (*) PLUS 
   under symbol PLUS
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #125
+*** Shift/Reduce conflict found in state #123
   between expr ::= MINUS expr (*) 
   and     binary_operator ::= (*) MINUS 
   under symbol MINUS
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #125
+*** Shift/Reduce conflict found in state #123
   between expr ::= MINUS expr (*) 
   and     binary_operator ::= (*) TIMES 
   under symbol TIMES
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #125
+*** Shift/Reduce conflict found in state #123
   between expr ::= MINUS expr (*) 
   and     binary_operator ::= (*) DIVIDE 
   under symbol DIVIDE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #125
+*** Shift/Reduce conflict found in state #123
   between expr ::= MINUS expr (*) 
   and     binary_operator ::= (*) EQ 
   under symbol EQ
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #125
+*** Shift/Reduce conflict found in state #123
   between expr ::= MINUS expr (*) 
   and     binary_operator ::= (*) NEQ 
   under symbol NEQ
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #125
+*** Shift/Reduce conflict found in state #123
   between expr ::= MINUS expr (*) 
   and     binary_operator ::= (*) LT 
   under symbol LT
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #125
+*** Shift/Reduce conflict found in state #123
   between expr ::= MINUS expr (*) 
   and     binary_operator ::= (*) LE 
   under symbol LE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #125
+*** Shift/Reduce conflict found in state #123
   between expr ::= MINUS expr (*) 
   and     binary_operator ::= (*) GT 
   under symbol GT
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #125
+*** Shift/Reduce conflict found in state #123
   between expr ::= MINUS expr (*) 
   and     binary_operator ::= (*) GE 
   under symbol GE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #125
+*** Shift/Reduce conflict found in state #123
   between expr ::= MINUS expr (*) 
   and     binary_operator ::= (*) AND 
   under symbol AND
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #125
+*** Shift/Reduce conflict found in state #123
   between expr ::= MINUS expr (*) 
   and     binary_operator ::= (*) OR 
   under symbol OR
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #113
+*** Shift/Reduce conflict found in state #111
   between expr ::= IF expr THEN expr ELSE expr (*) 
   and     binary_operator ::= (*) PLUS 
   under symbol PLUS
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #113
+*** Shift/Reduce conflict found in state #111
   between expr ::= IF expr THEN expr ELSE expr (*) 
   and     binary_operator ::= (*) MINUS 
   under symbol MINUS
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #113
+*** Shift/Reduce conflict found in state #111
   between expr ::= IF expr THEN expr ELSE expr (*) 
   and     binary_operator ::= (*) TIMES 
   under symbol TIMES
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #113
+*** Shift/Reduce conflict found in state #111
   between expr ::= IF expr THEN expr ELSE expr (*) 
   and     binary_operator ::= (*) DIVIDE 
   under symbol DIVIDE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #113
+*** Shift/Reduce conflict found in state #111
   between expr ::= IF expr THEN expr ELSE expr (*) 
   and     binary_operator ::= (*) EQ 
   under symbol EQ
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #113
+*** Shift/Reduce conflict found in state #111
   between expr ::= IF expr THEN expr ELSE expr (*) 
   and     binary_operator ::= (*) NEQ 
   under symbol NEQ
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #113
+*** Shift/Reduce conflict found in state #111
   between expr ::= IF expr THEN expr ELSE expr (*) 
   and     binary_operator ::= (*) LT 
   under symbol LT
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #113
+*** Shift/Reduce conflict found in state #111
   between expr ::= IF expr THEN expr ELSE expr (*) 
   and     binary_operator ::= (*) LE 
   under symbol LE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #113
+*** Shift/Reduce conflict found in state #111
   between expr ::= IF expr THEN expr ELSE expr (*) 
   and     binary_operator ::= (*) GT 
   under symbol GT
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #113
+*** Shift/Reduce conflict found in state #111
   between expr ::= IF expr THEN expr ELSE expr (*) 
   and     binary_operator ::= (*) GE 
   under symbol GE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #113
+*** Shift/Reduce conflict found in state #111
   between expr ::= IF expr THEN expr ELSE expr (*) 
   and     binary_operator ::= (*) AND 
   under symbol AND
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #113
+*** Shift/Reduce conflict found in state #111
   between expr ::= IF expr THEN expr ELSE expr (*) 
   and     binary_operator ::= (*) OR 
   under symbol OR
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #34
+*** Shift/Reduce conflict found in state #9
+  between lvalue ::= ID (*) 
+  and     expr ::= ID (*) LBRACK expr RBRACK OF expr 
+  under symbol LBRACK
+  Resolved in favor of shifting.
+
+*** Shift/Reduce conflict found in state #33
   between expr ::= expr binary_operator expr (*) 
   and     binary_operator ::= (*) PLUS 
   under symbol PLUS
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #34
+*** Shift/Reduce conflict found in state #33
   between expr ::= expr binary_operator expr (*) 
   and     binary_operator ::= (*) MINUS 
   under symbol MINUS
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #34
+*** Shift/Reduce conflict found in state #33
   between expr ::= expr binary_operator expr (*) 
   and     binary_operator ::= (*) TIMES 
   under symbol TIMES
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #34
+*** Shift/Reduce conflict found in state #33
   between expr ::= expr binary_operator expr (*) 
   and     binary_operator ::= (*) DIVIDE 
   under symbol DIVIDE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #34
+*** Shift/Reduce conflict found in state #33
   between expr ::= expr binary_operator expr (*) 
   and     binary_operator ::= (*) EQ 
   under symbol EQ
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #34
+*** Shift/Reduce conflict found in state #33
   between expr ::= expr binary_operator expr (*) 
   and     binary_operator ::= (*) NEQ 
   under symbol NEQ
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #34
+*** Shift/Reduce conflict found in state #33
   between expr ::= expr binary_operator expr (*) 
   and     binary_operator ::= (*) LT 
   under symbol LT
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #34
+*** Shift/Reduce conflict found in state #33
   between expr ::= expr binary_operator expr (*) 
   and     binary_operator ::= (*) LE 
   under symbol LE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #34
+*** Shift/Reduce conflict found in state #33
   between expr ::= expr binary_operator expr (*) 
   and     binary_operator ::= (*) GT 
   under symbol GT
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #34
+*** Shift/Reduce conflict found in state #33
   between expr ::= expr binary_operator expr (*) 
   and     binary_operator ::= (*) GE 
   under symbol GE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #34
+*** Shift/Reduce conflict found in state #33
   between expr ::= expr binary_operator expr (*) 
   and     binary_operator ::= (*) AND 
   under symbol AND
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #34
+*** Shift/Reduce conflict found in state #33
   between expr ::= expr binary_operator expr (*) 
   and     binary_operator ::= (*) OR 
   under symbol OR
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #93
-  between expr ::= type_id LBRACK expr RBRACK OF expr (*) 
+*** Shift/Reduce conflict found in state #97
+  between expr ::= ID LBRACK expr RBRACK OF expr (*) 
   and     binary_operator ::= (*) PLUS 
   under symbol PLUS
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #93
-  between expr ::= type_id LBRACK expr RBRACK OF expr (*) 
+*** Shift/Reduce conflict found in state #97
+  between expr ::= ID LBRACK expr RBRACK OF expr (*) 
   and     binary_operator ::= (*) MINUS 
   under symbol MINUS
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #93
-  between expr ::= type_id LBRACK expr RBRACK OF expr (*) 
+*** Shift/Reduce conflict found in state #97
+  between expr ::= ID LBRACK expr RBRACK OF expr (*) 
   and     binary_operator ::= (*) TIMES 
   under symbol TIMES
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #93
-  between expr ::= type_id LBRACK expr RBRACK OF expr (*) 
+*** Shift/Reduce conflict found in state #97
+  between expr ::= ID LBRACK expr RBRACK OF expr (*) 
   and     binary_operator ::= (*) DIVIDE 
   under symbol DIVIDE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #93
-  between expr ::= type_id LBRACK expr RBRACK OF expr (*) 
+*** Shift/Reduce conflict found in state #97
+  between expr ::= ID LBRACK expr RBRACK OF expr (*) 
   and     binary_operator ::= (*) EQ 
   under symbol EQ
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #93
-  between expr ::= type_id LBRACK expr RBRACK OF expr (*) 
+*** Shift/Reduce conflict found in state #97
+  between expr ::= ID LBRACK expr RBRACK OF expr (*) 
   and     binary_operator ::= (*) NEQ 
   under symbol NEQ
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #93
-  between expr ::= type_id LBRACK expr RBRACK OF expr (*) 
+*** Shift/Reduce conflict found in state #97
+  between expr ::= ID LBRACK expr RBRACK OF expr (*) 
   and     binary_operator ::= (*) LT 
   under symbol LT
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #93
-  between expr ::= type_id LBRACK expr RBRACK OF expr (*) 
+*** Shift/Reduce conflict found in state #97
+  between expr ::= ID LBRACK expr RBRACK OF expr (*) 
   and     binary_operator ::= (*) LE 
   under symbol LE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #93
-  between expr ::= type_id LBRACK expr RBRACK OF expr (*) 
+*** Shift/Reduce conflict found in state #97
+  between expr ::= ID LBRACK expr RBRACK OF expr (*) 
   and     binary_operator ::= (*) GT 
   under symbol GT
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #93
-  between expr ::= type_id LBRACK expr RBRACK OF expr (*) 
+*** Shift/Reduce conflict found in state #97
+  between expr ::= ID LBRACK expr RBRACK OF expr (*) 
   and     binary_operator ::= (*) GE 
   under symbol GE
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #93
-  between expr ::= type_id LBRACK expr RBRACK OF expr (*) 
+*** Shift/Reduce conflict found in state #97
+  between expr ::= ID LBRACK expr RBRACK OF expr (*) 
   and     binary_operator ::= (*) AND 
   under symbol AND
   Resolved in favor of shifting.
 
-*** Shift/Reduce conflict found in state #93
-  between expr ::= type_id LBRACK expr RBRACK OF expr (*) 
+*** Shift/Reduce conflict found in state #97
+  between expr ::= ID LBRACK expr RBRACK OF expr (*) 
   and     binary_operator ::= (*) OR 
   under symbol OR
   Resolved in favor of shifting.
@@ -608,12 +598,12 @@ Building parse tables...
 *** More conflicts encountered than expected -- parser generation aborted
 Closing files...
 ------- CUP v0.10k Parser Generation Summary -------
-  1 error and 100 warnings
-  45 terminals, 17 non-terminals, and 57 productions declared, 
-  producing 126 unique parse states.
+  1 error and 98 warnings
+  45 terminals, 16 non-terminals, and 56 productions declared, 
+  producing 124 unique parse states.
   0 terminals declared but not used.
   0 non-terminals declared but not used.
   0 productions never reduced.
-  100 conflicts detected (0 expected).
+  98 conflicts detected (0 expected).
   No code produced.
 ---------------------------------------------------- (v0.10k)
