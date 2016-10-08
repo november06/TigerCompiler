@@ -27,6 +27,13 @@ non terminal type;            // done
 non terminal type_fields;     // done
 non terminal type_field;      // done
 
+precedence nonassoc ASSIGN;
+precedence left AND, OR;
+precedence nonassoc EQ, NEQ, LT, GT, LE, GE;
+precedence left PLUS, MINUS;
+precedence left TIMES, DIVIDE;
+// precedence left UMINUS; // TODO
+
 start with program;
 
 program ::= expr;
