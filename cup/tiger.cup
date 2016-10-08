@@ -28,7 +28,7 @@ non terminal type_fields;     // done
 non terminal type_field;      // done
 
 precedence nonassoc ASSIGN;
-precedence left AND, OR;
+precedence left AND, OR;  // right?
 precedence nonassoc EQ, NEQ, LT, GT, LE, GE;
 precedence left PLUS, MINUS;
 precedence left TIMES, DIVIDE;
