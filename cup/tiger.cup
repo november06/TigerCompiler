@@ -1,4 +1,6 @@
 package tiger.parse;
+import tiger.absyn.*;
+// import tiger.symbol.*;
 
 terminal String ID, STRING;
 terminal Integer INT;
@@ -38,52 +40,182 @@ start with program;
 
 program ::= expr;
 // expr with values and without values
-expr ::= STRING |
-         INT |
-		 NIL |
-		 lvalue |
-		 MINUS expr | 
-		 expr binary_operator expr |
-		 lvalue ASSIGN expr | 
-		 ID LPAREN expr_list RPAREN | // function call
-		 LPAREN expr_seq RPAREN | 
+expr ::= STRING:s 
+         {:
+		     RESULT = new LiteralExp(sleft, s);
+		 :} 
+         |
+         INT:i
+		 {:
+		     RESULT = new LiteralExp(ileft, i);
+		 :} 
+		 |
+		 NIL:n
+		 {:
+		     RESULT = new LiteralExp(nleft);
+		 :} 
+		 |
+		 lvalue:l
+		 {:
+		     RESULT = l;
+		 :}
+		 |
+		 MINUS:uminus expr:e 
+		 {:
+		     RESULT = new UminusExp(uminusleft, (Exp)e);
+		 :}
+		 | 
+		 expr:e1 binary_operator:op expr:e2 
+		 {:
+		     RESULT = new BinaryOperationExp(e1left, (Exp)e1, (Integer)op, (Exp)e2);
+		 :}
+		 |
+		 lvalue:lvalueExpr ASSIGN expr:rvalueExpr
+		 {:
+		     RESULT = new AssignExp(lvalueExprleft, (LvalueExp)lvalueExpr, (Exp)rvalueExpr);
+		 :} 
+		 | 
+		 ID:id LPAREN expr_list:exprlist RPAREN 
+		 {:
+		     RESULT = new FunctionCallExp(idleft, id, (Exp)exprlist);
+		 :}
+		 | // function call
+		 LPAREN expr_seq:e RPAREN 
+		 {:
+		     RESULT = e;
+		 :}
+		 | 
          // type_id LBRACE field_list RBRACE |
-		 ID LBRACE field_list RBRACE |
+		 ID LBRACE field_list RBRACE 
+		 |
 		 // type_id LBRACK expr RBRACK OF expr |
-		 ID LBRACK expr RBRACK OF expr |
-		 IF expr THEN expr | 
-		 IF expr THEN expr ELSE expr | 
-		 WHILE expr DO expr | 
-		 FOR ID ASSIGN expr TO expr DO expr | 
-		 BREAK | // ?
+		 ID LBRACK expr RBRACK OF expr 
+		 |
+		 IF:i expr:condition THEN expr:e1 
+		 {:
+		     RESULT = new IfElseExp(ileft, (Exp)condition, (Exp)e1);
+		 :}
+		 | 
+		 IF:i expr:condition THEN expr:e1 ELSE expr:e2
+		 {:
+		     RESULT = new IfElseExp(ileft, (Exp)condition, (Exp)e1, (Exp)e2);
+		 :}
+		 | 
+		 WHILE:w expr:condition DO expr:e 
+		 {:
+		     RESULT = new WhileExp(wleft, (Exp)condition, (Exp)e);
+		 :}
+		 | 
+		 FOR ID ASSIGN expr TO expr DO expr 
+		 {:
+		     //
+		 :}
+		 | 
+		 BREAK 
+		 | // ?
 		 LET declaration_list IN expr_seq END
 		 ;
 
-expr_seq ::= expr |
-             expr_seq SEMICOLON expr;
+expr_seq ::= expr:e
+             {:
+			     RESULT = new SeqExp(eleft, (Exp)e);
+			 :} 
+             |
+             expr_seq:e1 SEMICOLON expr:e2
+			 {:
+			     RESULT = new SeqExp(e1left, (Exp)e1, (Exp)e2);
+			 :}
+			 ;
 
-expr_list ::= expr |
-              expr_list COMMA expr;
+expr_list ::= expr:e
+              {:
+			      RESULT = new ListExp(eleft, (Exp)e);
+			  :} 
+              |
+              expr_list:head COMMA expr:tail
+			  {:
+			      RESULT = new ListExp(headleft, (Exp)head, (Exp)tail);
+			  :};
 
 field_list ::= ID EQ expr |
                field_list COMMA ID EQ expr;
 
-lvalue ::= ID |
-           lvalue DOT ID |
-		   lvalue LBRACK expr RBRACK;
+lvalue ::= ID:id
+           {:
+		       RESULT = new LvalueExp(idleft, id);
+		   :} 
+           |
+           lvalue:lvalueExp DOT ID:fieldId
+		   {:
+		       RESULT = new LvalueExp(lvalueExpleft, (LvalueExp)lvalueExp, fieldId);
+		   :}
+		   |
+		   lvalue:lvalueExp LBRACK expr:exp RBRACK
+		   {:
+		       RESULT = new LvalueExp(lvalueExpleft, (LvalueExp)lvalueExp, (Exp)exp);
+		   :}
+		   ;
 
-binary_operator ::= PLUS |
-                    MINUS | 
-					TIMES |
-					DIVIDE | 
-					EQ |
-					NEQ | 
-					LT |
-					GT |
-					LE |
-					GE |
-					AND |
-					OR ;
+binary_operator ::= PLUS 
+                    {:
+					    RESULT = BinaryOperationExp.PLUS;
+					:}
+					|
+                    MINUS
+					{:
+					    RESULT = BinaryOperationExp.MINUS;
+					:} 
+					| 
+					TIMES
+					{:
+					    RESULT = BinaryOperationExp.TIMES;
+					:} 
+					|
+					DIVIDE 
+					{:
+					    RESULT = BinaryOperationExp.DIVIDE;
+					:}
+					| 
+					EQ 
+					{:
+					    RESULT = BinaryOperationExp.EQ;
+					:}
+					|
+					NEQ 
+					{:
+					    RESULT = BinaryOperationExp.NE;
+					:}
+					| 
+					LT 
+					{:
+					    RESULT = BinaryOperationExp.LT;
+					:}
+					|
+					GT
+					{:
+					    RESULT = BinaryOperationExp.GT;
+					:} 
+					|
+					LE 
+					{:
+					    RESULT = BinaryOperationExp.LE;
+					:}
+					|
+					GE 
+					{:
+					    RESULT = BinaryOperationExp.GE;
+					:}
+					|
+					AND 
+					{:
+					    RESULT = BinaryOperationExp.AND;
+					:}
+					|
+					OR
+					{:
+					    RESULT = BinaryOperationExp.OR;
+					:} 
+					;
 
 declaration_list ::= declaration |
                     declaration_list declaration;
