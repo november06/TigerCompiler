@@ -2,20 +2,19 @@ package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
 
-// TODO SeqExp
-public class ListExp extends Exp
+public class DeclarationListExp extends Exp
 {
-    public ListExp(Integer pos, Exp e)
+    public DeclarationListExp(Integer pos, Exp d)
     {
-        this(pos, e, null);
+        this(pos, d, null);
     }
 
-    public ListExp(Integer pos, Exp head, Exp tail) 
+    public DeclarationListExp(Integer pos, Exp d, Exp dl) 
     {
         super(pos);
 
-        head = head;
-        tail = tail;
+        tail = d;
+        head = dl;
     }
 
     @Override
@@ -28,6 +27,6 @@ public class ListExp extends Exp
         // TODO
     }
 
-    private Exp head;
-    private Exp tail; // could be null
+    Exp head; // could be null 
+    Exp tail;
 }

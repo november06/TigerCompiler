@@ -12,22 +12,21 @@ terminal COMMA, COLON, SEMICOLON, LPAREN, RPAREN,
 	IN, LET, NIL, OF, THEN, TO, TYPE, VAR, WHILE;
 
 
-non terminal program; // done
-non terminal expr;    // done
-non terminal lvalue;  // done
-non terminal binary_operator; // done
-non terminal expr_list;  // done
-non terminal expr_seq;   // done
-// non terminal type_id;    // done
-non terminal field_list; // done
-non terminal declaration_list; // done
-non terminal declaration;     // done
-non terminal type_declaration;// done
-non terminal variable_declaration; // done 
-non terminal function_declaration; // done
-non terminal type;            // done
-non terminal type_fields;     // done
-non terminal type_field;      // done
+non terminal program;
+non terminal expr;   
+non terminal lvalue; 
+non terminal binary_operator;
+non terminal expr_list; 
+non terminal expr_seq;  
+non terminal field_list;
+non terminal declaration_list;
+non terminal declaration;    
+non terminal type_declaration;
+non terminal variable_declaration; 
+non terminal function_declaration;
+non terminal type;           
+non terminal type_fields;    
+non terminal type_field;     
 
 precedence nonassoc ASSIGN;
 precedence left AND, OR;  // right?
@@ -47,7 +46,7 @@ expr ::= STRING:s
          |
          INT:i
 		 {:
-		     RESULT = new LiteralExp(ileft, i);
+		     RESULT = new LiteralExp(ileft, i); // TODO: why i was converted to an integer?
 		 :} 
 		 |
 		 NIL:n
@@ -57,7 +56,7 @@ expr ::= STRING:s
 		 |
 		 lvalue:l
 		 {:
-		     RESULT = l;
+		     RESULT = l; // should already have been a lvalue expression
 		 :}
 		 |
 		 MINUS:uminus expr:e 
@@ -77,19 +76,27 @@ expr ::= STRING:s
 		 | 
 		 ID:id LPAREN expr_list:exprlist RPAREN 
 		 {:
+		     // function call
 		     RESULT = new FunctionCallExp(idleft, id, (Exp)exprlist);
 		 :}
-		 | // function call
+		 |
 		 LPAREN expr_seq:e RPAREN 
 		 {:
+		     // what's this?
 		     RESULT = e;
 		 :}
 		 | 
-         // type_id LBRACE field_list RBRACE |
-		 ID LBRACE field_list RBRACE 
+		 ID:id LBRACE field_list:fl RBRACE 
+		 {
+		     // record type definition
+             RESULT = new RecordDefinitionExp(idleft, id, fl);
+		 }
 		 |
-		 // type_id LBRACK expr RBRACK OF expr |
-		 ID LBRACK expr RBRACK OF expr 
+		 ID:id LBRACK expr:count RBRACK OF expr:base 
+		 {
+		     // ARRAY type definition
+			 RESULT = new ArrayDefinitionExp(idleft, id, count, base);
+		 }
 		 |
 		 IF:i expr:condition THEN expr:e1 
 		 {:
@@ -106,14 +113,20 @@ expr ::= STRING:s
 		     RESULT = new WhileExp(wleft, (Exp)condition, (Exp)e);
 		 :}
 		 | 
-		 FOR ID ASSIGN expr TO expr DO expr 
+		 FOR:f ID:id ASSIGN expr:es TO expr:ee DO expr:eaction 
 		 {:
-		     //
+			 RESULT = new ForExp(fleft, id, es, ee, eaction);
 		 :}
 		 | 
-		 BREAK 
-		 | // ?
-		 LET declaration_list IN expr_seq END
+		 BREAK:b
+		 {:
+		     RESULT = new BreakExp(bleft);
+		 :}
+		 |
+		 LET:let declaration_list:dl IN expr_seq:e END
+		 {:
+             RESULT = new LetExp(letleft, dl, e);
+		 :}
 		 ;
 
 expr_seq ::= expr:e
@@ -137,8 +150,15 @@ expr_list ::= expr:e
 			      RESULT = new ListExp(headleft, (Exp)head, (Exp)tail);
 			  :};
 
-field_list ::= ID EQ expr |
-               field_list COMMA ID EQ expr;
+field_list ::= ID:id EQ expr:e
+               {:
+			       RESULT = new FieldListExp(idleft, id, e);
+			   :} 
+               |
+               field_list:f COMMA ID:id EQ expr:e
+			   {:
+			       RESULT = new FieldListExp(fleft, f, id, e);
+			   :};
 
 lvalue ::= ID:id
            {:
@@ -217,32 +237,85 @@ binary_operator ::= PLUS
 					:} 
 					;
 
-declaration_list ::= declaration |
-                    declaration_list declaration;
+declaration_list ::= declaration:d
+                     {:
+					     RESULT = new DeclarationListExp(dleft, d);
+					 :}
+                     |
+                     declaration_list:dl COMMA declaration:d
+					 {:
+					     RESULT = new DeclarationListExp(dlleft, d, dl);
+					 :}
+					;
 
-declaration ::= type_declaration | 
-                variable_declaration | 
-				function_declaration ;
+declaration ::= type_declaration:d
+                {:
+				    RESULT = d;
+				:} 
+                | 
+                variable_declaration:d
+				{:
+				    RESULT = d;
+				:} 
+				| 
+				function_declaration:d
+				{:
+				    RESULT = d;
+				:}
+				;
 
-type_declaration ::= TYPE ID EQ type;// TYPE type_id EQ type;
+type_declaration ::= TYPE:t ID:id EQ type:td
+                     {:
+					     RESULT = new TypeDeclarationExp(tleft, id, td);
+					 :};
 
-type ::= // type_id |
-         ID | 
-         LBRACE type_fields RBRACE |
-		 ARRAY OF ID;
-		 // ARRAY OF type_id;
+type ::= ID:id
+         {:
+		     RESULT = new TypeDefinitionExp(idleft, TypeDefinitionExp.ID, id);
+		 :} 
+         | 
+         LBRACE:l type_fields:tfs RBRACE 
+		 {:
+             RESULT = new TypeDefinitionExp(lleft, TypeDefinitionExp.RECORD, tfs);
+		 :}
+		 |
+		 ARRAY:l OF ID:id
+		 {:
+             RESULT = new TypeDefinitionExp(lleft, TypeDefinitionExp.ARRAY, id);
+		 :};
 
-type_fields ::= type_field |
-                type_fields COMMA type_field;
+type_fields ::= type_field:t
+                {:
+				    RESULT = new TypeFieldsExp(tleft, t);
+				:} 
+                |
+                type_fields:th COMMA type_field:tf
+				{:
+				    RESULT = new TypeFieldsExp(thleft, th, tf);
+				:}
+				;
 
-type_field ::= ID COLON ID;// ID COLON type_id;
+type_field ::= ID:id COLON ID:typeid
+               {:
+			       RESULT = new TypeFieldExp(idleft, id, typeid);
+			   :};
 
-// type_id ::= ID;
+variable_declaration ::= VAR:v ID:id ASSIGN expr:exp
+                         {:
+						     RESULT = new VariableDeclarationExp(vleft, id, exp);
+						 :}
+                         |
+                         VAR:v ID:id COLON ID:typeid ASSIGN expr:exp
+						 {:
+						     RESULT = new VariableDeclarationExp(vleft, id, typeid, exp);
+						 :};
 
-variable_declaration ::= VAR ID ASSIGN expr |
-                         VAR ID COLON ID ASSIGN expr;
-                         //VAR ID COLON type_id ASSIGN expr;
-
-function_declaration ::= FUNCTION ID LPAREN type_fields RPAREN EQ expr |
-                         // FUNCTION ID LPAREN type_fields RPAREN COLON type_id EQ expr;
-						 FUNCTION ID LPAREN type_fields RPAREN COLON ID EQ expr;
+function_declaration ::= FUNCTION:f ID:fname LPAREN type_fields:tfs RPAREN EQ expr:exp
+                         {:
+						     RESULT = new FunctionDeclarationExp(fleft, fname, tfs, exp);
+						 :}
+                         |
+						 FUNCTION:f ID:fname LPAREN type_fields:tfs RPAREN COLON ID:returntype EQ expr:exp
+						 {:
+						     RESULT = new FunctionDeclarationExp(fleft, fname, tfs, returntype, exp);
+						 :};

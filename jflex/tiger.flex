@@ -102,12 +102,18 @@ WhiteSpace = [ \t\f]
     var        { return symbol(sym.VAR); }
     while      { return symbol(sym.WHILE); }
 
-    {Identifier}        { return symbol(sym.ID, yytext()); }
+    {Identifier}        {
+                            String msg = yytext();
+                            return symbol(sym.ID, msg); 
+                        }
     {LineTerminator}	{ newline(); }
     {WhiteSpace}	    { /* do nothing */ }
 
     // should we check very long integer in there?
-	{DecIntegerLiteral} { return symbol(sym.INT, new Integer(yytext())); } // TODO how to handle negative
+	{DecIntegerLiteral} {
+                            Integer value = Integer.parseInt(yytext());
+                            return symbol(sym.INT, value); 
+                        }
 	
 	// or not? // TODO
 	// [0-9]+   { return symbol(sym.INT, new String(yytext())); }

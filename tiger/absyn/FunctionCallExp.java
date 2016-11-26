@@ -6,6 +6,8 @@ public class FunctionCallExp extends Exp
 {
     public FunctionCallExp(Integer pos, String functionName, Exp parameterList) 
     {
+        super(pos);
+        
         functionName = functionName;
         parameterList = parameterList;
     }
@@ -17,7 +19,7 @@ public class FunctionCallExp extends Exp
 
     @Override
     public void getType(TigerType v) {
-
+        // TODO
     }
 
     private String functionName;

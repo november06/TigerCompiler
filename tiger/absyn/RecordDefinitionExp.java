@@ -2,14 +2,14 @@ package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
 
-public class WhileExp extends Exp
+public class RecordDefinitionExp extends Exp
 {
-    public WhileExp(Integer pos, Exp condition, Exp execute) 
+    public RecordDefinitionExp(Integer pos, String recordName, FieldList fl)
     {
         super(pos);
 
-        condition = condition;
-        execute = execute;
+        name = recordName;
+        fieldList = fl;
     }
 
     @Override
@@ -22,6 +22,6 @@ public class WhileExp extends Exp
         // TODO
     }
 
-    private Exp condition;
-    private Exp execute;
+    private String name;
+    private FieldList fieldList; // could be null?
 }

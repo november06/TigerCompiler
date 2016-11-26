@@ -2,14 +2,11 @@ package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
 
-public class WhileExp extends Exp
+public class BreakExp extends Exp
 {
-    public WhileExp(Integer pos, Exp condition, Exp execute) 
+    public BreakExp(Integer pos)
     {
         super(pos);
-
-        condition = condition;
-        execute = execute;
     }
 
     @Override
@@ -21,7 +18,4 @@ public class WhileExp extends Exp
     public void getType(TigerType v) {
         // TODO
     }
-
-    private Exp condition;
-    private Exp execute;
 }

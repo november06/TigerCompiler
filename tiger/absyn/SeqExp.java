@@ -6,11 +6,13 @@ public class SeqExp extends Exp
 {
     public SeqExp(Integer pos, Exp e)
     {
-        head = e;
+        this(pos, e, null);
     }
 
     public SeqExp(Integer pos, Exp head, Exp tail) 
     {
+        super(pos);
+
         head = head;
         tail = tail;
     }
@@ -22,9 +24,9 @@ public class SeqExp extends Exp
 
     @Override
     public void getType(TigerType v) {
-
+        // TODO
     }
 
     private Exp head; // TODO or SeqExp?
-    private Exp tail;
+    private Exp tail; // could be null
 }

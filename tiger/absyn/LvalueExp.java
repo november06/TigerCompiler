@@ -8,21 +8,30 @@ public class LvalueExp extends Exp
 
     public LvalueExp(Integer pos, String idName) 
     {
+        super(pos);
+
         internalType = identifier;
+
         identifierName = idName;
     }
 
     public LvalueExp(Integer pos, LvalueExp lvalueExp, String fieldName)
     {
+        super(pos);
+
         internalType = fieldOfRecord;
+
         baseLvalue = lvalueExp;
         fieldName = fieldName;
     }
 
     public LvalueExp(Integer pos, LvalueExp lvalueExp, Exp indexExp)
     {
+        super(pos);
+
         // TODO validate indexExp's type'
         internalType = itemOfArray;
+
         baseLvalue = lvalueExp;
         indexExp = indexExp;
     }
@@ -34,7 +43,7 @@ public class LvalueExp extends Exp
 
     @Override
     public void getType(TigerType v) {
-
+        // TODO
     }
 
     private Integer internalType;

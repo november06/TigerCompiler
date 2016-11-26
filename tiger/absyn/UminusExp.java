@@ -6,6 +6,8 @@ public class UminusExp extends Exp
 {
     public UminusExp(Integer pos, Exp e) 
     {
+        super(pos);
+
         innerExp = e;
     }
 
@@ -16,7 +18,7 @@ public class UminusExp extends Exp
 
     @Override
     public void getType(TigerType v) {
-
+        // TODO
     }
 
     private Exp innerExp;

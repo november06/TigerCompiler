@@ -5,7 +5,10 @@ import tiger.TigerType;
 public class AssignExp extends Exp
 {
     public AssignExp(Integer pos, Exp left, Exp right) {
-        // TODO
+        super(pos);
+
+        left = left; 
+        right = right;
     }
 
     @Override
@@ -17,4 +20,7 @@ public class AssignExp extends Exp
     void getType(TigerType t) {
         // TODO
     }
+
+    private Exp left;
+    private Exp right;
 }

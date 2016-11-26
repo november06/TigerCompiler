@@ -2,17 +2,14 @@ package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
 
-public abstract class Exp 
+public abstract class Declaration extends Exp 
 {
-    public Exp(Integer pos)
+    public Declaration(Integer pos)
     {
-        pos = pos;
-        System.out.println(pos);
+        super(pos);
     }
 
     abstract void getValue(TigerValue v);
 
     abstract void getType(TigerType v);
-
-    private Integer pos;
 }

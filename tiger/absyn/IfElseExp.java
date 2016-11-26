@@ -6,12 +6,13 @@ public class IfElseExp extends Exp
 {
     public IfElseExp(Integer pos, Exp condition, Exp executeIf) 
     {
-        condition = condition;
-        executeIf = executeIf;
+        this(pos, condition, executeIf, null);
     }
 
     public IfElseExp(Integer pos, Exp condition, Exp executeIf, Exp executeElse) 
     {
+        super(pos);
+
         condition = condition;
         executeIf = executeIf;
         executeElse = executeElse;
@@ -24,10 +25,10 @@ public class IfElseExp extends Exp
 
     @Override
     public void getType(TigerType v) {
-
+        // TODO
     }
 
     private Exp condition;
     private Exp executeIf;
-    private Exp executeElse;
+    private Exp executeElse; // could be null
 }

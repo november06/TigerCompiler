@@ -6,6 +6,8 @@ public class BinaryOperationExp extends Exp
 {
     public BinaryOperationExp(Integer pos, Exp e1, Integer op, Exp e2) 
     {
+        super(pos);
+
         innerExpLeft = e1;
         innerExpRight = e2;
 
@@ -19,7 +21,7 @@ public class BinaryOperationExp extends Exp
 
     @Override
     public void getType(TigerType v) {
-
+        // TODO
     }
 
     private Integer operation;
