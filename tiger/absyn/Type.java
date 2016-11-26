@@ -7,7 +7,6 @@ public abstract class Type
     public Type(Integer pos)
     {
         pos = pos;
-        System.out.println(pos);
     }
 
     // abstract String getName();

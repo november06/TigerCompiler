@@ -7,7 +7,6 @@ public abstract class Exp
     public Exp(Integer pos)
     {
         pos = pos;
-        System.out.println(pos);
     }
 
     abstract void getValue(TigerValue v);

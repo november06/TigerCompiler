@@ -7,22 +7,22 @@ public class LiteralExp extends Exp
     public LiteralExp(Integer pos) 
     {
         super(pos);
-
+        internalValue = new TigerValue();
         internalValue.SetNil();
     }
 
     public LiteralExp(Integer pos, String stirngValue)
     {
-        super(pos);
+        this(pos);
 
         internalValue.SetString(stirngValue);
     }
 
-    public LiteralExp(Integer pos, Integer integer)
+    public LiteralExp(Integer pos, Integer integerValue)
     {
-        super(pos);
-
-        internalValue.SetInteger(integer);
+        this(pos);
+        
+        internalValue.SetInteger(integerValue);
     }
 
     @Override
