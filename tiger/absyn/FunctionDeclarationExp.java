@@ -9,7 +9,7 @@ public class FunctionDeclarationExp extends Exp
         this(pos, name, typeFields, null, body);
     }
 
-    public FunctionDeclarationExp(Integer pos, String name, Exp typeFields, Exp returnType, Exp body)
+    public FunctionDeclarationExp(Integer pos, String name, Exp typeFields, String returnType, Exp body)
     {
         super(pos);
 
@@ -31,6 +31,6 @@ public class FunctionDeclarationExp extends Exp
 
     private String name; 
     private Exp typeFields;
-    private Exp returnType;
+    private String returnType;
     private Exp body;
 }

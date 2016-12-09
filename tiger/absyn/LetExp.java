@@ -2,7 +2,7 @@ package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
 
-public abstract class LetExp extends Exp
+public /*abstract*/ class LetExp extends Exp
 {
     public LetExp(Integer pos, Exp dl, Exp e)
     {

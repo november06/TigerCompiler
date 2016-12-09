@@ -6,12 +6,20 @@ public class TypeDefinitionExp extends Exp
 {
     public static final Integer ID = 0, RECORD = 1, ARRAY = 2;
 
-    public TypeDefinitionExp(Integer pos, String id, Exp typeDef)
+    public TypeDefinitionExp(Integer pos, Integer type, String id)
     {
         super(pos);
 
         id = id; 
-        def = typeDef;
+        type = type;
+    }
+
+    public TypeDefinitionExp(Integer pos, Exp typeFields)
+    {
+        super(pos);
+
+        type = RECORD; 
+        typeFields = typeFields;
     }
 
     @Override
@@ -25,5 +33,6 @@ public class TypeDefinitionExp extends Exp
     }
 
     private String id; 
-    private Exp def;
+    private Integer type;
+    private Exp typeFields;
 }

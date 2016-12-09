@@ -4,7 +4,7 @@ import tiger.TigerType;
 
 public class TypeFieldExp extends Exp 
 {
-    public TypeFieldExp(Integer pos, Exp id, Exp typeId)
+    public TypeFieldExp(Integer pos, String id, String typeId)
     {
         super(pos);
 
@@ -22,6 +22,6 @@ public class TypeFieldExp extends Exp
         // TODO
     }
 
-    Exp id;
-    Exp typeId;
+    String id;
+    String typeId;
 }

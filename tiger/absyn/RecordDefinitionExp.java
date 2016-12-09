@@ -4,7 +4,7 @@ import tiger.TigerType;
 
 public class RecordDefinitionExp extends Exp
 {
-    public RecordDefinitionExp(Integer pos, String recordName, FieldList fl)
+    public RecordDefinitionExp(Integer pos, String recordName, Exp fl)
     {
         super(pos);
 
@@ -23,5 +23,5 @@ public class RecordDefinitionExp extends Exp
     }
 
     private String name;
-    private FieldList fieldList; // could be null?
+    private Exp /*FieldList TODO*/ fieldList; // could be null?
 }
