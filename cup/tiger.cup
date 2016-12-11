@@ -46,7 +46,7 @@ expr ::= STRING:s
          |
          INT:i
 		 {:
-		     RESULT = new LiteralExp(ileft, i); // TODO: why i was converted to an integer?
+		     RESULT = new LiteralExp(ileft, i);
 		 :} 
 		 |
 		 NIL:n
@@ -77,7 +77,7 @@ expr ::= STRING:s
 		 ID:id LPAREN expr_list:exprlist RPAREN 
 		 {:
 		     // function call
-		     RESULT = new FunctionCallExp(idleft, id, (Exp)exprlist);
+		     RESULT = new FunctionCallExp(idleft, id, (ListExp)exprlist);
 		 :}
 		 |
 		 LPAREN expr_seq:e RPAREN 
@@ -89,7 +89,7 @@ expr ::= STRING:s
 		 ID:id LBRACE field_list:fl RBRACE 
 		 {:
 		     // record type definition
-             RESULT = new RecordDefinitionExp(idleft, id, (Exp)fl);
+             RESULT = new RecordDefinitionExp(idleft, id, (FieldListExp)fl);
 		 :}
 		 |
 		 ID:id LBRACK expr:count RBRACK OF expr:base 
@@ -125,7 +125,7 @@ expr ::= STRING:s
 		 |
 		 LET:let declaration_list:dl IN expr_seq:e END
 		 {:
-             RESULT = new LetExp(letleft, (Exp)dl, (Exp)e);
+             RESULT = new LetExp(letleft, (DeclarationListExp)dl, (SeqExp)e);
 		 :}
 		 ;
 
@@ -136,7 +136,7 @@ expr_seq ::= expr:e
              |
              expr_seq:e1 SEMICOLON expr:e2
 			 {:
-			     RESULT = new SeqExp(e1left, (Exp)e1, (Exp)e2);
+			     RESULT = new SeqExp(e1left, (SeqExp)e1, (Exp)e2);
 			 :}
 			 ;
 
@@ -147,7 +147,7 @@ expr_list ::= expr:e
               |
               expr_list:head COMMA expr:tail
 			  {:
-			      RESULT = new ListExp(headleft, (Exp)head, (Exp)tail);
+			      RESULT = new ListExp(headleft, (ListExp)head, (Exp)tail);
 			  :};
 
 field_list ::= ID:id EQ expr:e
@@ -157,7 +157,7 @@ field_list ::= ID:id EQ expr:e
                |
                field_list:f COMMA ID:id EQ expr:e
 			   {:
-			       RESULT = new FieldListExp(fleft, (Exp)f, id, (Exp)e);
+			       RESULT = new FieldListExp(fleft, (FieldListExp)f, id, (Exp)e);
 			   :};
 
 lvalue ::= ID:id
@@ -239,12 +239,12 @@ binary_operator ::= PLUS
 
 declaration_list ::= declaration:d
                      {:
-					     RESULT = new DeclarationListExp(dleft, (Exp)d);
+					     RESULT = new DeclarationListExp(dleft, (Declaration)d);
 					 :}
                      |
                      declaration_list:dl COMMA declaration:d
 					 {:
-					     RESULT = new DeclarationListExp(dlleft, (Exp)d, (Exp)dl);
+					     RESULT = new DeclarationListExp(dlleft, (DeclarationListExp)dl, (Declaration)d);
 					 :}
 					;
 
@@ -266,7 +266,7 @@ declaration ::= type_declaration:d
 
 type_declaration ::= TYPE:t ID:id EQ type:td
                      {:
-					     RESULT = new TypeDeclarationExp(tleft, id, (Exp)td);
+					     RESULT = new TypeDeclarationExp(tleft, id, (TypeDefinitionExp)td);
 					 :};
 
 type ::= ID:id
@@ -276,7 +276,7 @@ type ::= ID:id
          | 
          LBRACE:l type_fields:tfs RBRACE 
 		 {:
-             RESULT = new TypeDefinitionExp(lleft, (Exp)tfs);
+             RESULT = new TypeDefinitionExp(lleft, (TypeFieldsExp)tfs);
 		 :}
 		 |
 		 ARRAY:l OF ID:id
@@ -286,12 +286,12 @@ type ::= ID:id
 
 type_fields ::= type_field:t
                 {:
-				    RESULT = new TypeFieldsExp(tleft, (Exp)t);
+				    RESULT = new TypeFieldsExp(tleft, (TypeFieldExp)t);
 				:} 
                 |
                 type_fields:th COMMA type_field:tf
 				{:
-				    RESULT = new TypeFieldsExp(thleft, (Exp)th, (Exp)tf);
+				    RESULT = new TypeFieldsExp(thleft, (TypeFieldsExp)th, (TypeFieldExp)tf);
 				:}
 				;
 
@@ -312,10 +312,10 @@ variable_declaration ::= VAR:v ID:id ASSIGN expr:exp
 
 function_declaration ::= FUNCTION:f ID:fname LPAREN type_fields:tfs RPAREN EQ expr:exp
                          {:
-						     RESULT = new FunctionDeclarationExp(fleft, fname, (Exp)tfs, (Exp)exp);
+						     RESULT = new FunctionDeclarationExp(fleft, fname, (TypeFieldsExp)tfs, (Exp)exp);
 						 :}
                          |
 						 FUNCTION:f ID:fname LPAREN type_fields:tfs RPAREN COLON ID:returntype EQ expr:exp
 						 {:
-						     RESULT = new FunctionDeclarationExp(fleft, fname, (Exp)tfs, returntype, (Exp)exp);
+						     RESULT = new FunctionDeclarationExp(fleft, fname, (TypeFieldsExp)tfs, returntype, (Exp)exp);
 						 :};

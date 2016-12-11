@@ -35,5 +35,30 @@ public class LiteralExp extends Exp
         // TODO
     }
 
+    @Override
+    public String getTypeName() 
+    {
+        return "LiteralExp";
+    }
+
+    @Override
+    public void print()
+    {
+        super.print();
+        if (internalValue.IsString())
+        {
+            System.out.print(internalValue.GetStringValue());
+        }
+        else if (internalValue.IsInteger())
+        {
+            System.out.print(internalValue.GetIntValue());
+        }
+        else 
+        {
+            System.out.print("Nil");
+        }
+        System.out.println();
+    }
+
     private TigerValue internalValue;
 }

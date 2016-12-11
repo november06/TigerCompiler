@@ -14,7 +14,7 @@ public class TypeDefinitionExp extends Exp
         type = type;
     }
 
-    public TypeDefinitionExp(Integer pos, Exp typeFields)
+    public TypeDefinitionExp(Integer pos, TypeFieldsExp typeFields)
     {
         super(pos);
 
@@ -32,7 +32,34 @@ public class TypeDefinitionExp extends Exp
         // TODO
     }
 
+    @Override
+    public String getTypeName() 
+    {
+        return "TypeDefinitionExp";
+    }
+
+    @Override
+    public void print()
+    {
+        super.print();
+        if (type == ID)
+        {
+            System.out.print("ID: ");
+            System.out.print(id);
+        }
+        else if (type == RECORD)
+        {
+            System.out.print("RECORD: ");
+            typeFields.print();
+        }
+        else if (type == ARRAY)
+        {
+            System.out.print("ARRAY of: ");
+            System.out.print(id);
+        }
+    }
+
     private String id; 
     private Integer type;
-    private Exp typeFields;
+    private TypeFieldsExp typeFields;
 }

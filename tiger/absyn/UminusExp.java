@@ -21,5 +21,21 @@ public class UminusExp extends Exp
         // TODO
     }
 
+    @Override
+    public String getTypeName() 
+    {
+        return "UminusExp";
+    }
+
+    @Override
+    public void print()
+    {
+        super.print();
+        System.out.print("-");
+        innerExp.print();
+        System.out.println();
+        // TODO validation innerExp is of type integer
+    }
+
     private Exp innerExp;
 }

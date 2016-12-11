@@ -4,7 +4,7 @@ import tiger.TigerType;
 
 public class TypeDeclarationExp extends Exp 
 {
-    public TypeDeclarationExp(Integer pos, String id, Exp typeDef)
+    public TypeDeclarationExp(Integer pos, String id, TypeDefinitionExp typeDef)
     {
         super(pos);
 
@@ -22,6 +22,21 @@ public class TypeDeclarationExp extends Exp
         // TODO
     }
 
+    @Override
+    public String getTypeName() 
+    {
+        return "TypeDeclarationExp";
+    }
+
+    @Override
+    public void print()
+    {
+        super.print();
+        System.out.print(id); // TODO put into global envrionment?
+        def.print();
+        System.out.println();
+    }
+
     private String id; 
-    private Exp def;
+    private TypeDefinitionExp def;
 }

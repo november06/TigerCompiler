@@ -46,6 +46,48 @@ public class LvalueExp extends Exp
         // TODO
     }
 
+    @Override
+    public String getTypeName() 
+    {
+        return "LvalueExp";
+    }
+
+    @Override
+    public void print()
+    {
+        super.print();
+        
+        if (internalType == identifier)
+        {
+            System.out.print("identifier");
+
+            System.out.println(identifierName);
+            // TODO validation identifier is available
+        }
+        else if (internalType == fieldOfRecord)
+        {
+            System.out.print("fieldOfRecord");
+
+            baseLvalue.print();
+
+            System.out.println(fieldName);
+            // TODO validation baseLvalue is valid
+            // TODO validation fieldName is available for baseLvalue's type
+        }
+        else if (internalType == itemOfArray)
+        {
+            System.out.print("itemOfArray");
+
+            baseLvalue.print();
+
+            indexExp.print();
+
+            System.out.println();
+            // TODO validation baseLvalue is valid, is an array
+            // TODO indexExp is an integer type
+        }
+    }
+
     private Integer internalType;
 
     // type 0

@@ -12,4 +12,6 @@ public abstract class Declaration extends Exp
     abstract void getValue(TigerValue v);
 
     abstract void getType(TigerType v);
+
+    abstract String getTypeName();
 }

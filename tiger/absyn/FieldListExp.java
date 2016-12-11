@@ -9,7 +9,7 @@ public class FieldListExp extends Exp
         this(pos, null, id, e);
     }
 
-    public FieldListExp(Integer pos, Exp fl, String id, Exp e) 
+    public FieldListExp(Integer pos, FieldListExp fl, String id, Exp e) 
     {
         super(pos);
 
@@ -28,7 +28,26 @@ public class FieldListExp extends Exp
         // TODO
     }
 
-    Exp head;
+    @Override
+    public String getTypeName() 
+    {
+        return "FieldListExp";
+    }
+
+    @Override
+    public void print()
+    {
+        super.print();
+        if (head != null)
+        {
+            head.print();
+        }
+        System.out.print(id);
+        exp.print(); // TODO validation : exp is a type ?
+        System.out.println();
+    }
+
+    FieldListExp head;
     String id;
     Exp exp;
 }

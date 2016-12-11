@@ -18,4 +18,18 @@ public class BreakExp extends Exp
     public void getType(TigerType v) {
         // TODO
     }
+
+    @Override
+    public String getTypeName() 
+    {
+        return "BreakExp";
+    }
+
+    @Override
+    public void print()
+    {
+        super.print();
+        // TODO validation inside an for
+        System.out.println("break");
+    }
 }

@@ -28,6 +28,25 @@ public class VariableDeclarationExp extends Exp
         // TODO
     }
 
+    @Override
+    public String getTypeName() 
+    {
+        return "VariableDeclarationExp";
+    }
+
+    @Override
+    public void print()
+    {
+        super.print();
+        System.out.print(id);
+        if (typeid != null)
+        {
+            System.out.print(typeid);
+        }
+        exp.print();
+        System.out.println();
+    }
+
     private String id; 
     private String typeid;
     private Exp exp;

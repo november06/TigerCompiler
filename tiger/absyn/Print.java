@@ -12,7 +12,7 @@ public class Print
 
     public void PrintExp(Exp exp)
     {
-        // TODO
+        exp.print();
     }
 
     private java.io.PrintStream destination;

@@ -4,7 +4,7 @@ import tiger.TigerType;
 
 public class FunctionCallExp extends Exp
 {
-    public FunctionCallExp(Integer pos, String functionName, Exp parameterList) 
+    public FunctionCallExp(Integer pos, String functionName, ListExp parameterList) 
     {
         super(pos);
         
@@ -22,6 +22,21 @@ public class FunctionCallExp extends Exp
         // TODO
     }
 
+    @Override
+    public String getTypeName() 
+    {
+        return "FunctionCallExp";
+    }
+
+    @Override
+    public void print()
+    {
+        super.print();
+        System.out.print(functionName);
+        parameterList.print();
+        System.out.println();
+    }
+
     private String functionName;
-    private Exp parameterList;
+    private ListExp parameterList;
 }

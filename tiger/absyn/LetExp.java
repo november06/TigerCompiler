@@ -4,7 +4,7 @@ import tiger.TigerType;
 
 public /*abstract*/ class LetExp extends Exp
 {
-    public LetExp(Integer pos, Exp dl, Exp e)
+    public LetExp(Integer pos, DeclarationListExp dl, SeqExp e)
     {
         super(pos);
         
@@ -22,7 +22,21 @@ public /*abstract*/ class LetExp extends Exp
         // TODO
     }
 
-    private Integer pos;
-    private Exp declarationList;
-    private Exp exp;
+    @Override
+    public String getTypeName() 
+    {
+        return "LetExp";
+    }
+
+    @Override
+    public void print()
+    {
+        super.print();
+        declarationList.print();
+        exp.print();
+        System.out.println();
+    }
+
+    private DeclarationListExp declarationList;
+    private SeqExp exp;
 }

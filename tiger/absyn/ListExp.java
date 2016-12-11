@@ -7,10 +7,10 @@ public class ListExp extends Exp
 {
     public ListExp(Integer pos, Exp e)
     {
-        this(pos, e, null);
+        this(pos, null, e);
     }
 
-    public ListExp(Integer pos, Exp head, Exp tail) 
+    public ListExp(Integer pos, ListExp head, Exp tail) 
     {
         super(pos);
 
@@ -28,6 +28,24 @@ public class ListExp extends Exp
         // TODO
     }
 
-    private Exp head;
+    @Override
+    public String getTypeName() 
+    {
+        return "ListExp";
+    }
+
+    @Override
+    public void print()
+    {
+        super.print();
+        if (head != null) 
+        {
+            head.print();
+        }
+        tail.print();
+        System.out.println();
+    }
+
+    private ListExp head;
     private Exp tail; // could be null
 }

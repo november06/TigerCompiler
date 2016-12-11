@@ -2,6 +2,8 @@ package tiger;
 
 
 public class TigerValue {
+    public static final Integer STRING = 0, INTEGER = 1, NIL = 2;
+
     public TigerValue(String value) 
     {
         SetString(value);

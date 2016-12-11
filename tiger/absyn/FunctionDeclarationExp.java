@@ -4,12 +4,12 @@ import tiger.TigerType;
 
 public class FunctionDeclarationExp extends Exp 
 {
-    public FunctionDeclarationExp(Integer pos, String name, Exp typeFields, Exp body)
+    public FunctionDeclarationExp(Integer pos, String name, TypeFieldsExp typeFields, Exp body)
     {
         this(pos, name, typeFields, null, body);
     }
 
-    public FunctionDeclarationExp(Integer pos, String name, Exp typeFields, String returnType, Exp body)
+    public FunctionDeclarationExp(Integer pos, String name, TypeFieldsExp typeFields, String returnType, Exp body)
     {
         super(pos);
 
@@ -29,8 +29,28 @@ public class FunctionDeclarationExp extends Exp
         // TODO
     }
 
+    @Override
+    public String getTypeName() 
+    {
+        return "FunctionDeclarationExp";
+    }
+
+    @Override
+    public void print()
+    {
+        super.print();
+        System.out.print(name);
+        typeFields.print();
+        if (returnType != null) 
+        {
+            System.out.print(returnType);
+        }
+        body.print();
+        System.out.println();
+    }
+
     private String name; 
-    private Exp typeFields;
+    private TypeFieldsExp typeFields;
     private String returnType;
     private Exp body;
 }

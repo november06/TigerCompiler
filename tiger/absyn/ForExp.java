@@ -24,6 +24,24 @@ public class ForExp extends Exp
         // TODO
     }
 
+    @Override
+    public String getTypeName() 
+    {
+        return "ForExp";
+    }
+
+    @Override
+    public void print()
+    {
+        super.print();
+        // TODO validation eStart and eEnd of type integer
+        System.out.print(idName);
+        eStart.print();
+        eEnd.print();
+        eAction.print();
+        System.out.println();
+    }
+
     private String idName;
     private Exp eStart, eEnd;
     private Exp eAction;

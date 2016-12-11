@@ -22,6 +22,21 @@ public class TypeFieldExp extends Exp
         // TODO
     }
 
+    @Override
+    public String getTypeName() 
+    {
+        return "TypeFieldExp";
+    }
+
+    @Override
+    public void print()
+    {
+        super.print();
+        System.out.print(id);
+        System.out.print(" : ");
+        System.out.print(typeId);
+    }
+
     String id;
     String typeId;
 }

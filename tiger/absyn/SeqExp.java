@@ -6,10 +6,10 @@ public class SeqExp extends Exp
 {
     public SeqExp(Integer pos, Exp e)
     {
-        this(pos, e, null);
+        this(pos, null, e);
     }
 
-    public SeqExp(Integer pos, Exp head, Exp tail) 
+    public SeqExp(Integer pos, SeqExp head, Exp tail) 
     {
         super(pos);
 
@@ -27,6 +27,24 @@ public class SeqExp extends Exp
         // TODO
     }
 
-    private Exp head; // TODO or SeqExp?
+    @Override
+    public String getTypeName() 
+    {
+        return "SeqExp";
+    }
+
+    @Override
+    public void print()
+    {
+        super.print();
+        if (head != null) 
+        {
+            head.print();
+        }
+        tail.print();
+        System.out.println();
+    }
+
+    private SeqExp head;
     private Exp tail; // could be null
 }

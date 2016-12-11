@@ -4,7 +4,7 @@ import tiger.TigerType;
 
 public class AssignExp extends Exp
 {
-    public AssignExp(Integer pos, Exp left, Exp right) {
+    public AssignExp(Integer pos, LvalueExp left, Exp right) {
         super(pos);
 
         left = left; 
@@ -21,6 +21,23 @@ public class AssignExp extends Exp
         // TODO
     }
 
-    private Exp left;
+    @Override
+    public String getTypeName() 
+    {
+        return "AssignExp";
+    }
+
+    @Override
+    public void print()
+    {
+        // TODO validation type of left should be same as type of right
+        super.print();
+        left.print();
+        System.out.print(":=");
+        right.print();
+        System.out.println();
+    }
+
+    private LvalueExp left;
     private Exp right;
 }

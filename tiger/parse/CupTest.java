@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import tiger.errormsg.ErrorMsg;
+import tiger.absyn.*;
 
 public class CupTest {
 
@@ -19,7 +20,8 @@ public class CupTest {
 		Yylex lexer = new Yylex(inp, errorMsg);
 		parser p = new parser(lexer);
 		try {
-			p.parse();
+			Exp e = (Exp)(p.parse().value);
+			new Print(System.out).PrintExp(e);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

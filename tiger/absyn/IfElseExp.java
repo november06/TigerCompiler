@@ -28,6 +28,25 @@ public class IfElseExp extends Exp
         // TODO
     }
 
+    @Override
+    public String getTypeName() 
+    {
+        return "IfElseExp";
+    }
+
+    @Override
+    public void print()
+    {
+        super.print();
+        // TODO validation: condition should be Integer
+        condition.print();
+        // TODO validation: executeIf should be the same type of executeElse
+        executeIf.print();
+        executeElse.print();
+
+        System.out.println();
+    }
+
     private Exp condition;
     private Exp executeIf;
     private Exp executeElse; // could be null

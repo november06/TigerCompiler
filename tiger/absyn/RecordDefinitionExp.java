@@ -4,7 +4,7 @@ import tiger.TigerType;
 
 public class RecordDefinitionExp extends Exp
 {
-    public RecordDefinitionExp(Integer pos, String recordName, Exp fl)
+    public RecordDefinitionExp(Integer pos, String recordName, FieldListExp fl)
     {
         super(pos);
 
@@ -22,6 +22,23 @@ public class RecordDefinitionExp extends Exp
         // TODO
     }
 
+    @Override
+    public String getTypeName() 
+    {
+        return "RecordDefinitionExp";
+    }
+
+    @Override
+    public void print()
+    {
+        super.print();
+        System.out.print(name);
+        fieldList.print();
+
+        System.out.println();
+        // TODO validation name used?  name of current scope
+    }
+
     private String name;
-    private Exp /*FieldList TODO*/ fieldList; // could be null?
+    private FieldListExp fieldList; // could be null?
 }
