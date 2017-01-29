@@ -245,7 +245,7 @@ declaration_list ::= declaration:d
 					     RESULT = new DeclarationListExp(dleft, (Declaration)d);
 					 :}
                      |
-                     declaration_list:dl COMMA declaration:d
+                     declaration_list:dl declaration:d
 					 {:
 					     RESULT = new DeclarationListExp(dlleft, (DeclarationListExp)dl, (Declaration)d);
 					 :}
