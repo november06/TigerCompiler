@@ -7,12 +7,17 @@ public class Print
 {
     public Print(java.io.PrintStream destination)
     {
-        destination = destination;
+    	this.destination = destination;
     }
 
     public void PrintExp(Exp exp)
     {
-        exp.print();
+        if (exp == null) {
+        	System.out.println("Error the input exp is null");
+        }
+        else {
+            exp.print();
+        }
     }
 
     private java.io.PrintStream destination;

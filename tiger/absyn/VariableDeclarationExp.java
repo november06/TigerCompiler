@@ -2,7 +2,7 @@ package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
 
-public class VariableDeclarationExp extends Exp 
+public class VariableDeclarationExp extends Declaration 
 {
     public VariableDeclarationExp(Integer pos, String id, Exp exp)
     {
@@ -13,9 +13,9 @@ public class VariableDeclarationExp extends Exp
     {
         super(pos);
 
-        id = id; 
-        typeid = typeId;
-        exp = exp;
+        this.id = id; 
+        this.typeid = typeId;
+        this.exp = exp;
     }
 
     @Override

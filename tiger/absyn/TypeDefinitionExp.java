@@ -10,8 +10,8 @@ public class TypeDefinitionExp extends Exp
     {
         super(pos);
 
-        id = id; 
-        type = type;
+        this.id = id; 
+        this.type = type;
     }
 
     public TypeDefinitionExp(Integer pos, TypeFieldsExp typeFields)
@@ -19,7 +19,7 @@ public class TypeDefinitionExp extends Exp
         super(pos);
 
         type = RECORD; 
-        typeFields = typeFields;
+        this.typeFields = typeFields;
     }
 
     @Override

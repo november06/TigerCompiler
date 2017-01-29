@@ -13,9 +13,9 @@ public class IfElseExp extends Exp
     {
         super(pos);
 
-        condition = condition;
-        executeIf = executeIf;
-        executeElse = executeElse;
+        this.condition = condition;
+        this.executeIf = executeIf;
+        this.executeElse = executeElse;
     }
 
     @Override

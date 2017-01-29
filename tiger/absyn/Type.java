@@ -6,7 +6,7 @@ public abstract class Type
 {
     public Type(Integer pos)
     {
-        pos = pos;
+    	this.pos = pos;
     }
 
     // abstract String getName();

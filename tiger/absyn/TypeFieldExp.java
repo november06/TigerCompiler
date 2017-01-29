@@ -8,8 +8,8 @@ public class TypeFieldExp extends Exp
     {
         super(pos);
 
-        id = id;
-        typeId = typeId; 
+        this.id = id;
+        this.typeId = typeId; 
     }
 
     @Override

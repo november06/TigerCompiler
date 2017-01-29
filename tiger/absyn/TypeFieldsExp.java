@@ -13,8 +13,8 @@ public class TypeFieldsExp extends Exp
     {
         super(pos);
 
-        typeFields = typeFields;
-        typeField = typeField; 
+        this.typeFields = typeFields;
+        this.typeField = typeField; 
     }
 
     @Override

@@ -9,9 +9,9 @@ public class ForExp extends Exp
         super(pos);
 
         idName = id;
-        eStart = eStart;
-        eEnd = eEnd;
-        eAction = eAction;
+        this.eStart = eStart;
+        this.eEnd = eEnd;
+        this.eAction = eAction;
     }
 
     @Override

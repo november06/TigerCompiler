@@ -6,7 +6,7 @@ public abstract class Exp
 {
     public Exp(Integer pos)
     {
-        pos = pos;
+        this.pos = pos;
     }
 
     abstract void getValue(TigerValue v);
@@ -19,17 +19,17 @@ public abstract class Exp
     {
         printPos();
         printType();
+        System.out.println();
     }
 
     void printPos()
     {
-        System.out.println("Exp position at: ");
-        System.out.println(pos);
+        System.out.println("Exp position at: " + pos);
     }
 
     void printType()
     {
-        System.out.println(getTypeName());
+        System.out.println("Current type is: " + getTypeName());
     }
 
     private Integer pos;

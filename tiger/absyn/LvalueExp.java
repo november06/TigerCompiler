@@ -22,7 +22,7 @@ public class LvalueExp extends Exp
         internalType = fieldOfRecord;
 
         baseLvalue = lvalueExp;
-        fieldName = fieldName;
+        this.fieldName = fieldName;
     }
 
     public LvalueExp(Integer pos, LvalueExp lvalueExp, Exp indexExp)
@@ -33,7 +33,7 @@ public class LvalueExp extends Exp
         internalType = itemOfArray;
 
         baseLvalue = lvalueExp;
-        indexExp = indexExp;
+        this.indexExp = indexExp;
     }
 
     @Override

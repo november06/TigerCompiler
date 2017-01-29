@@ -8,8 +8,8 @@ public class WhileExp extends Exp
     {
         super(pos);
 
-        condition = condition;
-        execute = execute;
+        this.condition = condition;
+        this.execute = execute;
     }
 
     @Override

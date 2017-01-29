@@ -14,7 +14,7 @@ public class FieldListExp extends Exp
         super(pos);
 
         head = fl;
-        id = id; 
+        this.id = id; 
         exp = e;
     }
 

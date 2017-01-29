@@ -7,8 +7,8 @@ public class AssignExp extends Exp
     public AssignExp(Integer pos, LvalueExp left, Exp right) {
         super(pos);
 
-        left = left; 
-        right = right;
+        this.left = left; 
+        this.right = right;
     }
 
     @Override

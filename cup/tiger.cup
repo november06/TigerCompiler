@@ -37,7 +37,10 @@ precedence left TIMES, DIVIDE;
 
 start with program;
 
-program ::= expr;
+program ::= expr:e 
+         {:
+		     RESULT = e;
+		 :};
 // expr with values and without values
 expr ::= STRING:s 
          {:

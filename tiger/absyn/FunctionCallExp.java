@@ -8,8 +8,8 @@ public class FunctionCallExp extends Exp
     {
         super(pos);
         
-        functionName = functionName;
-        parameterList = parameterList;
+        this.functionName = functionName;
+        this.parameterList = parameterList;
     }
 
     @Override

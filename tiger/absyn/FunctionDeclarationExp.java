@@ -13,10 +13,10 @@ public class FunctionDeclarationExp extends Exp
     {
         super(pos);
 
-        name = name;
-        typeFields = typeFields;
-        returnType = returnType;
-        body = body;
+        this.name = name;
+        this.typeFields = typeFields;
+        this.returnType = returnType;
+        this.body = body;
     }
 
     @Override

@@ -14,8 +14,8 @@ public class ListExp extends Exp
     {
         super(pos);
 
-        head = head;
-        tail = tail;
+        this.head = head;
+        this.tail = tail;
     }
 
     @Override

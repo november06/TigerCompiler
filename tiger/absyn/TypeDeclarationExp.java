@@ -8,7 +8,7 @@ public class TypeDeclarationExp extends Exp
     {
         super(pos);
 
-        id = id; 
+        this.id = id; 
         def = typeDef;
     }
 
