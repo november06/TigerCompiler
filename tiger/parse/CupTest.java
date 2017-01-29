@@ -14,9 +14,13 @@ public class CupTest {
 	 * @throws FileNotFoundException 
 	 */
 	public static void main(String[] args) throws FileNotFoundException {
-		String filename = "cuptest.txt";
-		ErrorMsg errorMsg = new ErrorMsg(filename);
-		InputStream inp = new FileInputStream(filename);
+		if (args.length == 0)
+		{
+			System.out.println("please pass the input file name in.");
+			System.exit(2);
+		}
+		ErrorMsg errorMsg = new ErrorMsg(args[0]);
+		InputStream inp = new FileInputStream(args[0]);
 		Yylex lexer = new Yylex(inp, errorMsg);
 		parser p = new parser(lexer);
 		try {
@@ -28,9 +32,11 @@ public class CupTest {
 				e = (Exp)(p.parse().value);
 			}
 			new Print(System.out).PrintExp(e);
+			System.exit(0);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.exit(1);
 		}
 	}
 
