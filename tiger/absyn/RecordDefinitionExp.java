@@ -33,7 +33,9 @@ public class RecordDefinitionExp extends Exp
     {
         super.print();
         System.out.print(name);
-        fieldList.print();
+        if (fieldList != null) {
+            fieldList.print();
+        }
 
         System.out.println();
         // TODO validation name used?  name of current scope

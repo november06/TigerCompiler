@@ -42,7 +42,9 @@ public class IfElseExp extends Exp
         condition.print();
         // TODO validation: executeIf should be the same type of executeElse
         executeIf.print();
-        executeElse.print();
+        if (executeElse != null) {
+            executeElse.print();
+        }
 
         System.out.println();
     }

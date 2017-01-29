@@ -50,7 +50,9 @@ public class TypeDefinitionExp extends Exp
         else if (type == RECORD)
         {
             System.out.print("RECORD: ");
-            typeFields.print();
+            if (typeFields != null) {
+                typeFields.print();
+            }
         }
         else if (type == ARRAY)
         {

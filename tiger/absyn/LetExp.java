@@ -2,7 +2,7 @@ package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
 
-public /*abstract*/ class LetExp extends Exp
+public class LetExp extends Exp
 {
     public LetExp(Integer pos, DeclarationListExp dl, SeqExp e)
     {
@@ -33,7 +33,9 @@ public /*abstract*/ class LetExp extends Exp
     {
         super.print();
         declarationList.print();
-        exp.print();
+        if (exp != null) { 
+            exp.print();
+        }
         System.out.println();
     }
 

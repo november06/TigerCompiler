@@ -82,6 +82,12 @@ expr ::= STRING:s
 		     // function call
 		     RESULT = new FunctionCallExp(idleft, id, (ListExp)exprlist);
 		 :}
+		 | 
+		 ID:id LPAREN RPAREN 
+		 {:
+		     // function call
+		     RESULT = new FunctionCallExp(idleft, id, null);
+		 :}
 		 |
 		 LPAREN expr_seq:e RPAREN 
 		 {:
@@ -98,6 +104,11 @@ expr ::= STRING:s
 		 {:
 		     // record type definition
              RESULT = new RecordDefinitionExp(idleft, id, (FieldListExp)fl);
+		 :}
+		 | 
+		 ID:id LBRACE RBRACE 
+		 {:
+             RESULT = new RecordDefinitionExp(idleft, id, null);
 		 :}
 		 |
 		 ID:id LBRACK expr:count RBRACK OF expr:base 
@@ -134,6 +145,11 @@ expr ::= STRING:s
 		 LET:let declaration_list:dl IN expr_seq:e END
 		 {:
              RESULT = new LetExp(letleft, (DeclarationListExp)dl, (SeqExp)e);
+		 :}
+		 |
+		 LET:let declaration_list:dl IN END
+		 {:
+             RESULT = new LetExp(letleft, (DeclarationListExp)dl, null);
 		 :}
 		 ;
 
@@ -286,6 +302,11 @@ type ::= ID:id
 		 {:
              RESULT = new TypeDefinitionExp(lleft, (TypeFieldsExp)tfs);
 		 :}
+         | 
+         LBRACE:l RBRACE 
+		 {:
+             RESULT = new TypeDefinitionExp(lleft, null);
+		 :}
 		 |
 		 ARRAY:l OF ID:id
 		 {:
@@ -326,4 +347,15 @@ function_declaration ::= FUNCTION:f ID:fname LPAREN type_fields:tfs RPAREN EQ ex
 						 FUNCTION:f ID:fname LPAREN type_fields:tfs RPAREN COLON ID:returntype EQ expr:exp
 						 {:
 						     RESULT = new FunctionDeclarationExp(fleft, fname, (TypeFieldsExp)tfs, returntype, (Exp)exp);
-						 :};
+						 :}
+						 |
+						 FUNCTION:f ID:fname LPAREN RPAREN EQ expr:exp
+                         {:
+						     RESULT = new FunctionDeclarationExp(fleft, fname, null, (Exp)exp);
+						 :}
+                         |
+						 FUNCTION:f ID:fname LPAREN RPAREN COLON ID:returntype EQ expr:exp
+						 {:
+						     RESULT = new FunctionDeclarationExp(fleft, fname, null, returntype, (Exp)exp);
+						 :}
+						 ;
