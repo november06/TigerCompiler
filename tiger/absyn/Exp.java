@@ -6,6 +6,12 @@ public abstract class Exp
 {
     public Exp(Integer pos)
     {
+        
+    	if (Constants.enableDebug)
+    	{
+    		System.out.println("In the ctor of " + getTypeName());
+    	}
+    	
         this.pos = pos;
     }
 

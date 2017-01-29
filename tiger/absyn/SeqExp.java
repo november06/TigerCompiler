@@ -4,6 +4,11 @@ import tiger.TigerType;
 
 public class SeqExp extends Exp
 {
+    public SeqExp(Integer pos)
+    {
+        this(pos, null, null);
+    }
+    
     public SeqExp(Integer pos, Exp e)
     {
         this(pos, null, e);
@@ -41,7 +46,10 @@ public class SeqExp extends Exp
         {
             head.print();
         }
-        tail.print();
+        if (tail != null)
+        {
+            tail.print();
+        }
         System.out.println();
     }
 

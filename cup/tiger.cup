@@ -88,6 +88,11 @@ expr ::= STRING:s
 		     // what's this?
 		     RESULT = e;
 		 :}
+		 |
+		 LPAREN:lp RPAREN 
+		 {:
+		     RESULT = new SeqExp(lpleft);
+		 :}
 		 | 
 		 ID:id LBRACE field_list:fl RBRACE 
 		 {:

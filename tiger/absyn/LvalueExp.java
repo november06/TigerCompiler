@@ -59,9 +59,8 @@ public class LvalueExp extends Exp
         
         if (internalType == identifier)
         {
-            System.out.print("identifier");
+            System.out.println("identifier " + identifierName);
 
-            System.out.println(identifierName);
             // TODO validation identifier is available
         }
         else if (internalType == fieldOfRecord)

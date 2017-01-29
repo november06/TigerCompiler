@@ -2,7 +2,7 @@ package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
 
-public class FunctionDeclarationExp extends Exp 
+public class FunctionDeclarationExp extends Declaration 
 {
     public FunctionDeclarationExp(Integer pos, String name, TypeFieldsExp typeFields, Exp body)
     {
