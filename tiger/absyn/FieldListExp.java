@@ -4,6 +4,11 @@ import tiger.TigerType;
 
 public class FieldListExp extends Exp
 {
+    public FieldListExp(Integer pos)
+    {
+        this(pos, null, null, null);
+    }
+
     public FieldListExp(Integer pos, String id, Exp e)
     {
         this(pos, null, id, e);
@@ -42,8 +47,13 @@ public class FieldListExp extends Exp
         {
             head.print();
         }
-        System.out.print(id);
-        exp.print(); // TODO validation : exp is a type ?
+
+        if (id != null) {
+            System.out.print(id);
+        }
+        if (exp != null) {
+            exp.print(); // TODO validation : exp is a type ?
+        }
         System.out.println();
     }
 

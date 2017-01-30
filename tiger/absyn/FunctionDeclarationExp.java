@@ -40,9 +40,7 @@ public class FunctionDeclarationExp extends Declaration
     {
         super.print();
         System.out.print(name);
-        if (typeFields != null) {
-            typeFields.print();
-        }
+        typeFields.print();
         if (returnType != null) 
         {
             System.out.print(returnType);

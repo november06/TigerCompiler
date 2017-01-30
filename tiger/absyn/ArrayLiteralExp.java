@@ -2,13 +2,13 @@ package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
 
-public class ArrayDefinitionExp extends Exp
+public class  ArrayLiteralExp extends Exp
 {
-    public ArrayDefinitionExp(Integer pos, String arrayName, Exp count, Exp /*actually adding another abstract class type is better*/ base)
+    public  ArrayLiteralExp(Integer pos, String typeName, Exp count, Exp /*actually adding another abstract class type is better*/ base)
     {
         super(pos);
 
-        name = arrayName;
+        this.typename = typeName;
         countExp = count;
         baseDefinitionExp = base;
     }
@@ -26,7 +26,7 @@ public class ArrayDefinitionExp extends Exp
     @Override
     public String getTypeName() 
     {
-        return "ArrayDefinitionExp";
+        return "ArrayLiteralExp";
     }
 
     @Override
@@ -34,13 +34,13 @@ public class ArrayDefinitionExp extends Exp
     {
         super.print();
         // TODO validation count is of type int
-        System.out.print(name);
+        System.out.print(typename);
         countExp.print();
         baseDefinitionExp.print();  // TODO validation what's the requirement of base?
         System.out.println();
     }
     
-    private String name;
+    private String typename;
     private Exp countExp;
     private Exp baseDefinitionExp;
 }

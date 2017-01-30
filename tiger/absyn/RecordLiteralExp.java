@@ -2,9 +2,9 @@ package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
 
-public class RecordDefinitionExp extends Exp
+public class RecordLiteralExp extends Exp
 {
-    public RecordDefinitionExp(Integer pos, String recordName, FieldListExp fl)
+    public RecordLiteralExp(Integer pos, String recordName, FieldListExp fl)
     {
         super(pos);
 
@@ -25,7 +25,7 @@ public class RecordDefinitionExp extends Exp
     @Override
     public String getTypeName() 
     {
-        return "RecordDefinitionExp";
+        return "RecordLiteralExp";
     }
 
     @Override

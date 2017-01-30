@@ -33,9 +33,7 @@ public class LetExp extends Exp
     {
         super.print();
         declarationList.print();
-        if (exp != null) { 
-            exp.print();
-        }
+        exp.print();
         System.out.println();
     }
 

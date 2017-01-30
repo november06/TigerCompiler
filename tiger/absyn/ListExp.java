@@ -42,7 +42,9 @@ public class ListExp extends Exp
         {
             head.print();
         }
-        tail.print();
+        if (tail != null) {
+            tail.print();
+        }
         System.out.println();
     }
 

@@ -41,7 +41,9 @@ public class TypeFieldsExp extends Exp
         {
             typeFields.print();
         }
-        typeField.print();
+        if (typeField != null) {
+            typeField.print();
+        }
         System.out.println();
     }
 

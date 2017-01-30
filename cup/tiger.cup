@@ -41,6 +41,7 @@ program ::= expr:e
          {:
 		     RESULT = e;
 		 :};
+
 // expr with values and without values
 expr ::= STRING:s 
          {:
@@ -82,39 +83,21 @@ expr ::= STRING:s
 		     // function call
 		     RESULT = new FunctionCallExp(idleft, id, (ListExp)exprlist);
 		 :}
-		 | 
-		 ID:id LPAREN RPAREN 
-		 {:
-		     // function call
-		     RESULT = new FunctionCallExp(idleft, id, null);
-		 :}
 		 |
 		 LPAREN expr_seq:e RPAREN 
 		 {:
-		     // what's this?
 		     RESULT = e;
-		 :}
-		 |
-		 LPAREN:lp RPAREN 
-		 {:
-		     RESULT = new SeqExp(lpleft);
 		 :}
 		 | 
 		 ID:id LBRACE field_list:fl RBRACE 
 		 {:
-		     // record type definition
-             RESULT = new RecordDefinitionExp(idleft, id, (FieldListExp)fl);
-		 :}
-		 | 
-		 ID:id LBRACE RBRACE 
-		 {:
-             RESULT = new RecordDefinitionExp(idleft, id, null);
+		     // record type literal
+             RESULT = new RecordLiteralExp(idleft, id, (FieldListExp)fl);
 		 :}
 		 |
-		 ID:id LBRACK expr:count RBRACK OF expr:base 
+		 ID:typeid LBRACK expr:count RBRACK OF expr:base 
 		 {:
-		     // ARRAY type definition
-			 RESULT = new ArrayDefinitionExp(idleft, id, (Exp)count, (Exp)base);
+			 RESULT = new ArrayLiteralExp(typeidleft, typeid, (Exp)count, (Exp)base);
 		 :}
 		 |
 		 IF:i expr:condition THEN expr:e1 
@@ -142,18 +125,18 @@ expr ::= STRING:s
 		     RESULT = new BreakExp(bleft);
 		 :}
 		 |
-		 LET:let declaration_list:dl IN expr_seq:e END
+		 LET:let declaration_list:dl IN expr_seq:e END /* declaration list not empty */
 		 {:
              RESULT = new LetExp(letleft, (DeclarationListExp)dl, (SeqExp)e);
 		 :}
-		 |
-		 LET:let declaration_list:dl IN END
-		 {:
-             RESULT = new LetExp(letleft, (DeclarationListExp)dl, null);
-		 :}
 		 ;
 
-expr_seq ::= expr:e
+expr_seq ::= /* empty */
+             {:
+			     RESULT = new SeqExp(-1, null);
+             :}
+             |
+			 expr:e
              {:
 			     RESULT = new SeqExp(eleft, (Exp)e);
 			 :} 
@@ -164,7 +147,12 @@ expr_seq ::= expr:e
 			 :}
 			 ;
 
-expr_list ::= expr:e
+expr_list ::= /* empty */
+              {:
+			      RESULT = new ListExp(-1, null);
+              :}
+              |
+              expr:e
               {:
 			      RESULT = new ListExp(eleft, (Exp)e);
 			  :} 
@@ -174,7 +162,12 @@ expr_list ::= expr:e
 			      RESULT = new ListExp(headleft, (ListExp)head, (Exp)tail);
 			  :};
 
-field_list ::= ID:id EQ expr:e
+field_list ::= /* empty */ 
+               {:
+			       RESULT = new FieldListExp(-1);
+			   :}
+               |
+               ID:id EQ expr:e
                {:
 			       RESULT = new FieldListExp(idleft, id, (Exp)e);
 			   :} 
@@ -302,18 +295,18 @@ type ::= ID:id
 		 {:
              RESULT = new TypeDefinitionExp(lleft, (TypeFieldsExp)tfs);
 		 :}
-         | 
-         LBRACE:l RBRACE 
-		 {:
-             RESULT = new TypeDefinitionExp(lleft, null);
-		 :}
 		 |
 		 ARRAY:l OF ID:id
 		 {:
              RESULT = new TypeDefinitionExp(lleft, TypeDefinitionExp.ARRAY, id);
 		 :};
 
-type_fields ::= type_field:t
+type_fields ::= /* Empty */ 
+                {:
+				    RESULT = new TypeFieldsExp(-1, null);
+				:}
+				|
+                type_field:t
                 {:
 				    RESULT = new TypeFieldsExp(tleft, (TypeFieldExp)t);
 				:} 
@@ -347,15 +340,5 @@ function_declaration ::= FUNCTION:f ID:fname LPAREN type_fields:tfs RPAREN EQ ex
 						 FUNCTION:f ID:fname LPAREN type_fields:tfs RPAREN COLON ID:returntype EQ expr:exp
 						 {:
 						     RESULT = new FunctionDeclarationExp(fleft, fname, (TypeFieldsExp)tfs, returntype, (Exp)exp);
-						 :}
-						 |
-						 FUNCTION:f ID:fname LPAREN RPAREN EQ expr:exp
-                         {:
-						     RESULT = new FunctionDeclarationExp(fleft, fname, null, (Exp)exp);
-						 :}
-                         |
-						 FUNCTION:f ID:fname LPAREN RPAREN COLON ID:returntype EQ expr:exp
-						 {:
-						     RESULT = new FunctionDeclarationExp(fleft, fname, null, returntype, (Exp)exp);
 						 :}
 						 ;

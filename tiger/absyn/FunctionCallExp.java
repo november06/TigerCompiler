@@ -33,9 +33,7 @@ public class FunctionCallExp extends Exp
     {
         super.print();
         System.out.print(functionName);
-        if (parameterList != null) {
-            parameterList.print();
-        }
+        parameterList.print();
         System.out.println();
     }
 
