@@ -26,14 +26,16 @@ non terminal variable_declaration;
 non terminal function_declaration;
 non terminal type;           
 non terminal type_fields;    
-non terminal type_field;     
+non terminal type_field;
+
 
 precedence nonassoc ASSIGN;
 precedence left AND, OR;  // right?
 precedence nonassoc EQ, NEQ, LT, GT, LE, GE;
 precedence left PLUS, MINUS;
 precedence left TIMES, DIVIDE;
-// precedence left UMINUS; // TODO
+// precedence right MINUS; // TODO
+// precedence right LBRACK
 
 start with program;
 
@@ -42,12 +44,19 @@ program ::= expr:e
 		     RESULT = e;
 		 :};
 
-// expr with values and without values
-expr ::= STRING:s 
+// TODO 
+// Statement
+// lvalue
+// rvalue
+
+// expr with values and without values, with left values and right values
+expr ::= // string constant
+         STRING:s 
          {:
 		     RESULT = new LiteralExp(sleft, s);
 		 :} 
          |
+		 // integer constant
          INT:i
 		 {:
 		     RESULT = new LiteralExp(ileft, i);
@@ -78,9 +87,9 @@ expr ::= STRING:s
 		     RESULT = new AssignExp(lvalueExprleft, (LvalueExp)lvalueExpr, (Exp)rvalueExpr);
 		 :} 
 		 | 
+		 // function call
 		 ID:id LPAREN expr_list:exprlist RPAREN 
 		 {:
-		     // function call
 		     RESULT = new FunctionCallExp(idleft, id, (ListExp)exprlist);
 		 :}
 		 |
@@ -89,15 +98,16 @@ expr ::= STRING:s
 		     RESULT = e;
 		 :}
 		 | 
+		 // record type literal
 		 ID:id LBRACE field_list:fl RBRACE 
 		 {:
-		     // record type literal
              RESULT = new RecordLiteralExp(idleft, id, (FieldListExp)fl);
 		 :}
 		 |
-		 ID:typeid LBRACK expr:count RBRACK OF expr:base 
+		 // array literal
+		 ID:typeid LBRACK expr:count RBRACK OF expr:value 
 		 {:
-			 RESULT = new ArrayLiteralExp(typeidleft, typeid, (Exp)count, (Exp)base);
+			 RESULT = new ArrayLiteralExp(typeidleft, typeid, (Exp)count, (Exp)value);
 		 :}
 		 |
 		 IF:i expr:condition THEN expr:e1 
@@ -109,7 +119,7 @@ expr ::= STRING:s
 		 {:
 		     RESULT = new IfElseExp(ileft, (Exp)condition, (Exp)e1, (Exp)e2);
 		 :}
-		 | 
+		 |
 		 WHILE:w expr:condition DO expr:e 
 		 {:
 		     RESULT = new WhileExp(wleft, (Exp)condition, (Exp)e);
