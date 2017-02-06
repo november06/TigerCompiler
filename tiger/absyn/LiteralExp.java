@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class LiteralExp extends Exp
 {
@@ -42,22 +43,23 @@ public class LiteralExp extends Exp
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
+        c.pushLevel();
+        super.print(c);
         if (internalValue.IsString())
         {
-            System.out.print(internalValue.GetStringValue());
+            print(c, "String Value is " + internalValue.GetStringValue());
         }
         else if (internalValue.IsInteger())
         {
-            System.out.print(internalValue.GetIntValue());
+            print(c, "Integer Value is " + internalValue.GetIntValue());
         }
         else 
         {
-            System.out.print("Nil");
+            print(c, "Nil Value");
         }
-        System.out.println();
+        c.popLevel();
     }
 
     private TigerValue internalValue;

@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class TypeFieldsExp extends Exp 
 {
@@ -34,17 +35,29 @@ public class TypeFieldsExp extends Exp
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
+        c.pushLevel();
+        super.print(c);
         if (typeFields != null)
         {
-            typeFields.print();
+            print(c, "type fields are");
+            typeFields.print(c);
         }
+        else 
+        {
+            print(c, "type fields is null");
+        }
+
         if (typeField != null) {
-            typeField.print();
+            print(c, "type field is null");
+            typeField.print(c);
         }
-        System.out.println();
+        else 
+        {
+            print(c, "type field is null");
+        }
+        c.popLevel();
     }
 
     TypeFieldExp typeField;

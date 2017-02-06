@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class DeclarationListExp extends Exp
 {
@@ -34,15 +35,21 @@ public class DeclarationListExp extends Exp
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
+        c.pushLevel();
+        super.print(c);
         if (head != null)
         {
-            head.print();
+            print(c, "head");
+            head.print(c);
         }
-        tail.print(); // TODO validation: tail is declaration
-        System.out.println();
+        else 
+        {
+            print(c, "head is null");
+        }
+        tail.print(c);
+        c.popLevel();
     }
 
     DeclarationListExp head; // could be null 

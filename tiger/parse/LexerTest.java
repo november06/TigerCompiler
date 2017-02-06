@@ -22,7 +22,7 @@ public class LexerTest {
 		inp.close();
 	}
 
-	static String symnames[] = new String[100];
+	static public String symnames[] = new String[100];
 	static {
 
 		symnames[sym.FUNCTION] = "FUNCTION";

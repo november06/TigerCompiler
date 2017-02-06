@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class TypeDeclarationExp extends Declaration 
 {
@@ -29,12 +30,14 @@ public class TypeDeclarationExp extends Declaration
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
-        System.out.print(id); // TODO put into global envrionment?
-        def.print();
-        System.out.println();
+        c.pushLevel();
+        super.print(c);
+        print(c, "type id " + id);
+        print(c, "type defintion ");
+        def.print(c);
+        c.popLevel();
     }
 
     private String id; 

@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class WhileExp extends Exp
 {
@@ -29,14 +30,15 @@ public class WhileExp extends Exp
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
-        // TODO validation condition Integer
-        // TODO validation what's the type of execute
-        condition.print();
-        execute.print();
-        System.out.println();
+        c.pushLevel();
+        super.print(c);
+        print(c, "condition is ");
+        condition.print(c);
+        print(c, "execute body is ");
+        execute.print(c);
+        c.popLevel();
     }
 
     private Exp condition;

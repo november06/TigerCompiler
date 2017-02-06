@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class TypeDefinitionExp extends Exp 
 {
@@ -39,25 +40,25 @@ public class TypeDefinitionExp extends Exp
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
+        c.pushLevel();
+        super.print(c);
         if (type == ID)
         {
-            System.out.print("ID: ");
-            System.out.print(id);
+            print(c, "ID: " + id);
         }
         else if (type == RECORD)
         {
-            System.out.print("RECORD: ");
-            typeFields.print();
+            print(c, "RECORD: ");
+            typeFields.print(c);
             
         }
         else if (type == ARRAY)
         {
-            System.out.print("ARRAY of: ");
-            System.out.print(id);
+            print(c, "ARRAY of: " + id);
         }
+        c.popLevel();
     }
 
     private String id; 

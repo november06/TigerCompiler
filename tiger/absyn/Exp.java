@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public abstract class Exp 
 {
@@ -21,21 +22,20 @@ public abstract class Exp
 
     abstract String getTypeName();
 
-    public void print()
+    public void print(Context c)
     {
-        printPos();
-        printType();
-        System.out.println();
+        print(c, "Exp position at: " + pos);
+        print(c, "Current type is: " + getTypeName());
     }
 
-    void printPos()
+    void print(Context c, String s) // static?
     {
-        System.out.println("Exp position at: " + pos);
-    }
+        // TODO could be a method of context
+        for (Integer i = 0; i < c.getIndent(); ++i) {
+            System.out.print("\t");
+        }
 
-    void printType()
-    {
-        System.out.println("Current type is: " + getTypeName());
+        System.out.println(s);
     }
 
     private Integer pos;

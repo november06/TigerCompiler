@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class RecordLiteralExp extends Exp
 {
@@ -29,16 +30,21 @@ public class RecordLiteralExp extends Exp
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
-        System.out.print(name);
+        c.pushLevel();
+        super.print(c);
+        print(c, "type name " + name);
         if (fieldList != null) {
-            fieldList.print();
+            print(c, "field list ");
+            fieldList.print(c);
+        }
+        else 
+        {
+            print(c, "field list is empty");
         }
 
-        System.out.println();
-        // TODO validation name used?  name of current scope
+        c.popLevel();
     }
 
     private String name;

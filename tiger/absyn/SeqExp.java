@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class SeqExp extends Exp
 {
@@ -39,18 +40,29 @@ public class SeqExp extends Exp
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
+        c.pushLevel();
+        super.print(c);
         if (head != null) 
         {
-            head.print();
+            print(c, "head ");
+            head.print(c);
+        }
+        else 
+        {
+            print(c, "head is null");
         }
         if (tail != null)
         {
-            tail.print();
+            print(c, "tail ");
+            tail.print(c);
         }
-        System.out.println();
+        else 
+        {
+            print(c, "tail is null");
+        }
+        c.popLevel();
     }
 
     private SeqExp head;

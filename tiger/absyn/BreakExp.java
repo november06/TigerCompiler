@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class BreakExp extends Exp
 {
@@ -26,10 +27,11 @@ public class BreakExp extends Exp
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
-        // TODO validation inside an for
-        System.out.println("break");
+        c.pushLevel();
+        super.print(c);
+        print(c, "Break");
+        c.popLevel();
     }
 }

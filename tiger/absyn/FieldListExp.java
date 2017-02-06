@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class FieldListExp extends Exp
 {
@@ -40,21 +41,33 @@ public class FieldListExp extends Exp
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
+        c.pushLevel();
+        super.print(c);
         if (head != null)
         {
-            head.print();
+            print(c, "head: ");
+            head.print(c);
+        }
+        else 
+        {
+            print(c, "head is null");
         }
 
-        if (id != null) {
-            System.out.print(id);
+        if (id != null && exp != null) {
+            print(c, "id: " +id);
+            exp.print(c);
         }
-        if (exp != null) {
-            exp.print(); // TODO validation : exp is a type ?
+        else if (id == null && exp == null)
+        {
+            print(c, "id and exp are null.");
         }
-        System.out.println();
+        else 
+        {
+            print(c, "UPEXPECTED: exp and id are not both null");
+        }
+        c.popLevel();
     }
 
     FieldListExp head;

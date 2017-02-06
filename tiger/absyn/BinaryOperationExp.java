@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class BinaryOperationExp extends Exp
 {
@@ -44,104 +45,64 @@ public class BinaryOperationExp extends Exp
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
+        c.pushLevel();
+        super.print(c);
 
-        // TODO validation integer type left and right ?
-        innerExpLeft.print();
-/*
-        switch (operation)
-        {
-            case BinaryOperationExp.PLUS:
-            System.out.print("PLUS");
-            break;
-            case BinaryOperationExp.MINUS:
-            System.out.print("MINUS");
-            break;
-            case BinaryOperationExp.TIMES:
-            System.out.print("TIMES");
-            break;
-            case BinaryOperationExp.DIVIDE:
-            System.out.print("DIVIDE");
-            break;
-            case BinaryOperationExp.EQ:
-            System.out.print("EQ");
-            break;
-            case BinaryOperationExp.NE:
-            System.out.print("NE");
-            break; 
-            case BinaryOperationExp.LT:
-            System.out.print("LT");
-            break; 
-            case BinaryOperationExp.LE:
-            System.out.print("LE");
-            break; 
-            case BinaryOperationExp.GT:
-            System.out.print("GT");
-            break; 
-            case BinaryOperationExp.GE:
-            System.out.print("GE");
-            break; 
-            case BinaryOperationExp.AND: 
-            System.out.print("AND");
-            break; 
-            case BinaryOperationExp.OR: 
-            System.out.print("OR");
-            break;
-        }
-        */
+        print(c, "left: ");
+        innerExpLeft.print(c);
 
-        if (operation == BinaryOperationExp.PLUS)
+        String op = "PLUS";
+        if (operation == BinaryOperationExp.MINUS)
         {
-            System.out.print("PLUS");
-        }
-        else if (operation == BinaryOperationExp.MINUS)
-        {
-            System.out.print("MINUS");
+            op = "MINUS";
         }
         else if (operation == BinaryOperationExp.TIMES)
         {
-            System.out.print("TIMES");
+            op = ("TIMES");
         }
         else if (operation == BinaryOperationExp.DIVIDE)
         {
-            System.out.print("DIVIDE");
+            op = ("DIVIDE");
         }
         else if (operation == BinaryOperationExp.EQ)
         {
-            System.out.print("EQ");
+            op = ("EQ");
         }
         else if (operation == BinaryOperationExp.NE)
         {
-            System.out.print("NE");
+            op = ("NE");
         }
         else if (operation == BinaryOperationExp.LT)
         {
-            System.out.print("LT");
+            op = ("LT");
         }
         else if (operation == BinaryOperationExp.LE) 
         {
-            System.out.print("LE");
+            op = ("LE");
         } 
         else if (operation == BinaryOperationExp.GT)
         {
-            System.out.print("GT");
+            op = ("GT");
         } 
         else if (operation == BinaryOperationExp.GE)
         {
-            System.out.print("GE");
+            op = ("GE");
         } 
         else if (operation == BinaryOperationExp.AND)
         {
-            System.out.print("AND");
+            op = ("AND");
         } 
         else if (operation == BinaryOperationExp.OR)
         {
-            System.out.print("OR");
+            op = ("OR");
         } 
-
-        innerExpRight.print();
+        print(c, op);
+        
+        print(c, "right: ");
+        innerExpRight.print(c);
+        c.popLevel();
     }
 
     private Integer operation;

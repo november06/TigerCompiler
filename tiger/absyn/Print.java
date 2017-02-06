@@ -1,7 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
-
+import tiger.context.Context;
 
 public class Print
 {
@@ -16,7 +16,8 @@ public class Print
         	System.out.println("Error the input exp is null");
         }
         else {
-            exp.print();
+            Context c = new Context(); 
+            exp.print(c);
         }
     }
 

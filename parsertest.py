@@ -23,12 +23,15 @@ for root, dirs, files in os.walk(testCaseRoot):
         currentPath = os.path.join(root, f)
         print currentPath
         ret = os.system("java tiger.parse.CupTest " + currentPath + " >" + tempfile + " 2>&1" )
-        if ret != 0: 
-            os.system("echo " + currentPath +" >>" + resultfile)
-            os.system("type " + currentPath  + " >>" + resultfile)
-            os.system("type " + tempfile + " >>" + resultfile)
-            os.system("echo --------------------------------------- >>" + resultfile)
-            exceptionalCases = exceptionalCases + 1
+
+        os.system("echo --------------------------------------- >>" + resultfile)
+        os.system("echo " + currentPath +" >>" + resultfile)
+        os.system("echo --------------------------------------- >>" + resultfile)
+        os.system("type " + currentPath  + " >>" + resultfile)
+        os.system("echo --------------------------------------- >>" + resultfile)
+        os.system("type " + tempfile + " >>" + resultfile)
+        os.system("echo --------------------------------------- >>" + resultfile)
+        exceptionalCases = exceptionalCases + 1
             
 os.system("echo " + str(exceptionalCases) + " / " + str(totalCases) + " >> " + resultfile)
 

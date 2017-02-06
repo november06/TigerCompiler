@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class AssignExp extends Exp
 {
@@ -28,14 +29,16 @@ public class AssignExp extends Exp
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        // TODO validation type of left should be same as type of right
-        super.print();
-        left.print();
-        System.out.print(":=");
-        right.print();
-        System.out.println();
+        c.pushLevel();
+        super.print(c);
+        print(c, "left: ");
+        left.print(c);
+        print(c, ":=");
+        print(c, "right: ");
+        right.print(c);
+        c.popLevel();
     }
 
     private LvalueExp left;

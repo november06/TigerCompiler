@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class LvalueExp extends Exp
 {
@@ -53,38 +54,35 @@ public class LvalueExp extends Exp
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
+        c.pushLevel();
+        super.print(c);
         
         if (internalType == identifier)
         {
-            System.out.println("identifier " + identifierName);
-
-            // TODO validation identifier is available
+           print(c, "identifier " + identifierName);
         }
         else if (internalType == fieldOfRecord)
         {
-            System.out.print("fieldOfRecord");
+            print(c, "fieldOfRecord");
+            
+            print(c, "base ");
+            baseLvalue.print(c);
 
-            baseLvalue.print();
-
-            System.out.println(fieldName);
-            // TODO validation baseLvalue is valid
-            // TODO validation fieldName is available for baseLvalue's type
+            print(c, "field name is " + fieldName);
         }
         else if (internalType == itemOfArray)
         {
-            System.out.print("itemOfArray");
+            print(c, "itemOfArray");
 
-            baseLvalue.print();
+            print(c, "base ");
+            baseLvalue.print(c);
 
-            indexExp.print();
-
-            System.out.println();
-            // TODO validation baseLvalue is valid, is an array
-            // TODO indexExp is an integer type
+            print(c, "index ");
+            indexExp.print(c);
         }
+        c.popLevel();
     }
 
     private Integer internalType;

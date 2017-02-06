@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class LetExp extends Exp
 {
@@ -29,12 +30,15 @@ public class LetExp extends Exp
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
-        declarationList.print();
-        exp.print();
-        System.out.println();
+        c.pushLevel();
+        super.print(c);
+        print(c, "declaration list: ");
+        declarationList.print(c);
+        print(c, "sequence expressions: ");
+        exp.print(c);
+        c.popLevel();
     }
 
     private DeclarationListExp declarationList;

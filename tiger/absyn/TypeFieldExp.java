@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class TypeFieldExp extends Exp 
 {
@@ -29,12 +30,14 @@ public class TypeFieldExp extends Exp
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
-        System.out.print(id);
-        System.out.print(" : ");
-        System.out.print(typeId);
+        c.pushLevel();
+        super.print(c);
+        print(c, "field id " + id);
+        print(c, "defined by");
+        print(c, typeId);
+        c.popLevel();
     }
 
     String id;

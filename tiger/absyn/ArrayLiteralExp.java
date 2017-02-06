@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class  ArrayLiteralExp extends Exp
 {
@@ -30,14 +31,18 @@ public class  ArrayLiteralExp extends Exp
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
-        // TODO validation count is of type int
-        System.out.print(typename);
-        countExp.print();
-        baseDefinitionExp.print();  // TODO validation what's the requirement of base?
-        System.out.println();
+        c.pushLevel();
+        super.print(c);
+        print(c, "typename: " + typename);
+        print(c, "count: ");
+        countExp.print(c);
+        
+        print(c, "element value:");
+        baseDefinitionExp.print(c);
+
+        c.popLevel();
     }
     
     private String typename;

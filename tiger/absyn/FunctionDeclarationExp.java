@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class FunctionDeclarationExp extends Declaration 
 {
@@ -36,17 +37,24 @@ public class FunctionDeclarationExp extends Declaration
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
-        System.out.print(name);
-        typeFields.print();
+        c.pushLevel();
+        super.print(c);
+        print(c, "function name is: " + name);
+        print(c, "parameter list: ");
+        typeFields.print(c);
         if (returnType != null) 
         {
-            System.out.print(returnType);
+            print(c, "return type is " + returnType);
         }
-        body.print();
-        System.out.println();
+        else 
+        {
+            print(c, "no return type");
+        }
+        print(c, "function body is :");
+        body.print(c);
+        c.popLevel();
     }
 
     private String name; 

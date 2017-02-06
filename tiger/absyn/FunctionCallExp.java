@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class FunctionCallExp extends Exp
 {
@@ -29,12 +30,14 @@ public class FunctionCallExp extends Exp
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
-        System.out.print(functionName);
-        parameterList.print();
-        System.out.println();
+        c.pushLevel();
+        super.print(c);
+        print(c, "function name: " + functionName);
+        print(c, "parameter list: ");
+        parameterList.print(c);
+        c.popLevel();
     }
 
     private String functionName;

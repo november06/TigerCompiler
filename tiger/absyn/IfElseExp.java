@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class IfElseExp extends Exp
 {
@@ -35,18 +36,24 @@ public class IfElseExp extends Exp
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
-        // TODO validation: condition should be Integer
-        condition.print();
-        // TODO validation: executeIf should be the same type of executeElse
-        executeIf.print();
+        c.pushLevel();
+        super.print(c);
+        print(c, "condition: ");
+        condition.print(c);
+        print(c, "if body: ");
+        executeIf.print(c);
         if (executeElse != null) {
-            executeElse.print();
+            print(c, "else body: ");
+            executeElse.print(c);
+        }
+        else 
+        {
+            print(c, "no else");
         }
 
-        System.out.println();
+        c.popLevel();
     }
 
     private Exp condition;

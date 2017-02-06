@@ -104,6 +104,9 @@ WhiteSpace = [ \t\f]
 
     {Identifier}        {
                             String msg = yytext();
+                            if (tiger.absyn.Constants.enableDebug) {
+                                System.err.println("parser read identifier: " +msg);
+                            }
                             return symbol(sym.ID, msg); 
                         }
     {LineTerminator}	{ newline(); }
@@ -111,7 +114,11 @@ WhiteSpace = [ \t\f]
 
     // should we check very long integer in there?
 	{DecIntegerLiteral} {
-                            Integer value = Integer.parseInt(yytext());
+                            String msg = yytext();
+                            Integer value = Integer.parseInt(msg);
+                            if (tiger.absyn.Constants.enableDebug) {
+                                System.err.println("parser read integer: " +msg);
+                            }
                             return symbol(sym.INT, value); 
                         }
 	
@@ -150,7 +157,14 @@ WhiteSpace = [ \t\f]
 }
 
 <STRINGLITERAL> {
-    \"      { yybegin(YYINITIAL); return symbol(sym.STRING, stringBuffer.toString()); }
+    \"                      { 
+                                yybegin(YYINITIAL); 
+                                String msg = stringBuffer.toString();
+                                if (tiger.absyn.Constants.enableDebug) {
+                                    System.err.println("parser read string literal: " +msg);
+                                }
+                                return symbol(sym.STRING, msg); 
+                            }
     /* escape sequences */
     "\\t"                   { stringBuffer.append( '\t' ); } // tab
     "\\n"                   { stringBuffer.append( '\n' ); } // new line

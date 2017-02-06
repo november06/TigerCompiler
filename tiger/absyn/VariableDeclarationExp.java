@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class VariableDeclarationExp extends Declaration 
 {
@@ -35,16 +36,23 @@ public class VariableDeclarationExp extends Declaration
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
-        System.out.print(id);
+        c.pushLevel();
+        super.print(c);
+        print(c, "name is " + id);
+
         if (typeid != null)
         {
-            System.out.print(typeid);
+            print(c, "type is " + typeid);
         }
-        exp.print();
-        System.out.println();
+        else 
+        {
+            print(c, "no type specified");
+        }
+        print(c, "initial value is ");
+        exp.print(c);
+        c.popLevel();
     }
 
     private String id; 

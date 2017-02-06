@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class UminusExp extends Exp
 {
@@ -28,13 +29,14 @@ public class UminusExp extends Exp
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
-        System.out.print("-");
-        innerExp.print();
-        System.out.println();
-        // TODO validation innerExp is of type integer
+        c.pushLevel();
+        super.print(c);
+        print(c, "-");
+        print(c, "original value is ");
+        innerExp.print(c);
+        c.popLevel();
     }
 
     private Exp innerExp;

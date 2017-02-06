@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
 import tiger.TigerType;
+import tiger.context.Context;
 
 public class ForExp extends Exp
 {
@@ -31,15 +32,18 @@ public class ForExp extends Exp
     }
 
     @Override
-    public void print()
+    public void print(Context c)
     {
-        super.print();
-        // TODO validation eStart and eEnd of type integer
-        System.out.print(idName);
-        eStart.print();
-        eEnd.print();
-        eAction.print();
-        System.out.println();
+        c.pushLevel();
+        super.print(c);
+        print(c, "variable name" + idName);
+        print(c, "start: ");
+        eStart.print(c);
+        print(c, "end: ");
+        eEnd.print(c);
+        print(c, "action: ");
+        eAction.print(c);
+        c.popLevel();
     }
 
     private String idName;
