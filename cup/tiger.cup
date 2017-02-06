@@ -14,7 +14,7 @@ terminal COMMA, COLON, SEMICOLON, LPAREN, RPAREN,
 
 non terminal program;
 non terminal expr;   
-non terminal lvalue; 
+non terminal lvalue_not_id; 
 non terminal binary_operator;
 non terminal expr_list; 
 non terminal expr_seq;  
@@ -30,12 +30,13 @@ non terminal type_field;
 
 
 precedence nonassoc ASSIGN;
+// precedence right LBRACK;
 precedence left AND, OR;  // right?
 precedence nonassoc EQ, NEQ, LT, GT, LE, GE;
 precedence left PLUS, MINUS;
 precedence left TIMES, DIVIDE;
 // precedence right MINUS; // TODO
-// precedence right LBRACK
+
 
 start with program;
 
@@ -44,12 +45,8 @@ program ::= expr:e
 		     RESULT = e;
 		 :};
 
-// TODO 
-// Statement
-// lvalue
-// rvalue
+// I think even adding a rvalue could not solve the resolve/shift conflict. How to solve it? 
 
-// expr with values and without values, with left values and right values
 expr ::= // string constant
          STRING:s 
          {:
@@ -67,9 +64,15 @@ expr ::= // string constant
 		     RESULT = new LiteralExp(nleft);
 		 :} 
 		 |
-		 lvalue:l
+		 ID:id
 		 {:
-		     RESULT = l; // should already have been a lvalue expression
+		     // lvalue id only
+			 RESULT = new LvalueExp(idleft, id);
+		 :}
+		 |
+		 lvalue_not_id:l
+		 {:
+             RESULT = l;
 		 :}
 		 |
 		 MINUS:uminus expr:e 
@@ -82,9 +85,14 @@ expr ::= // string constant
 		     RESULT = new BinaryOperationExp(e1left, (Exp)e1, (Integer)op, (Exp)e2);
 		 :}
 		 |
-		 lvalue:lvalueExpr ASSIGN expr:rvalueExpr
+		 lvalue_not_id:lvalueExpr ASSIGN expr:rvalueExpr
 		 {:
 		     RESULT = new AssignExp(lvalueExprleft, (LvalueExp)lvalueExpr, (Exp)rvalueExpr);
+		 :} 
+		 |
+		 ID:id ASSIGN expr:rvalueExpr
+		 {:
+		     RESULT = new AssignExp(idleft, new LvalueExp(idleft, id), (Exp)rvalueExpr);
 		 :} 
 		 | 
 		 // function call
@@ -107,7 +115,7 @@ expr ::= // string constant
 		 // array literal
 		 ID:typeid LBRACK expr:count RBRACK OF expr:value 
 		 {:
-			 RESULT = new ArrayLiteralExp(typeidleft, typeid, (Exp)count, (Exp)value);
+		 	 RESULT = new ArrayLiteralExp(typeidleft, typeid, (Exp)count, (Exp)value);
 		 :}
 		 |
 		 IF:i expr:condition THEN expr:e1 
@@ -187,17 +195,23 @@ field_list ::= /* empty */
 			       RESULT = new FieldListExp(fleft, (FieldListExp)f, id, (Exp)e);
 			   :};
 
-lvalue ::= ID:id
+lvalue_not_id ::= 
+		   ID:id DOT ID:fieldId
            {:
-		       RESULT = new LvalueExp(idleft, id);
+			   RESULT = new LvalueExp(idleft, new LvalueExp(idleft, id), fieldId);
 		   :} 
            |
-           lvalue:lvalueExp DOT ID:fieldId
+           lvalue_not_id:lvalueExp DOT ID:fieldId
 		   {:
 		       RESULT = new LvalueExp(lvalueExpleft, (LvalueExp)lvalueExp, fieldId);
 		   :}
 		   |
-		   lvalue:lvalueExp LBRACK expr:exp RBRACK
+		   ID:id LBRACK expr:exp RBRACK
+		   {:
+		       RESULT = new LvalueExp(idleft, new LvalueExp(idleft, id), (Exp)exp);
+		   :}
+		   |
+		   lvalue_not_id:lvalueExp LBRACK expr:exp RBRACK
 		   {:
 		       RESULT = new LvalueExp(lvalueExpleft, (LvalueExp)lvalueExp, (Exp)exp);
 		   :}
