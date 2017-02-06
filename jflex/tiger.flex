@@ -75,7 +75,8 @@ import java_cup.runtime.*;
 }
 %eofval}  
 
-DecIntegerLiteral = 0 | [1-9][0-9]*
+// DecIntegerLiteral = 0 | [1-9][0-9]*
+DecIntegerLiteral = [0-9][0-9]*
 Identifier = [a-zA-Z][a-zA-Z0-9_]*   //  Case is signiﬁcant. 
 LineTerminator = \r|\n|\r\n
 WhiteSpace = [ \t\f]
