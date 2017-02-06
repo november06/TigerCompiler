@@ -6,6 +6,7 @@ import java.io.InputStream;
 
 import tiger.errormsg.ErrorMsg;
 import tiger.absyn.*;
+import tiger.others.Print;
 
 public class CupTest {
 
