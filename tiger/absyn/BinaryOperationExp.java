@@ -34,9 +34,59 @@ public class BinaryOperationExp extends Exp
     }
 
     @Override
-    public TigerType getType(Context c) {
-        // TODO
-        return new TigerType(0);
+    public TigerType getType(Context c) throws TigerTypeException  {
+		TigerType left = innerExpLeft.getType(c);
+		TigerType right = innerExpRight.getType(c);
+    	
+    	if (this.operation == PLUS
+    	 || this.operation == MINUS
+    	 || this.operation == TIMES
+    	 || this.operation == DIVIDE)
+    	{
+    		// arithmetic
+    		// require integer and return integer
+    		if (!left.isInteger() || !right.isInteger()) {
+    			throw new TigerTypeException("arithmetic paramaters should be both integer");
+    		}
+    		return TigerType.TigerIntegerType;
+    	}
+    	else if (this.operation == PLUS
+    	      || this.operation == MINUS)
+    	{
+    		// Do two different type of records compares? I guess no
+    		if (left.equals(right))
+    		{
+    			return TigerType.TigerIntegerType;
+    		}
+    		else 
+    		{
+    			throw new TigerTypeException("Two operators are of different types");
+    		}
+    	}
+    	else if (this.operation == LT
+    	      || this.operation == MINUS
+    	      || this.operation == TIMES
+    	      || this.operation == DIVIDE)
+    	{
+    		if ( (left.isInteger() && right.isInteger())
+    		  || (left.isString() && right.isString()))
+    		{
+    		    return TigerType.TigerIntegerType;
+    		}
+    		throw new TigerTypeException("compare parameters should be both integer or both string");
+    	}
+    	else if (this.operation == AND
+      	      || this.operation == OR)
+    	{
+    		// require integer and return integer
+    		if (!left.isInteger() || !right.isInteger()) {
+    			throw new TigerTypeException("logical operation paramaters should be both integer");
+    		}
+    		return TigerType.TigerIntegerType;
+    	}
+    	else {
+    		throw new TigerTypeException("Internal status error, unexpected binary operator");
+    	}
     }
 
     @Override

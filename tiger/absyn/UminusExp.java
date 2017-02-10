@@ -18,9 +18,14 @@ public class UminusExp extends Exp
     }
 
     @Override
-    public TigerType getType(Context c) {
-        // TODO
-        return new TigerType(0);
+    public TigerType getType(Context c) throws TigerTypeException  {
+        // verify
+    	TigerType innerType = innerExp.getType(c);
+    	if (!innerType.isInteger())
+    	{
+    		throw new TigerTypeException("Expected the parameter to be an integer!");
+    	}
+        return TigerType.TigerIntegerType; 
     }
 
     @Override

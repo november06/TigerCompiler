@@ -1,6 +1,6 @@
 
 set JFLEX_HOME=C:\trash\workspace\jflex-1.4.1
-call %~dp0SetupJava.bat
+REM call %~dp0SetupJava.bat
 
 set CLPATH=%JAVA_HOME%\lib\classes.zip;%JFLEX_HOME%\lib\JFlex.jar
 @echo on

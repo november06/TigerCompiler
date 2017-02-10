@@ -26,7 +26,7 @@ public class LiteralExp extends Exp
     {
         this(pos);
         
-        expType.simpleTypeName = TigerType.TigerSimpleTypeStringName;
+        expType.simpleTypeName = TigerType.TigerSimpleTypeIntegerName;
         internalValue.SetInteger(integerValue);
     }
 
@@ -36,7 +36,7 @@ public class LiteralExp extends Exp
     }
 
     @Override
-    public TigerType getType(Context c) {
+    public TigerType getType(Context c) throws TigerTypeException  {
         return expType;
     }
 

@@ -43,27 +43,34 @@ public class LvalueExp extends Exp
     }
 
     @Override
-    public TigerType getType(Context c) {
+    public TigerType getType(Context c) throws TigerTypeException {
         if (this.internalType == identifier) {
             return c.findVariableType(identifierName);
         }
-        else if (this.internalType == fieldOfRecord) {
-            TigerType baseType = baseLvalue.getType(c);
-            if (baseType != null) {
-                return baseType.getMemberType(c, fieldName);
-            }
-            return null;
-        }
-        else if (this.internalType == itemOfArray) {
-            TigerType baseType = baseLvalue.getType(c);
-            // seems impossible to get the value of the index 
-            if (baseType != null) {
-                return baseType.getElementType(c);
-            }
-            return null;
+        else {
+        	TigerType baseType = null;
+        	if (this.internalType == fieldOfRecord || this.internalType == itemOfArray) {
+        		baseType = baseLvalue.getType(c);
+        	}
+        	else 
+        	{
+        		throw new TigerTypeException("internal error, incorrect internal state of lvalue expressions");
+        	}
+
+        	if (baseType == null)
+        	{
+        		// TODO: to check furthur types?
+        		throw new TigerTypeException("can't find the base type in the context");
+        	}
+        	if (this.internalType == fieldOfRecord) {
+	            return baseType.getMemberType(c, fieldName);
+	        }
+	        else if (this.internalType == itemOfArray) {
+	            return baseType.getElementType(c);
+	        }
         }
 
-        return null;
+        throw new TigerTypeException("internal error, incorrect internal state of lvalue expressions");
     }
 
     @Override

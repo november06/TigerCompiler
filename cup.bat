@@ -1,4 +1,4 @@
-call %~dp0SetupJava.bat
+REM call %~dp0SetupJava.bat
 set CUP_HOME=C:\trash\workspace\cup
 set CLPATH=%JAVA_HOME%\lib\classes.zip;%CUP_HOME%
 @echo on

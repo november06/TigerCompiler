@@ -19,7 +19,7 @@ public class  ArrayLiteralExp extends Exp
     }
 
     @Override
-    public TigerType getType(Context c) {
+    public TigerType getType(Context c) throws TigerTypeException  {
         return new TigerType(0);
     }
 

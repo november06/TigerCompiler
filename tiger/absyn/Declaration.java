@@ -12,7 +12,7 @@ public abstract class Declaration extends Exp
 
     abstract void getValue(TigerValue v);
 
-    abstract TigerType getType(Context c);
+    abstract TigerType getType(Context c) throws TigerTypeException ;
 
     abstract String getTypeName();
 }

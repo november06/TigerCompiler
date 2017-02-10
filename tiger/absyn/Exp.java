@@ -17,7 +17,14 @@ public abstract class Exp
 
     abstract void getValue(TigerValue v);
 
-    abstract TigerType getType(Context c);
+    /// get the type of the expression. 
+    /// if it's tiger type nil, return a tiger type with that value
+    /// if there should be no type for this expression, return null
+    /// if the type specified is not available exception: 
+    ///     variable can't find 
+    ///     type is not available (does it matter? we could look for the type later when all the definitions are available)
+    ///     ?
+    abstract TigerType getType(Context c) throws TigerTypeException ;
 
     abstract String getTypeName();
 

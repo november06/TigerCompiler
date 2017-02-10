@@ -19,7 +19,7 @@ public class FunctionCallExp extends Exp
     }
 
     @Override
-    public TigerType getType(Context c) {
+    public TigerType getType(Context c) throws TigerTypeException  {
         // TODO
         return new TigerType(0);
     }
