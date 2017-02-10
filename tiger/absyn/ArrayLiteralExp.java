@@ -1,7 +1,6 @@
 package tiger.absyn;
 import tiger.TigerValue;
-import tiger.TigerType;
-import tiger.context.Context;
+import tiger.others.*;
 
 public class  ArrayLiteralExp extends Exp
 {
@@ -20,8 +19,8 @@ public class  ArrayLiteralExp extends Exp
     }
 
     @Override
-    public void getType(TigerType v) {
-        // TODO
+    public TigerType getType(Context c) {
+        return new TigerType(0);
     }
 
     @Override

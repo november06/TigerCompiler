@@ -1,13 +1,12 @@
 package tiger.absyn;
 import tiger.TigerValue;
-import tiger.TigerType;
-import tiger.context.Context;
+
+import tiger.others.*;
 
 public abstract class Exp 
 {
     public Exp(Integer pos)
     {
-        
     	if (Constants.enableDebug)
     	{
     		System.out.println("In the ctor of " + getTypeName());
@@ -18,7 +17,7 @@ public abstract class Exp
 
     abstract void getValue(TigerValue v);
 
-    abstract void getType(TigerType v);
+    abstract TigerType getType(Context c);
 
     abstract String getTypeName();
 

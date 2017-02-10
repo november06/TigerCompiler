@@ -1,7 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
-import tiger.TigerType;
-import tiger.context.Context;
+
+import tiger.others.*;
 
 public class LiteralExp extends Exp
 {
@@ -9,6 +9,8 @@ public class LiteralExp extends Exp
     {
         super(pos);
         internalValue = new TigerValue();
+        expType = new TigerType(TigerType.simple);
+        expType.simpleTypeName = TigerType.TigerSimpleTypeNilName;
         internalValue.SetNil();
     }
 
@@ -16,6 +18,7 @@ public class LiteralExp extends Exp
     {
         this(pos);
 
+        expType.simpleTypeName = TigerType.TigerSimpleTypeStringName;
         internalValue.SetString(stirngValue);
     }
 
@@ -23,6 +26,7 @@ public class LiteralExp extends Exp
     {
         this(pos);
         
+        expType.simpleTypeName = TigerType.TigerSimpleTypeStringName;
         internalValue.SetInteger(integerValue);
     }
 
@@ -32,8 +36,8 @@ public class LiteralExp extends Exp
     }
 
     @Override
-    public void getType(TigerType v) {
-        // TODO
+    public TigerType getType(Context c) {
+        return expType;
     }
 
     @Override
@@ -63,4 +67,5 @@ public class LiteralExp extends Exp
     }
 
     private TigerValue internalValue;
+    private TigerType expType;
 }

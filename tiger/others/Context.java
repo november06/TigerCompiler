@@ -1,4 +1,4 @@
-package tiger.context;
+package tiger.others;
 //import tiger.TigerValue;
 //simport tiger.TigerType;
 
@@ -19,6 +19,18 @@ public class Context
 
     public void popLevel() {
         indent--;
+    }
+
+    public TigerType findVariableType(String variableName)
+    {
+        // TODO 
+        return null;
+    }
+
+    public TigerType findType(String alias)
+    {
+        // TODO 
+        return null;
     }
 
     private Integer indent;

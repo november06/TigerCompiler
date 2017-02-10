@@ -1,6 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
-import tiger.TigerType;
+import tiger.others.*;
+
 
 public abstract class Declaration extends Exp 
 {
@@ -11,7 +12,7 @@ public abstract class Declaration extends Exp
 
     abstract void getValue(TigerValue v);
 
-    abstract void getType(TigerType v);
+    abstract TigerType getType(Context c);
 
     abstract String getTypeName();
 }

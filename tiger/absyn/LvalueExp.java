@@ -1,7 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
-import tiger.TigerType;
-import tiger.context.Context;
+
+import tiger.others.*;
 
 public class LvalueExp extends Exp
 {
@@ -43,8 +43,27 @@ public class LvalueExp extends Exp
     }
 
     @Override
-    public void getType(TigerType v) {
-        // TODO
+    public TigerType getType(Context c) {
+        if (this.internalType == identifier) {
+            return c.findVariableType(identifierName);
+        }
+        else if (this.internalType == fieldOfRecord) {
+            TigerType baseType = baseLvalue.getType(c);
+            if (baseType != null) {
+                return baseType.getMemberType(c, fieldName);
+            }
+            return null;
+        }
+        else if (this.internalType == itemOfArray) {
+            TigerType baseType = baseLvalue.getType(c);
+            // seems impossible to get the value of the index 
+            if (baseType != null) {
+                return baseType.getElementType(c);
+            }
+            return null;
+        }
+
+        return null;
     }
 
     @Override

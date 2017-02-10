@@ -1,7 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
-import tiger.TigerType;
-import tiger.context.Context;
+
+import tiger.others.*;
 
 public class TypeDefinitionExp extends Exp 
 {
@@ -29,8 +29,9 @@ public class TypeDefinitionExp extends Exp
     }
 
     @Override
-    public void getType(TigerType v) {
+    public TigerType getType(Context c) {
         // TODO
+        return new TigerType(0);
     }
 
     @Override

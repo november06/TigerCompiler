@@ -1,7 +1,7 @@
 package tiger.absyn;
 import tiger.TigerValue;
-import tiger.TigerType;
-import tiger.context.Context;
+
+import tiger.others.*;
 
 public class FunctionDeclarationExp extends Declaration 
 {
@@ -26,8 +26,9 @@ public class FunctionDeclarationExp extends Declaration
     }
 
     @Override
-    public void getType(TigerType v) {
+    public TigerType getType(Context c) {
         // TODO
+        return new TigerType(0);
     }
 
     @Override
