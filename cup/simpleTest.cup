@@ -1,0 +1,61 @@
+package tiger.parse;
+import tiger.absyn.*;
+// import tiger.symbol.*;
+
+terminal String ID, STRING;
+terminal Integer INT;
+terminal LBRACK, RBRACK, DOT, OF;
+
+
+non terminal program;
+non terminal expr;   
+non terminal lvalue; 
+
+
+
+start with program;
+
+program ::= expr:e 
+         {:
+		     RESULT = e;
+		 :};
+
+// expr with values and without values
+expr ::= STRING:s 
+         {:
+		     RESULT = new LiteralExp(sleft, s);
+		 :} 
+         |
+         INT:i
+		 {:
+		     RESULT = new LiteralExp(ileft, i);
+		 :}
+		 |
+		 lvalue:l
+		 {:
+		     RESULT = l; // should already have been a lvalue expression
+		 :}
+		 |
+		 // array literal
+		 ID:typeid LBRACK expr:count RBRACK OF expr:value 
+		 {:
+			 RESULT = new ArrayLiteralExp(typeidleft, typeid, (Exp)count, (Exp)value);
+		 :}
+		 ;
+
+
+lvalue ::= ID:id
+           {:
+		       RESULT = new LvalueExp(idleft, id);
+		   :} 
+           |
+           lvalue:lvalueExp DOT ID:fieldId
+		   {:
+		       RESULT = new LvalueExp(lvalueExpleft, (LvalueExp)lvalueExp, fieldId);
+		   :}
+		   |
+		   lvalue:lvalueExp LBRACK expr:exp RBRACK
+		   {:
+		       RESULT = new LvalueExp(lvalueExpleft, (LvalueExp)lvalueExp, (Exp)exp);
+		   :}
+		   ;
