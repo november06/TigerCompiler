@@ -29,11 +29,6 @@ public class BinaryOperationExp extends Exp
     }
 
     @Override
-    public void getValue(TigerValue v) {
-        // TODO
-    }
-
-    @Override
     public TigerType getType(Context c) throws TigerTypeException  {
 		TigerType left = innerExpLeft.getType(c);
 		TigerType right = innerExpRight.getType(c);

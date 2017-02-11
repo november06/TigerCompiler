@@ -12,11 +12,6 @@ public class AssignExp extends Exp
     }
 
     @Override
-    public void getValue(TigerValue v) { 
-        v.SetNil();
-     }
-
-    @Override
     public TigerType getType(Context c) throws TigerTypeException  {
         // TODO
         return new TigerType(0);

@@ -3,7 +3,6 @@ import tiger.TigerValue;
 
 import tiger.others.*;
 
-// TODO SeqExp
 public class ListExp extends Exp
 {
     public ListExp(Integer pos, Exp e)
@@ -17,11 +16,6 @@ public class ListExp extends Exp
 
         this.head = head;
         this.tail = tail;
-    }
-
-    @Override
-    public void getValue(TigerValue v) {
-        // TODO
     }
 
     @Override

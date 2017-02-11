@@ -14,11 +14,6 @@ public class  ArrayLiteralExp extends Exp
     }
 
     @Override
-    public void getValue(TigerValue v) {
-        // TODO
-    }
-
-    @Override
     public TigerType getType(Context c) throws TigerTypeException  {
         return new TigerType(0);
     }

@@ -10,8 +10,6 @@ public abstract class Declaration extends Exp
         super(pos);
     }
 
-    abstract void getValue(TigerValue v);
-
     abstract TigerType getType(Context c) throws TigerTypeException ;
 
     abstract String getTypeName();

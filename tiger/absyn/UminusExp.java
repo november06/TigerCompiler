@@ -13,11 +13,6 @@ public class UminusExp extends Exp
     }
 
     @Override
-    public void getValue(TigerValue v) {
-        // TODO
-    }
-
-    @Override
     public TigerType getType(Context c) throws TigerTypeException  {
         // verify
     	TigerType innerType = innerExp.getType(c);

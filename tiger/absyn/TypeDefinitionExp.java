@@ -24,11 +24,6 @@ public class TypeDefinitionExp extends Exp
     }
 
     @Override
-    public void getValue(TigerValue v) {
-        // TODO
-    }
-
-    @Override
     public TigerType getType(Context c) throws TigerTypeException  {
         // TODO
         return new TigerType(0);

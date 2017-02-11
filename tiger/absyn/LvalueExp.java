@@ -30,16 +30,10 @@ public class LvalueExp extends Exp
     {
         super(pos);
 
-        // TODO validate indexExp's type'
         internalType = itemOfArray;
 
         baseLvalue = lvalueExp;
         this.indexExp = indexExp;
-    }
-
-    @Override
-    public void getValue(TigerValue v) {
-        // TODO
     }
 
     @Override
@@ -59,7 +53,6 @@ public class LvalueExp extends Exp
 
         	if (baseType == null)
         	{
-        		// TODO: to check furthur types?
         		throw new TigerTypeException("can't find the base type in the context");
         	}
         	if (this.internalType == fieldOfRecord) {

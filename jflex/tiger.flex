@@ -49,15 +49,16 @@ import java_cup.runtime.*;
 
     int commentLevel = 0;
 
-    private void newline() { // TODO
+    // TODO for the following newline/err
+    private void newline() {
         errorMsg.newline(yychar);
     }
 
-    private void err(int pos, String s) { // TODO
+    private void err(int pos, String s) {
 	    errorMsg.error(pos, s);
     }
 
-    private void err(String s) { // TODO
+    private void err(String s) {
         err(yychar, s);
     }
 
@@ -69,7 +70,7 @@ import java_cup.runtime.*;
     private ErrorMsg errorMsg;
 %}
 
-%eofval{  // TODO
+%eofval{
 { 
 	return symbol(sym.EOF, null);
 }
@@ -123,7 +124,6 @@ WhiteSpace = [ \t\f]
                             return symbol(sym.INT, value); 
                         }
 	
-	// or not? // TODO
 	// [0-9]+   { return symbol(sym.INT, new String(yytext())); }
 
     \"          { yybegin(STRINGLITERAL); stringBuffer.setLength(0); }

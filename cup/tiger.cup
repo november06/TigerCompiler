@@ -35,7 +35,7 @@ precedence left AND, OR;  // right?
 precedence nonassoc EQ, NEQ, LT, GT, LE, GE;
 precedence left PLUS, MINUS;
 precedence left TIMES, DIVIDE;
-// precedence right MINUS; // TODO
+precedence right MINUS;
 
 
 start with program;

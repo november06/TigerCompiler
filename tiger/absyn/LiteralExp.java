@@ -31,11 +31,6 @@ public class LiteralExp extends Exp
     }
 
     @Override
-    public void getValue(TigerValue v) {
-        v = internalValue; // TODO
-    }
-
-    @Override
     public TigerType getType(Context c) throws TigerTypeException  {
         return expType;
     }

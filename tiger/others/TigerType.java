@@ -24,7 +24,11 @@ public class TigerType
 
     @Override
 	public int hashCode() {
-    	// TODO context alias 
+    	if (this.subType == alias)
+    	{
+    		// TODO verify
+    	    return aliasContext.findType(aliasName).hashCode();
+    	}
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((baseType == null) ? 0 : baseType.hashCode());
@@ -42,7 +46,20 @@ public class TigerType
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
+		
+		
 		TigerType other = (TigerType) obj;
+		
+		// TODO verify 
+		if (this.subType == alias) 
+		{
+			return this.aliasContext.findType(aliasName).equals(other);
+		}
+		if (other.subType == alias)
+		{
+			return other.aliasContext.findType(other.aliasName).equals(this);
+		}
+		
 		if (baseType == null) {
 			if (other.baseType != null)
 				return false;
@@ -127,4 +144,6 @@ public class TigerType
     private String aliasName;
 
     private String name;
+
+    private Context aliasContext;
 }

@@ -15,8 +15,6 @@ public abstract class Exp
         this.pos = pos;
     }
 
-    abstract void getValue(TigerValue v);
-
     /// get the type of the expression. 
     /// if it's tiger type nil, return a tiger type with that value
     /// if there should be no type for this expression, return null
