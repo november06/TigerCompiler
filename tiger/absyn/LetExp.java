@@ -16,7 +16,7 @@ public class LetExp extends Exp
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
         // TODO
-        return new TigerType(0);
+        return  TigerSimpleType.TigerIntegerType;
     }
 
     @Override

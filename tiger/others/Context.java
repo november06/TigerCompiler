@@ -21,17 +21,17 @@ public class Context
         indent--;
     }
 
-    public TigerType findVariableType(String variableName)
+    public TigerType findIdentifierType(String variableName)
     {
         // TODO 
         return null;
     }
 
-    public TigerType findType(String alias)
+    public TigerType findType(String typeNameAlias)
     {
         // TODO 
         return null;
     }
-
+    
     private Integer indent;
 }

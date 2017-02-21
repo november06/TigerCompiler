@@ -16,7 +16,7 @@ public class TypeDeclarationExp extends Declaration
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
         // TODO
-        return new TigerType(0);
+        return  TigerSimpleType.TigerIntegerType;
     }
 
     @Override

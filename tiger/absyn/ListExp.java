@@ -2,6 +2,7 @@ package tiger.absyn;
 import tiger.TigerValue;
 
 import tiger.others.*;
+import java.util.ArrayList;
 
 public class ListExp extends Exp
 {
@@ -21,7 +22,7 @@ public class ListExp extends Exp
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
         // TODO
-        return new TigerType(0);
+        return  TigerSimpleType.TigerIntegerType;
     }
 
     @Override
@@ -54,6 +55,12 @@ public class ListExp extends Exp
             print(c, "tail is null");
         }
         c.popLevel();
+    }
+    
+    public ArrayList<TigerType> getTigerTypeList()
+    {
+    	// TODO 
+    	return new ArrayList<TigerType>();
     }
 
     private ListExp head;

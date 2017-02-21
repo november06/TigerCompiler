@@ -1,5 +1,6 @@
 package tiger.absyn;
 import tiger.TigerValue;
+import java.util.ArrayList;
 
 import tiger.others.*;
 
@@ -15,8 +16,14 @@ public class FunctionCallExp extends Exp
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-        // TODO
-        return new TigerType(0);
+        // verify
+    	TigerType functionType = c.findIdentifierType(functionName);
+    	ArrayList<TigerType> parameters = this.parameterList.getTigerTypeList();
+    	if (!functionType.match(parameters))
+    	{
+    		throw new TigerTypeException("Unexpected function parameters");
+    	}
+        return functionType.getReturnType();
     }
 
     @Override

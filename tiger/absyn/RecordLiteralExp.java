@@ -12,11 +12,11 @@ public class RecordLiteralExp extends Exp
         name = recordName;
         fieldList = fl;
     }
-    
+
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
         // TODO
-        return new TigerType(0);
+        return  TigerSimpleType.TigerIntegerType;
     }
 
     @Override

@@ -9,8 +9,7 @@ public class LiteralExp extends Exp
     {
         super(pos);
         internalValue = new TigerValue();
-        expType = new TigerType(TigerType.simple);
-        expType.simpleTypeName = TigerType.TigerSimpleTypeNilName;
+        expType = TigerSimpleType.tigerNilType;
         internalValue.SetNil();
     }
 
@@ -18,7 +17,7 @@ public class LiteralExp extends Exp
     {
         this(pos);
 
-        expType.simpleTypeName = TigerType.TigerSimpleTypeStringName;
+        expType = TigerSimpleType.TigerStringType;
         internalValue.SetString(stirngValue);
     }
 
@@ -26,7 +25,7 @@ public class LiteralExp extends Exp
     {
         this(pos);
         
-        expType.simpleTypeName = TigerType.TigerSimpleTypeIntegerName;
+        expType = TigerSimpleType.TigerIntegerType;
         internalValue.SetInteger(integerValue);
     }
 

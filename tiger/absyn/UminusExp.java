@@ -20,7 +20,7 @@ public class UminusExp extends Exp
     	{
     		throw new TigerTypeException("Expected the parameter to be an integer!");
     	}
-        return TigerType.TigerIntegerType; 
+        return TigerSimpleType.TigerIntegerType;
     }
 
     @Override

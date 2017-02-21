@@ -13,8 +13,14 @@ public class AssignExp extends Exp
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-        // TODO
-        return new TigerType(0);
+        // verify
+    	TigerType leftType = left.getType(c);
+    	TigerType rightType = right.getType(c);
+    	// TODO is there any conversion?
+    	if (!leftType.equals(right)) {
+    	    throw new TigerTypeException("Assignment type mismatch. ");
+    	}
+        return null;
     }
 
     @Override

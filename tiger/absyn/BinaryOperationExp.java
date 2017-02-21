@@ -43,7 +43,7 @@ public class BinaryOperationExp extends Exp
     		if (!left.isInteger() || !right.isInteger()) {
     			throw new TigerTypeException("arithmetic paramaters should be both integer");
     		}
-    		return TigerType.TigerIntegerType;
+    		return TigerSimpleType.TigerIntegerType;
     	}
     	else if (this.operation == PLUS
     	      || this.operation == MINUS)
@@ -51,7 +51,7 @@ public class BinaryOperationExp extends Exp
     		// Do two different type of records compares? I guess no
     		if (left.equals(right))
     		{
-    			return TigerType.TigerIntegerType;
+    			return TigerSimpleType.TigerIntegerType;
     		}
     		else 
     		{
@@ -66,7 +66,7 @@ public class BinaryOperationExp extends Exp
     		if ( (left.isInteger() && right.isInteger())
     		  || (left.isString() && right.isString()))
     		{
-    		    return TigerType.TigerIntegerType;
+    		    return TigerSimpleType.TigerIntegerType;
     		}
     		throw new TigerTypeException("compare parameters should be both integer or both string");
     	}
@@ -77,7 +77,7 @@ public class BinaryOperationExp extends Exp
     		if (!left.isInteger() || !right.isInteger()) {
     			throw new TigerTypeException("logical operation paramaters should be both integer");
     		}
-    		return TigerType.TigerIntegerType;
+    		return TigerSimpleType.TigerIntegerType;
     	}
     	else {
     		throw new TigerTypeException("Internal status error, unexpected binary operator");

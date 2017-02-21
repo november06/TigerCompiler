@@ -39,7 +39,7 @@ public class LvalueExp extends Exp
     @Override
     public TigerType getType(Context c) throws TigerTypeException {
         if (this.internalType == identifier) {
-            return c.findVariableType(identifierName);
+            return c.findIdentifierType(identifierName);
         }
         else {
         	TigerType baseType = null;
@@ -56,10 +56,10 @@ public class LvalueExp extends Exp
         		throw new TigerTypeException("can't find the base type in the context");
         	}
         	if (this.internalType == fieldOfRecord) {
-	            return baseType.getMemberType(c, fieldName);
+	            return baseType.getMemberType(fieldName);
 	        }
 	        else if (this.internalType == itemOfArray) {
-	            return baseType.getElementType(c);
+	            return baseType.getElementType();
 	        }
         }
 
