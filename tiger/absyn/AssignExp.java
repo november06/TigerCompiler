@@ -22,6 +22,11 @@ public class AssignExp extends Exp
     	}
         return null;
     }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
+    }
 
     @Override
     public String getTypeName() 
@@ -32,14 +37,14 @@ public class AssignExp extends Exp
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         print(c, "left: ");
         left.print(c);
         print(c, ":=");
         print(c, "right: ");
         right.print(c);
-        c.popLevel();
+        c.popIndentLevel();
     }
 
     private LvalueExp left;

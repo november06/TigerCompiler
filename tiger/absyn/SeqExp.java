@@ -25,8 +25,23 @@ public class SeqExp extends Exp
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-        // TODO
-        return  TigerSimpleType.TigerIntegerType;
+        if (tail == null && head == null)
+        {
+        	return null;
+        }
+        if (tail == null)
+        {
+        	return head.getType(c);
+        }
+        else 
+        {
+        	return tail.getType(c);
+        }
+    }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
     }
 
     @Override
@@ -38,7 +53,7 @@ public class SeqExp extends Exp
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         if (head != null) 
         {
@@ -58,7 +73,7 @@ public class SeqExp extends Exp
         {
             print(c, "tail is null");
         }
-        c.popLevel();
+        c.popIndentLevel();
     }
 
     private SeqExp head;

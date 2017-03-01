@@ -5,12 +5,12 @@ import tiger.others.*;
 
 public class DeclarationListExp extends Exp
 {
-    public DeclarationListExp(Integer pos, Exp d)
+    public DeclarationListExp(Integer pos, Declaration d)
     {
         this(pos, null, d);
     }
 
-    public DeclarationListExp(Integer pos, DeclarationListExp dl, Exp d) 
+    public DeclarationListExp(Integer pos, DeclarationListExp dl, Declaration d) 
     {
         super(pos);
 
@@ -20,8 +20,17 @@ public class DeclarationListExp extends Exp
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-        // TODO
-        return  TigerSimpleType.TigerIntegerType;
+        if (head != null)
+        {
+        	head.getType(c);
+        }
+        tail.getType(c);
+        return  null;
+    }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
     }
 
     @Override
@@ -33,7 +42,7 @@ public class DeclarationListExp extends Exp
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         if (head != null)
         {
@@ -45,9 +54,9 @@ public class DeclarationListExp extends Exp
             print(c, "head is null");
         }
         tail.print(c);
-        c.popLevel();
+        c.popIndentLevel();
     }
 
     DeclarationListExp head; // could be null 
-    Exp tail;
+    Declaration tail;
 }

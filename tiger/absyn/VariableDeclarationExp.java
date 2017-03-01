@@ -21,8 +21,14 @@ public class VariableDeclarationExp extends Declaration
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-        // TODO
+    	// try end type definition sequence
+    	// try end function sequence
         return  TigerSimpleType.TigerIntegerType;
+    }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
     }
 
     @Override
@@ -34,7 +40,7 @@ public class VariableDeclarationExp extends Declaration
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         print(c, "name is " + id);
 
@@ -48,7 +54,7 @@ public class VariableDeclarationExp extends Declaration
         }
         print(c, "initial value is ");
         exp.print(c);
-        c.popLevel();
+        c.popIndentLevel();
     }
 
     private String id; 

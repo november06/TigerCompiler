@@ -4,7 +4,7 @@ import tiger.others.*;
 
 public class  ArrayLiteralExp extends Exp
 {
-    public  ArrayLiteralExp(Integer pos, String typeName, Exp count, Exp /*actually adding another abstract class type is better*/ base)
+    public  ArrayLiteralExp(Integer pos, String typeName, Exp count, TypeDefinitionExp base)
     {
         super(pos);
 
@@ -15,7 +15,14 @@ public class  ArrayLiteralExp extends Exp
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-        return  TigerSimpleType.TigerIntegerType;
+    	int arrayLength = countExp.getCompileTimeIntValue(c);
+    	TigerArrayType result = new TigerArrayType(baseDefinitionExp.getType(c), arrayLength);
+        return result;
+    }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
     }
 
     @Override
@@ -27,7 +34,7 @@ public class  ArrayLiteralExp extends Exp
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         print(c, "typename: " + typename);
         print(c, "count: ");
@@ -36,10 +43,10 @@ public class  ArrayLiteralExp extends Exp
         print(c, "element value:");
         baseDefinitionExp.print(c);
 
-        c.popLevel();
+        c.popIndentLevel();
     }
     
     private String typename;
     private Exp countExp;
-    private Exp baseDefinitionExp;
+    private TypeDefinitionExp baseDefinitionExp;
 }

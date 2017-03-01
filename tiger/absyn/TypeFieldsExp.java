@@ -23,6 +23,11 @@ public class TypeFieldsExp extends Exp
         // TODO
         return  TigerSimpleType.TigerIntegerType;
     }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
+    }
 
     @Override
     public String getTypeName() 
@@ -33,7 +38,7 @@ public class TypeFieldsExp extends Exp
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         if (typeFields != null)
         {
@@ -53,7 +58,7 @@ public class TypeFieldsExp extends Exp
         {
             print(c, "type field is null");
         }
-        c.popLevel();
+        c.popIndentLevel();
     }
 
     TypeFieldExp typeField;

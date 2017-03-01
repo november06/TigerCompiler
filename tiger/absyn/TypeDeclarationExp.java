@@ -3,6 +3,7 @@ import tiger.TigerValue;
 
 import tiger.others.*;
 
+// alias
 public class TypeDeclarationExp extends Declaration 
 {
     public TypeDeclarationExp(Integer pos, String id, TypeDefinitionExp typeDef)
@@ -18,6 +19,11 @@ public class TypeDeclarationExp extends Declaration
         // TODO
         return  TigerSimpleType.TigerIntegerType;
     }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
+    }
 
     @Override
     public String getTypeName() 
@@ -28,12 +34,12 @@ public class TypeDeclarationExp extends Declaration
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         print(c, "type id " + id);
         print(c, "type defintion ");
         def.print(c);
-        c.popLevel();
+        c.popIndentLevel();
     }
 
     private String id; 

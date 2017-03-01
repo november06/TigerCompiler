@@ -1,6 +1,6 @@
 package tiger.absyn;
 import tiger.TigerValue;
-
+import java.util.ArrayList;
 import tiger.others.*;
 
 public class RecordLiteralExp extends Exp
@@ -15,8 +15,10 @@ public class RecordLiteralExp extends Exp
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-        // TODO
-        return  TigerSimpleType.TigerIntegerType;
+    	// TODO incorrect, should check with the record type definition
+        TigerRecordType result = new TigerRecordType(name);
+        result.setSubTypes(fieldList.getElementTypeList());
+        return result;
     }
 
     @Override
@@ -24,11 +26,16 @@ public class RecordLiteralExp extends Exp
     {
         return "RecordLiteralExp";
     }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
+    }
 
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         print(c, "type name " + name);
         if (fieldList != null) {
@@ -40,7 +47,7 @@ public class RecordLiteralExp extends Exp
             print(c, "field list is empty");
         }
 
-        c.popLevel();
+        c.popIndentLevel();
     }
 
     private String name;

@@ -65,6 +65,11 @@ public class LvalueExp extends Exp
 
         throw new TigerTypeException("internal error, incorrect internal state of lvalue expressions");
     }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
+    }
 
     @Override
     public String getTypeName() 
@@ -75,7 +80,7 @@ public class LvalueExp extends Exp
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         
         if (internalType == identifier)
@@ -101,7 +106,7 @@ public class LvalueExp extends Exp
             print(c, "index ");
             indexExp.print(c);
         }
-        c.popLevel();
+        c.popIndentLevel();
     }
 
     private Integer internalType;

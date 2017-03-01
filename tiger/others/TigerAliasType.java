@@ -15,11 +15,6 @@ public class TigerAliasType extends TigerType {
 	}
 
 	@Override
-	public Boolean isNil() {
-		return findAliasedType().isNil();
-	}
-
-	@Override
 	public Boolean match(ArrayList<TigerType> parameters) {
 		return findAliasedType().match(parameters);
 	}

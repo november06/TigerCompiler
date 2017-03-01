@@ -22,9 +22,25 @@ public abstract class Exp
     ///     variable can't find 
     ///     type is not available (does it matter? we could look for the type later when all the definitions are available)
     ///     ?
-    abstract TigerType getType(Context c) throws TigerTypeException ;
+    abstract TigerType getType(Context c) throws TigerTypeException;
+    
+    // go through the exp and check whether the types are valid
+    // and update the context 
+    // or shall we just use get type? and remove this function?
+    abstract void checkType(Context c) throws TigerTypeException;
 
     abstract String getTypeName();
+    
+    public int getCompileTimeIntValue(Context c) throws TigerTypeException
+    {
+    	if (this.getType(c) != TigerSimpleType.TigerIntegerType) 
+    	{
+    		throw new TigerTypeException("Expecting an integer type to specify the length of the array");
+    	}
+    	
+    	// TODO Shane
+    	return 0;
+    }
 
     public void print(Context c)
     {

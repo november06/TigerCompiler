@@ -113,9 +113,9 @@ expr ::= // string constant
 		 :}
 		 |
 		 // array literal
-		 ID:typeid LBRACK expr:count RBRACK OF expr:value 
+		 ID:typeid LBRACK expr:count RBRACK OF type:value 
 		 {:
-		 	 RESULT = new ArrayLiteralExp(typeidleft, typeid, (Exp)count, (Exp)value);
+		 	 RESULT = new ArrayLiteralExp(typeidleft, typeid, (Exp)count, (TypeDefinitionExp)value);
 		 :}
 		 |
 		 IF:i expr:condition THEN expr:e1 

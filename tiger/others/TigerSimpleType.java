@@ -3,10 +3,9 @@ package tiger.others;
 import java.util.ArrayList;
 
 public class TigerSimpleType extends TigerType {
-	private final static Integer nil = 0, integer = 1, string = 2;
+	private final static Integer integer = 0, string = 1;
 	public final static TigerType TigerIntegerType = new TigerSimpleType(integer);
 	public final static TigerType TigerStringType = new TigerSimpleType(string);
-	public final static TigerType tigerNilType = new TigerSimpleType(nil);
 	
 	private TigerSimpleType(Integer subType)
 	{
@@ -23,11 +22,6 @@ public class TigerSimpleType extends TigerType {
     @Override
     public Boolean isString() {
     	return this.subType == string;
-    }
-
-    @Override
-    public Boolean isNil() {
-    	return this.subType == nil;
     }
 
 	private Integer subType;

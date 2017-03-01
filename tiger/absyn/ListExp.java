@@ -24,6 +24,11 @@ public class ListExp extends Exp
         // TODO
         return  TigerSimpleType.TigerIntegerType;
     }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
+    }
 
     @Override
     public String getTypeName() 
@@ -34,7 +39,7 @@ public class ListExp extends Exp
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         if (head != null) 
         {
@@ -54,7 +59,7 @@ public class ListExp extends Exp
         {
             print(c, "tail is null");
         }
-        c.popLevel();
+        c.popIndentLevel();
     }
     
     public ArrayList<TigerType> getTigerTypeList()

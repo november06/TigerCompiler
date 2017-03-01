@@ -22,8 +22,15 @@ public class FunctionDeclarationExp extends Declaration
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
+    	// try end type definition sequence
+    	// tryStart function sequence
         // TODO
         return  TigerSimpleType.TigerIntegerType;
+    }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
     }
 
     @Override
@@ -35,7 +42,7 @@ public class FunctionDeclarationExp extends Declaration
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         print(c, "function name is: " + name);
         print(c, "parameter list: ");
@@ -50,7 +57,7 @@ public class FunctionDeclarationExp extends Declaration
         }
         print(c, "function body is :");
         body.print(c);
-        c.popLevel();
+        c.popIndentLevel();
     }
 
     private String name; 

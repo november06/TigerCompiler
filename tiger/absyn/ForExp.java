@@ -17,8 +17,23 @@ public class ForExp extends Exp
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-        // TODO
+        // TODO add id to the context, id is readonly
+    	if (eStart.getType(c) != TigerSimpleType.TigerIntegerType 
+    	 || eEnd.getType(c) != TigerSimpleType.TigerIntegerType) {
+    	    throw new TigerTypeException("the bounds of for loops should be of integer type");
+    	}
+    	
+    	if (eAction.getType(c) != null)
+    	{
+    		throw new TigerTypeException("the body of for loops should not return a value");
+    	}
+    	// TODO remove id from the context
         return  TigerSimpleType.TigerIntegerType;
+    }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
     }
 
     @Override
@@ -30,7 +45,7 @@ public class ForExp extends Exp
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         print(c, "variable name" + idName);
         print(c, "start: ");
@@ -39,7 +54,7 @@ public class ForExp extends Exp
         eEnd.print(c);
         print(c, "action: ");
         eAction.print(c);
-        c.popLevel();
+        c.popIndentLevel();
     }
 
     private String idName;

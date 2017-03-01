@@ -3,7 +3,7 @@ import tiger.TigerValue;
 
 import tiger.others.*;
 
-public class TypeDefinitionExp extends Exp 
+public class TypeDefinitionExp extends Declaration 
 {
     public static final Integer ID = 0, RECORD = 1, ARRAY = 2;
 
@@ -28,6 +28,11 @@ public class TypeDefinitionExp extends Exp
         // TODO
         return  TigerSimpleType.TigerIntegerType;
     }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
+    }
 
     @Override
     public String getTypeName() 
@@ -38,7 +43,7 @@ public class TypeDefinitionExp extends Exp
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         if (type == ID)
         {
@@ -54,7 +59,7 @@ public class TypeDefinitionExp extends Exp
         {
             print(c, "ARRAY of: " + id);
         }
-        c.popLevel();
+        c.popIndentLevel();
     }
 
     private String id; 

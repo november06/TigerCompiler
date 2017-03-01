@@ -1,6 +1,8 @@
 package tiger.absyn;
 import tiger.TigerValue;
 
+import java.util.ArrayList;
+
 import tiger.others.*;
 
 public class FieldListExp extends Exp
@@ -29,6 +31,11 @@ public class FieldListExp extends Exp
         // TODO
         return  TigerSimpleType.TigerIntegerType;
     }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
+    }
 
     @Override
     public String getTypeName() 
@@ -39,7 +46,7 @@ public class FieldListExp extends Exp
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         if (head != null)
         {
@@ -63,7 +70,13 @@ public class FieldListExp extends Exp
         {
             print(c, "UPEXPECTED: exp and id are not both null");
         }
-        c.popLevel();
+        c.popIndentLevel();
+    }
+    
+    public ArrayList<TigerType> getElementTypeList()
+    {
+        // TODO Shane
+    	return new ArrayList<TigerType>();
     }
 
     FieldListExp head;

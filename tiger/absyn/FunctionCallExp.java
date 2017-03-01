@@ -25,6 +25,11 @@ public class FunctionCallExp extends Exp
     	}
         return functionType.getReturnType();
     }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
+    }
 
     @Override
     public String getTypeName() 
@@ -35,12 +40,12 @@ public class FunctionCallExp extends Exp
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         print(c, "function name: " + functionName);
         print(c, "parameter list: ");
         parameterList.print(c);
-        c.popLevel();
+        c.popIndentLevel();
     }
 
     private String functionName;

@@ -21,8 +21,31 @@ public class IfElseExp extends Exp
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-        // TODO
-        return  TigerSimpleType.TigerIntegerType;
+        if (condition.getType(c) != TigerSimpleType.TigerIntegerType)
+        {
+        	throw new TigerTypeException("if condition must be an integer.");
+        }
+        if (executeElse == null) 
+        {
+        	if (executeIf.getType(c) != null)
+        	{
+        		throw new TigerTypeException("must not return anything when we don't have an else");
+        	}
+        	return null;
+        }
+        else 
+        {
+        	if (executeIf.getType(c) != executeIf.getType(c))
+        	{
+        		throw new TigerTypeException("the return type of if should be the same as the return type of else");
+        	}
+        	return executeIf.getType(c);
+        }
+    }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
     }
 
     @Override
@@ -34,7 +57,7 @@ public class IfElseExp extends Exp
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         print(c, "condition: ");
         condition.print(c);
@@ -49,7 +72,7 @@ public class IfElseExp extends Exp
             print(c, "no else");
         }
 
-        c.popLevel();
+        c.popIndentLevel();
     }
 
     private Exp condition;

@@ -9,8 +9,8 @@ public class LiteralExp extends Exp
     {
         super(pos);
         internalValue = new TigerValue();
-        expType = TigerSimpleType.tigerNilType;
-        internalValue.SetNil();
+        expType = TigerRecordType.TigerNilType;
+        //internalValue.SetNil();
     }
 
     public LiteralExp(Integer pos, String stirngValue)
@@ -33,6 +33,11 @@ public class LiteralExp extends Exp
     public TigerType getType(Context c) throws TigerTypeException  {
         return expType;
     }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
+    }
 
     @Override
     public String getTypeName() 
@@ -43,7 +48,7 @@ public class LiteralExp extends Exp
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         if (internalValue.IsString())
         {
@@ -57,7 +62,7 @@ public class LiteralExp extends Exp
         {
             print(c, "Nil Value");
         }
-        c.popLevel();
+        c.popIndentLevel();
     }
 
     private TigerValue internalValue;

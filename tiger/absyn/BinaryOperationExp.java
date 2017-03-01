@@ -83,6 +83,11 @@ public class BinaryOperationExp extends Exp
     		throw new TigerTypeException("Internal status error, unexpected binary operator");
     	}
     }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
+    }
 
     @Override
     public String getTypeName() 
@@ -93,7 +98,7 @@ public class BinaryOperationExp extends Exp
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
 
         print(c, "left: ");
@@ -148,7 +153,7 @@ public class BinaryOperationExp extends Exp
         
         print(c, "right: ");
         innerExpRight.print(c);
-        c.popLevel();
+        c.popIndentLevel();
     }
 
     private Integer operation;

@@ -12,8 +12,13 @@ public class BreakExp extends Exp
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-        // TODO
-        return  TigerSimpleType.TigerIntegerType;
+        // TODO check inside a loop
+        return  null;
+    }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
     }
 
     @Override
@@ -25,9 +30,9 @@ public class BreakExp extends Exp
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         print(c, "Break");
-        c.popLevel();
+        c.popIndentLevel();
     }
 }

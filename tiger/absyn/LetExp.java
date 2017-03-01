@@ -15,8 +15,16 @@ public class LetExp extends Exp
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-        // TODO
-        return  TigerSimpleType.TigerIntegerType;
+        c.startLet();
+        TigerType declType = declarationList.getType(c);
+        TigerType result = exp.getType(c);
+        c.endLet();
+        return  result;
+    }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
     }
 
     @Override
@@ -28,13 +36,13 @@ public class LetExp extends Exp
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         print(c, "declaration list: ");
         declarationList.print(c);
         print(c, "sequence expressions: ");
         exp.print(c);
-        c.popLevel();
+        c.popIndentLevel();
     }
 
     private DeclarationListExp declarationList;

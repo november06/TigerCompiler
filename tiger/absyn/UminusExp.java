@@ -22,6 +22,11 @@ public class UminusExp extends Exp
     	}
         return TigerSimpleType.TigerIntegerType;
     }
+    
+    @Override 
+    public void checkType(Context c) throws TigerTypeException {
+    	
+    }
 
     @Override
     public String getTypeName() 
@@ -32,12 +37,12 @@ public class UminusExp extends Exp
     @Override
     public void print(Context c)
     {
-        c.pushLevel();
+        c.pushIndentLevel();
         super.print(c);
         print(c, "-");
         print(c, "original value is ");
         innerExp.print(c);
-        c.popLevel();
+        c.popIndentLevel();
     }
 
     private Exp innerExp;

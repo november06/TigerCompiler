@@ -3,12 +3,11 @@ import java.util.ArrayList;
 
 public abstract class TigerType
 {
+	// TODO ? name
 	// simple type 
     public Boolean isInteger() {return false;}
 
     public Boolean isString() {return false;}
-
-    public Boolean isNil() {return false;}
     
     // function type
     public Boolean match(ArrayList<TigerType> parameters) {return false;}
