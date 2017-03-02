@@ -3,7 +3,12 @@ package tiger.others;
 import java.util.ArrayList;
 
 public class TigerAliasType extends TigerType {
-
+    public TigerAliasType(String id, TigerType aliasedType)
+    {
+    	aliasName = id; 
+    	this.aliasedType = aliasedType;
+    }
+	
 	@Override
 	public Boolean isInteger() {
 		return findAliasedType().isInteger();
@@ -45,4 +50,5 @@ public class TigerAliasType extends TigerType {
 	
 	private Context context;
 	private String aliasName;
+	private TigerType aliasedType;
 }

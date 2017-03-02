@@ -19,11 +19,6 @@ public class  ArrayLiteralExp extends Exp
     	TigerArrayType result = new TigerArrayType(baseDefinitionExp.getType(c), arrayLength);
         return result;
     }
-    
-    @Override 
-    public void checkType(Context c) throws TigerTypeException {
-    	
-    }
 
     @Override
     public String getTypeName() 

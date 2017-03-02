@@ -65,11 +65,6 @@ public class LvalueExp extends Exp
 
         throw new TigerTypeException("internal error, incorrect internal state of lvalue expressions");
     }
-    
-    @Override 
-    public void checkType(Context c) throws TigerTypeException {
-    	
-    }
 
     @Override
     public String getTypeName() 

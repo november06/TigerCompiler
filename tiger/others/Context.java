@@ -10,6 +10,7 @@ public class Context
     {
         this.indent = 0;
         this.loop = 0;
+        scopes = new ArrayList<ScopeContext>();
     }
 
     public Integer getIndent() {
@@ -38,11 +39,11 @@ public class Context
     }
     
     public void startLet() {
-    	
+    	scopes.add(new ScopeContext());
     }
     
     public void endLet() {
-    	
+    	scopes.remove(scopes.size() - 1);
     }
     
     
@@ -55,20 +56,14 @@ public class Context
     	//     for index variable (readonly)
     }
     
-    public void startVariableFunctionScope()
-    {
-
-    }
-
-    public void endVariableFunctionScope()
+    public void onVariableDeclaration()
     {
     	// TODO let end
     	//      function end
     	//      for index variable
     }
     
-    
-    public void startFunctionDeclarationSequence()
+    public void onFunctionDeclaration()
     {
     	// TODO when function declaration encountered
     	// recursive functions may be defined here, no two functions could have the same name
@@ -76,17 +71,7 @@ public class Context
     	// all functions in this sequence will begin the scope here (IMPORTANT this is not the same as variables)
     }
     
-    public void endFunctionDeclarationSequence()
-    {
-        // TODO when something else is declared
-    }
-    
-    public void startTypeDeclarationSequence()
-    {
-    	
-    }
-    
-    public void stopTypeDeclarationSequence()
+    public void onTypeDeclaration()
     {
     	
     }
@@ -102,6 +87,21 @@ public class Context
         // TODO 
         return null;
     }
+    
+    public void addType(String name, TigerType t)
+    {
+    	
+    }
+    
+    public void addFunction(String name, TigerType t)
+    {
+    	
+    }
+    
+    public void addVariable(String name, TigerType t)
+    {
+    	// TODO
+    }
 
     
     // bool is in function sequences
@@ -111,5 +111,5 @@ public class Context
     // function name/variable name table
     private Integer indent;
     private Integer loop;
-    private ArrayList<Scope> scopes;
+    private ArrayList<ScopeContext> scopes;
 }

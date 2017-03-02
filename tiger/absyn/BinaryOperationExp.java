@@ -83,11 +83,6 @@ public class BinaryOperationExp extends Exp
     		throw new TigerTypeException("Internal status error, unexpected binary operator");
     	}
     }
-    
-    @Override 
-    public void checkType(Context c) throws TigerTypeException {
-    	
-    }
 
     @Override
     public String getTypeName() 

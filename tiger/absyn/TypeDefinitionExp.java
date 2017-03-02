@@ -25,13 +25,21 @@ public class TypeDefinitionExp extends Declaration
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-        // TODO
-        return  TigerSimpleType.TigerIntegerType;
-    }
-    
-    @Override 
-    public void checkType(Context c) throws TigerTypeException {
-    	
+        if (type == ID) {
+        	return c.findType(id);
+        } 
+        else if (type == RECORD)
+        {
+        	return typeFields.getType(c);
+        }
+        else if (type == ARRAY)
+        {
+        	return new TigerArrayType(id);
+        }
+        else 
+        {
+        	throw new TigerTypeException("Not expected type definition");
+        }
     }
 
     @Override

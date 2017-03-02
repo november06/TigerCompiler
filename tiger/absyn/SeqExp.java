@@ -38,11 +38,6 @@ public class SeqExp extends Exp
         	return tail.getType(c);
         }
     }
-    
-    @Override 
-    public void checkType(Context c) throws TigerTypeException {
-    	
-    }
 
     @Override
     public String getTypeName() 

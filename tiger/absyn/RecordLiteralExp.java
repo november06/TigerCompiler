@@ -26,11 +26,6 @@ public class RecordLiteralExp extends Exp
     {
         return "RecordLiteralExp";
     }
-    
-    @Override 
-    public void checkType(Context c) throws TigerTypeException {
-    	
-    }
 
     @Override
     public void print(Context c)

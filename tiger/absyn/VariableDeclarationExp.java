@@ -23,14 +23,23 @@ public class VariableDeclarationExp extends Declaration
     public TigerType getType(Context c) throws TigerTypeException  {
     	// try end type definition sequence
     	// try end function sequence
-        return  TigerSimpleType.TigerIntegerType;
+    	c.onVariableDeclaration();
+    	if (typeid == null) {
+    	    c.addVariable(id, exp.getType(c));
+    	}
+    	else 
+    	{
+    		// check type
+    		TigerType expType = exp.getType(c);
+    		if (expType != c.findType(typeid))
+    		{
+    			throw new TigerTypeException("variable initialization exp should be of the same type of the type specified.");
+    		}
+    		c.addVariable(id, c.findType(typeid));
+    	}
+        return null;
     }
     
-    @Override 
-    public void checkType(Context c) throws TigerTypeException {
-    	
-    }
-
     @Override
     public String getTypeName() 
     {

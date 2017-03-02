@@ -42,11 +42,6 @@ public class IfElseExp extends Exp
         	return executeIf.getType(c);
         }
     }
-    
-    @Override 
-    public void checkType(Context c) throws TigerTypeException {
-    	
-    }
 
     @Override
     public String getTypeName() 

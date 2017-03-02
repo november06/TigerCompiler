@@ -15,11 +15,6 @@ public class BreakExp extends Exp
         // TODO check inside a loop
         return  null;
     }
-    
-    @Override 
-    public void checkType(Context c) throws TigerTypeException {
-    	
-    }
 
     @Override
     public String getTypeName() 

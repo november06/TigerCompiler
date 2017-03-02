@@ -8,6 +8,11 @@ public class TigerArrayType extends TigerType {
 		// TODO Shane
 	}
 	
+	public TigerArrayType(String typeName)
+	{
+		// TODO
+	}
+	
 	@Override
 	public TigerType getElementType() throws TigerTypeException {
 		// TODO Auto-generated method stub

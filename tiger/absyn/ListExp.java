@@ -24,11 +24,6 @@ public class ListExp extends Exp
         // TODO
         return  TigerSimpleType.TigerIntegerType;
     }
-    
-    @Override 
-    public void checkType(Context c) throws TigerTypeException {
-    	
-    }
 
     @Override
     public String getTypeName() 

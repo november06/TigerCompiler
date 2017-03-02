@@ -15,13 +15,7 @@ public class TypeFieldExp extends Exp
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-        // TODO
-        return  TigerSimpleType.TigerIntegerType;
-    }
-    
-    @Override 
-    public void checkType(Context c) throws TigerTypeException {
-    	
+        return new TigerAliasType(id, c.findType(typeId));
     }
 
     @Override

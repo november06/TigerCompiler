@@ -1,4 +1,7 @@
 package tiger.absyn;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import tiger.TigerValue;
 
 import tiger.others.*;
@@ -20,13 +23,24 @@ public class TypeFieldsExp extends Exp
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-        // TODO
-        return  TigerSimpleType.TigerIntegerType;
+    	return new TigerRecordType(getTigerTypeList(c));
     }
     
-    @Override 
-    public void checkType(Context c) throws TigerTypeException {
-    	
+    public ArrayList<TigerType> getTigerTypeList(Context c) throws TigerTypeException
+    {
+    	ArrayList<TigerType> resultCandidate = new ArrayList<TigerType>();
+        if (typeField != null)
+        {
+        	resultCandidate.add(typeField.getType(c));
+        }
+        
+        if (typeFields != null)
+        {
+        	ArrayList<TigerType> tail = typeFields.getTigerTypeList(c);
+        	resultCandidate.addAll(tail);
+        }
+        
+        return resultCandidate;
     }
 
     @Override

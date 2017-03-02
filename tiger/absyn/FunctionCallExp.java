@@ -25,11 +25,6 @@ public class FunctionCallExp extends Exp
     	}
         return functionType.getReturnType();
     }
-    
-    @Override 
-    public void checkType(Context c) throws TigerTypeException {
-    	
-    }
 
     @Override
     public String getTypeName() 

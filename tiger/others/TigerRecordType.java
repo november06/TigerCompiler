@@ -15,6 +15,11 @@ public class TigerRecordType extends TigerType {
 		// TODO Shane
 	}
 	
+	public TigerRecordType(ArrayList<TigerType> fields)
+	{
+		subTypes = fields;
+	}
+	
 	@Override
 	public TigerType getMemberType(String fieldName) throws TigerTypeException {
 		// TODO Auto-generated method stub

@@ -21,11 +21,6 @@ public class LetExp extends Exp
         c.endLet();
         return  result;
     }
-    
-    @Override 
-    public void checkType(Context c) throws TigerTypeException {
-    	
-    }
 
     @Override
     public String getTypeName() 

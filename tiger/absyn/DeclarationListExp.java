@@ -27,11 +27,6 @@ public class DeclarationListExp extends Exp
         tail.getType(c);
         return  null;
     }
-    
-    @Override 
-    public void checkType(Context c) throws TigerTypeException {
-    	
-    }
 
     @Override
     public String getTypeName() 

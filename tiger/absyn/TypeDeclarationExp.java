@@ -16,13 +16,9 @@ public class TypeDeclarationExp extends Declaration
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-        // TODO
-        return  TigerSimpleType.TigerIntegerType;
-    }
-    
-    @Override 
-    public void checkType(Context c) throws TigerTypeException {
-    	
+    	c.onTypeDeclaration();
+    	c.addType(id, def.getType(c));
+        return null;
     }
 
     @Override

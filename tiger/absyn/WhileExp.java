@@ -27,11 +27,6 @@ public class WhileExp extends Exp
         
         return null;
     }
-    
-    @Override 
-    public void checkType(Context c) throws TigerTypeException {
-    	
-    }
 
     @Override
     public String getTypeName() 

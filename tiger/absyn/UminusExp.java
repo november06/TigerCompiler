@@ -22,11 +22,6 @@ public class UminusExp extends Exp
     	}
         return TigerSimpleType.TigerIntegerType;
     }
-    
-    @Override 
-    public void checkType(Context c) throws TigerTypeException {
-    	
-    }
 
     @Override
     public String getTypeName() 

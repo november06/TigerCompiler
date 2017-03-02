@@ -33,11 +33,6 @@ public class LiteralExp extends Exp
     public TigerType getType(Context c) throws TigerTypeException  {
         return expType;
     }
-    
-    @Override 
-    public void checkType(Context c) throws TigerTypeException {
-    	
-    }
 
     @Override
     public String getTypeName() 
