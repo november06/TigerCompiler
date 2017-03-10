@@ -34,7 +34,12 @@ public class TypeFieldExp extends Exp
         print(c, typeId);
         c.popIndentLevel();
     }
+    
+    public String getFieldId()
+    {
+    	return id;
+    }
 
-    String id;
-    String typeId;
+    private String id;
+    private String typeId;
 }

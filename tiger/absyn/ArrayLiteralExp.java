@@ -4,20 +4,28 @@ import tiger.others.*;
 
 public class  ArrayLiteralExp extends Exp
 {
-    public  ArrayLiteralExp(Integer pos, String typeName, Exp count, TypeDefinitionExp base)
+    public ArrayLiteralExp(Integer pos, String typeName, Exp count, Exp initialValue)
     {
         super(pos);
 
         this.typename = typeName;
         countExp = count;
-        baseDefinitionExp = base;
+        this.initialValue = initialValue;
     }
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-    	int arrayLength = countExp.getCompileTimeIntValue(c);
-    	TigerArrayType result = new TigerArrayType(baseDefinitionExp.getType(c), arrayLength);
-        return result;
+    	int arrayLength = countExp.getCompileTimeIntValue(c); // TODO or do we use dynamic array length? (runtime)
+        
+        TigerType baseType = c.findType(typename);
+        TigerType initialValueType = initialValue.getType(c);
+        
+        if (baseType != initialValueType) // TODO not correct, consider null and record type type coerce
+        {
+        	throw new TigerTypeException("unexpected type to initialize the array literal");
+        }
+
+        return new TigerArrayType(baseType, arrayLength);
     }
 
     @Override
@@ -36,12 +44,12 @@ public class  ArrayLiteralExp extends Exp
         countExp.print(c);
         
         print(c, "element value:");
-        baseDefinitionExp.print(c);
+        initialValue.print(c);
 
         c.popIndentLevel();
     }
     
     private String typename;
     private Exp countExp;
-    private TypeDefinitionExp baseDefinitionExp;
+    private Exp initialValue;
 }

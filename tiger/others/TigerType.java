@@ -71,4 +71,6 @@ public abstract class TigerType
 
     private Context aliasContext;
     */
+    
+    // TODO operator equal and hash --> coerce
 }

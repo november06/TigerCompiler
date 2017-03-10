@@ -18,12 +18,16 @@ public class FunctionCallExp extends Exp
     public TigerType getType(Context c) throws TigerTypeException  {
         // verify
     	TigerType functionType = c.findIdentifierType(functionName);
+    	if (!(functionType instanceof TigerFunctionType))
+    	{
+    		throw new TigerTypeException("Function type expected.");
+    	}
     	ArrayList<TigerType> parameters = this.parameterList.getTigerTypeList();
     	if (!functionType.match(parameters))
     	{
     		throw new TigerTypeException("Unexpected function parameters");
     	}
-        return functionType.getReturnType();
+        return functionType.getReturnType(); // could be null in case of a precedure
     }
 
     @Override

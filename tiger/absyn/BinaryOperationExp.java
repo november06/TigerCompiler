@@ -45,10 +45,9 @@ public class BinaryOperationExp extends Exp
     		}
     		return TigerSimpleType.TigerIntegerType;
     	}
-    	else if (this.operation == PLUS
-    	      || this.operation == MINUS)
+    	else if (this.operation == EQ
+    	      || this.operation == NE)
     	{
-    		// Do two different type of records compares? I guess no
     		if (left.equals(right))
     		{
     			return TigerSimpleType.TigerIntegerType;
@@ -59,9 +58,9 @@ public class BinaryOperationExp extends Exp
     		}
     	}
     	else if (this.operation == LT
-    	      || this.operation == MINUS
-    	      || this.operation == TIMES
-    	      || this.operation == DIVIDE)
+    	      || this.operation == LE
+    	      || this.operation == GT
+    	      || this.operation == GE)
     	{
     		if ( (left.isInteger() && right.isInteger())
     		  || (left.isString() && right.isString()))
@@ -73,6 +72,7 @@ public class BinaryOperationExp extends Exp
     	else if (this.operation == AND
       	      || this.operation == OR)
     	{
+    		// lazy behavior at runtime
     		// require integer and return integer
     		if (!left.isInteger() || !right.isInteger()) {
     			throw new TigerTypeException("logical operation paramaters should be both integer");

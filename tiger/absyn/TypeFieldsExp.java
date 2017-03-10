@@ -6,6 +6,10 @@ import tiger.TigerValue;
 
 import tiger.others.*;
 
+// possible usage
+// 1 record definition
+// 2 function declaration
+// 3 procedure declaration
 public class TypeFieldsExp extends Exp 
 {
     public TypeFieldsExp(Integer pos, TypeFieldExp typeField)
@@ -23,7 +27,7 @@ public class TypeFieldsExp extends Exp
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-    	return new TigerRecordType(getTigerTypeList(c));
+    	return null;
     }
     
     public ArrayList<TigerType> getTigerTypeList(Context c) throws TigerTypeException
@@ -40,7 +44,24 @@ public class TypeFieldsExp extends Exp
         	resultCandidate.addAll(tail);
         }
         
+        
         return resultCandidate;
+    }
+    
+    // TODO rename record field
+    public ArrayList<RecordField> getTigerRecordTypeList(Context c) throws TigerTypeException
+    {
+    	ArrayList<RecordField> result = new ArrayList<RecordField>();
+    	if (typeField != null)
+    	{
+    		result.add(new RecordField(typeField.getFieldId(), typeField.getType(c)));
+    	}
+    	
+    	if (typeFields != null)
+    	{
+    		result.addAll(typeFields.getTigerRecordTypeList(c));
+    	}
+    	return result;
     }
 
     @Override

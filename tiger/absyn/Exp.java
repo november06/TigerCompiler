@@ -19,9 +19,9 @@ public abstract class Exp
     /// if it's tiger type nil, return a tiger type with that value
     /// if there should be no type for this expression, return null
     /// if the type specified is not available exception: 
-    ///     variable can't find 
+    ///     variable/function can't find 
     ///     type is not available (does it matter? we could look for the type later when all the definitions are available)
-    ///     ?
+    ///     or compile time type check failed
     abstract TigerType getType(Context c) throws TigerTypeException;
 
     abstract String getTypeName();
@@ -33,7 +33,7 @@ public abstract class Exp
     		throw new TigerTypeException("Expecting an integer type to specify the length of the array");
     	}
     	
-    	// TODO Shane
+    	// TODO not implemented
     	return 0;
     }
 
@@ -45,7 +45,7 @@ public abstract class Exp
 
     void print(Context c, String s) // static?
     {
-        // TODO could be a method of context
+        // could be a method of context
         for (Integer i = 0; i < c.getIndent(); ++i) {
             System.out.print("\t");
         }

@@ -10,14 +10,14 @@ public class TigerRecordType extends TigerType {
 		// TODO: nil type, could be assigned to any other record type
 	}
 	
-	public TigerRecordType(String recordName)
-	{
+	//public TigerRecordType(String recordName)
+	//{
 		// TODO Shane
-	}
+	//}
 	
-	public TigerRecordType(ArrayList<TigerType> fields)
+	public TigerRecordType(ArrayList<RecordField> recordFields)
 	{
-		subTypes = fields;
+		this.recordFields = recordFields;
 	}
 	
 	@Override
@@ -26,14 +26,11 @@ public class TigerRecordType extends TigerType {
 		return super.getMemberType(fieldName);
 	}
 
-	public ArrayList<TigerType> getSubTypes() {
-		return subTypes;
+	public ArrayList<RecordField> getRecordFieldList() {
+		// TODO
+		return null;
 	}
 
 
-	public void setSubTypes(ArrayList<TigerType> subTypes) {
-		this.subTypes = subTypes;
-	}
-
-	private ArrayList<TigerType> subTypes;
+	private ArrayList<RecordField> recordFields;
 }

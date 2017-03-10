@@ -11,7 +11,7 @@ public class TigerValue {
 
     public TigerValue()
     {
-        // SetNil();
+        SetNil();
     }
 
     public TigerValue(Integer value)
@@ -35,6 +35,15 @@ public class TigerValue {
         isString = true;
         stringValue = value;
     }
+    
+    public boolean IsNil() { return isNil; }
+    
+    public void SetNil()
+    {
+    	isNil = true;
+        isInteger = false;
+        isString = false;
+    }
 
     public String GetStringValue() {
         if (IsString()) {
@@ -56,6 +65,7 @@ public class TigerValue {
 
     private boolean isString;
     private boolean isInteger;
+    private boolean isNil;
 
     private String stringValue;
     private Integer integerValue;

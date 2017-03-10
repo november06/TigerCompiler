@@ -16,11 +16,13 @@ public class AssignExp extends Exp
         // verify
     	TigerType leftType = left.getType(c);
     	TigerType rightType = right.getType(c);
-    	// TODO is there any conversion?
-    	if (!leftType.equals(right)) {
-    	    throw new TigerTypeException("Assignment type mismatch. ");
+
+    	if (leftType.equals(right)
+    	|| ((leftType instanceof TigerRecordType) && rightType == TigerRecordType.TigerNilType)) {
+    		return null;
     	}
-        return null;
+        
+        throw new TigerTypeException("Assignment type mismatch. ");
     }
 
     @Override

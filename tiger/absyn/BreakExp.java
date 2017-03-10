@@ -12,8 +12,11 @@ public class BreakExp extends Exp
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-        // TODO check inside a loop
-        return  null;
+        if (c.getLoop() != 0)
+        {
+        	return null;
+        }
+        throw new TigerTypeException("Invalid break, not inside a loop");  // is tiger exception ok?
     }
 
     @Override

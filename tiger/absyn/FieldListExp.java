@@ -2,6 +2,7 @@ package tiger.absyn;
 import tiger.TigerValue;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import tiger.others.*;
 
@@ -68,10 +69,20 @@ public class FieldListExp extends Exp
         c.popIndentLevel();
     }
     
-    public ArrayList<TigerType> getElementTypeList()
+    public ArrayList<RecordField> getElementTypeList(Context c) throws TigerTypeException
     {
-        // TODO Shane
-    	return new ArrayList<TigerType>();
+    	ArrayList<RecordField> result = null;
+        if (head != null) {
+        	result = head.getElementTypeList(c);
+        }
+        else 
+        {
+        	result = new ArrayList<RecordField>();
+        }
+        
+        result.add(new RecordField(id, exp.getType(c)));
+        
+        return result;
     }
 
     FieldListExp head;

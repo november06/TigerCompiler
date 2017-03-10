@@ -39,7 +39,11 @@ public class LvalueExp extends Exp
     @Override
     public TigerType getType(Context c) throws TigerTypeException {
         if (this.internalType == identifier) {
-            return c.findIdentifierType(identifierName);
+        	TigerType result = c.findIdentifierType(identifierName);
+        	if (result instanceof TigerFunctionType) {
+        		throw new TigerTypeException("Function type encountered while variable expeced in lvalue.");
+        	}
+            return result;
         }
         else {
         	TigerType baseType = null;
@@ -55,6 +59,9 @@ public class LvalueExp extends Exp
         	{
         		throw new TigerTypeException("can't find the base type in the context");
         	}
+        	// TODO ALIAS do we need passing context into the functions? or we could use context in this function
+        	// depends how we handle alias, right? do we return an instance of tiger type alias here
+        	// which means I should remove all alias definition when handling array type/record type definition
         	if (this.internalType == fieldOfRecord) {
 	            return baseType.getMemberType(fieldName);
 	        }

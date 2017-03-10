@@ -45,8 +45,6 @@ program ::= expr:e
 		     RESULT = e;
 		 :};
 
-// I think even adding a rvalue could not solve the resolve/shift conflict. How to solve it? 
-
 expr ::= // string constant
          STRING:s 
          {:
@@ -113,9 +111,9 @@ expr ::= // string constant
 		 :}
 		 |
 		 // array literal
-		 ID:typeid LBRACK expr:count RBRACK OF type:value 
+		 ID:typeid LBRACK expr:count RBRACK OF exp:value 
 		 {:
-		 	 RESULT = new ArrayLiteralExp(typeidleft, typeid, (Exp)count, (TypeDefinitionExp)value);
+		 	 RESULT = new ArrayLiteralExp(typeidleft, typeid, (Exp)count, value);
 		 :}
 		 |
 		 IF:i expr:condition THEN expr:e1 

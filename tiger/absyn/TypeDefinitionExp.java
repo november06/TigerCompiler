@@ -30,7 +30,8 @@ public class TypeDefinitionExp extends Declaration
         } 
         else if (type == RECORD)
         {
-        	return typeFields.getType(c);
+        	//return typeFields.getType(c);
+        	return new TigerRecordType(typeFields.getTigerRecordTypeList(c));
         }
         else if (type == ARRAY)
         {

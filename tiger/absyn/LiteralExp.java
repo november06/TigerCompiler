@@ -10,7 +10,7 @@ public class LiteralExp extends Exp
         super(pos);
         internalValue = new TigerValue();
         expType = TigerRecordType.TigerNilType;
-        //internalValue.SetNil();
+        internalValue.SetNil(); // TODO Shane what record type this suppose to be ? be compatible to every record type
     }
 
     public LiteralExp(Integer pos, String stirngValue)

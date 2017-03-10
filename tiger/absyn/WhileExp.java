@@ -15,16 +15,19 @@ public class WhileExp extends Exp
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
+    	
+    	
         if (condition.getType(c) != TigerSimpleType.TigerIntegerType)
         {
         	throw new TigerTypeException("the condition of while should be of integer type.");
         }
-        
+        c.pushLoopLevel();
         if (execute.getType(c) != null)
         {
         	throw new TigerTypeException("the while body should not return anything");
         }
         
+        c.popLoopLevel();
         return null;
     }
 

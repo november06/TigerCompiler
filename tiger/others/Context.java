@@ -30,7 +30,7 @@ public class Context
         return loop;
     }
 
-    public void pushLoop() {
+    public void pushLoopLevel() {
         loop++;
     }
 
@@ -38,11 +38,17 @@ public class Context
         loop--;
     }
     
-    public void startLet() {
+    public void startScope() {
     	scopes.add(new ScopeContext());
     }
     
-    public void endLet() {
+    
+    public void startScope(boolean readonly) {
+    	// TODO read only, call start scope without parameter
+    	scopes.add(new ScopeContext());
+    }
+    
+    public void endScope() {
     	scopes.remove(scopes.size() - 1);
     }
     
@@ -55,6 +61,8 @@ public class Context
     	//     function
     	//     for index variable (readonly)
     }
+    
+    // TODO end type declaration sequence: resolve all the type alias, multiple names map to 1 type
     
     public void onVariableDeclaration()
     {

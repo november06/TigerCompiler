@@ -15,10 +15,10 @@ public class LetExp extends Exp
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-        c.startLet();
+        c.startScope();
         TigerType declType = declarationList.getType(c);
         TigerType result = exp.getType(c);
-        c.endLet();
+        c.endScope();
         return  result;
     }
 

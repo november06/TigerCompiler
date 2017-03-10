@@ -17,18 +17,20 @@ public class ForExp extends Exp
 
     @Override
     public TigerType getType(Context c) throws TigerTypeException  {
-        // TODO add id to the context, id is readonly
     	if (eStart.getType(c) != TigerSimpleType.TigerIntegerType 
     	 || eEnd.getType(c) != TigerSimpleType.TigerIntegerType) {
     	    throw new TigerTypeException("the bounds of for loops should be of integer type");
     	}
+    	c.startScope();
+    	c.pushIndentLevel();
     	
     	if (eAction.getType(c) != null)
     	{
     		throw new TigerTypeException("the body of for loops should not return a value");
     	}
-    	// TODO remove id from the context
-        return  TigerSimpleType.TigerIntegerType;
+    	c.popLoopLevel();
+    	c.endScope();
+        return null;
     }
 
     @Override
