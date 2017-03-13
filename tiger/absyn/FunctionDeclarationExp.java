@@ -26,7 +26,7 @@ public class FunctionDeclarationExp extends Declaration
     	// tryStart function sequence
     	c.onFunctionDeclaration();
         TigerFunctionType result = new TigerFunctionType(name, typeFields.getTigerTypeList(c), c.findType(returnType));
-        c.addFunction(name, result);
+        c.addFunction(result);
         return  null;
     }
 

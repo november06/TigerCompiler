@@ -6,25 +6,13 @@ import java.util.ArrayList;
 
 public class Context 
 {
-	// TODO put built in function into context on constructing
-	/*
-	function print(s : string) 
-	function printi(i : int) 
-	function flush() 
-	function getchar() : string 
-	function ord(s : string) : int
-	function chr(i : int) : string
-	function size(s : string) : int 
-	function substring(s:string,f:int,n:int):string
-	function concat (s1:string, s2:string):string 
-	function not(i : int) : int 
-	function exit(i : int)
-	 */
     public Context()
     {
         this.indent = 0;
         this.loop = 0;
         scopes = new ArrayList<ScopeContext>();
+        // built in types and functions
+        scopes.add(ScopeContext.CreateBuiltinScope());
     }
 
     public Integer getIndent() {
@@ -56,10 +44,13 @@ public class Context
     	scopes.add(new ScopeContext());
     }
     
-    
+	// TODO scopes 
+	//     let
+	//     function
+	//     for index variable
     public void startScope(boolean readonly) {
     	// TODO read only, call start scope without parameter
-    	scopes.add(new ScopeContext());
+    	scopes.add(new ScopeContext(readonly));
     }
     
     public void endScope() {
@@ -67,7 +58,6 @@ public class Context
     }
     
     // TODO end type declaration sequence: resolve all the type alias, multiple names map to 1 type
-    
     public void onVariableDeclaration()
     {
     	// TODO let end
@@ -90,7 +80,18 @@ public class Context
 
     public TigerType findIdentifierType(String variableName)
     {
-        // TODO 
+        int index = scopes.size() - 1;
+        while (index >= 0)
+        {
+        	ScopeContext sc = scopes.get(index);
+        	TigerType potentialResult = sc.findIdentifier(variableName);
+        	if (potentialResult != null)
+        	{
+        		return potentialResult;
+        	}
+        	
+        	index--;
+        }
         return null;
     }
 
@@ -100,36 +101,35 @@ public class Context
         return null;
     }
     
-    public void addType(String name, TigerType t)
+    public void addType(TigerType t)
     {
-    	
+    	currentContext().addType(t);
     }
     
-    public void addFunction(String name, TigerType t)
+    public void addType(String aliasName, TigerType t)
     {
-    	
+    	currentContext().addType(aliasName, t);
+    }
+    
+    public void addFunction(TigerFunctionType t)
+    {
+    	currentContext().addFunction(t);
     }
     
     public void addVariable(String name, TigerType t)
     {
-    	// TODO
-    }
-    
-    // TODO add type, remove type
-    public void addVariableInCurrentVariableScope()
-    {
-    	// TODO 
-    	//     let
-    	//     function
-    	//     for index variable (readonly)
+    	currentContext().addVariable(name, t);
     }
 
+    private ScopeContext currentContext()
+    {
+    	return scopes.get(scopes.size() - 1);
+    }
     
     // bool is in function sequences
     //      is in type sequences
     // record/array variable table (global scope ?   redefined?)
-    // type table name -> tigertype
-    // function name/variable name table
+    
     private Integer indent;
     private Integer loop;
     private ArrayList<ScopeContext> scopes;

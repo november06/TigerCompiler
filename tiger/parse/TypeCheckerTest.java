@@ -31,8 +31,9 @@ public class TypeCheckerTest {
 				e = (Exp)(p.parse().value);
 			}
 			new Print(System.out).PrintExp(e);
-			System.out.println("------------------------------------------------------");
+			System.out.println("type checking started:");
 			e.getType(new Context());
+			System.out.println("type checking ended.");
 			System.exit(0);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -1,26 +1,39 @@
 package tiger.others;
+
 import java.util.ArrayList;
 
-public abstract class TigerType
-{
-	// TODO ? name
-	// simple type 
-    public Boolean isInteger() {return false;}
-
-    public Boolean isString() {return false;}
-    
-    // function type
-    public Boolean match(ArrayList<TigerType> parameters) {return false;}
-    
-    public TigerType getReturnType() {return null;}
+public abstract class TigerType {
+	public String getName()
+	{
+		return null;
+	}
 	
-    // alias
-    public TigerType getAliasedType() {return null;}
-    
-    
-    // composite
-	public TigerType getMemberType(/*Context c, */String fieldName) throws TigerTypeException 
-    {
+	
+	// simple type
+	public Boolean isInteger() {
+		return false;
+	}
+
+	public Boolean isString() {
+		return false;
+	}
+
+	// function type
+	public Boolean match(ArrayList<TigerType> parameters) {
+		return false;
+	}
+
+	public TigerType getReturnType() {
+		return null;
+	}
+
+	// alias
+	public TigerType getAliasedType() {
+		return null;
+	}
+
+	// composite
+	public TigerType getMemberType(/* Context c, */String fieldName) throws TigerTypeException {
 		/*
         if (this.subType == complexRecord) {
             for (TigerType t: fields) {
@@ -41,9 +54,9 @@ public abstract class TigerType
         throw new TigerTypeException("unexpected status: getMemberType");
         */
 		return null;
-    }
+	}
 
-    public TigerType getElementType(/*Context c*/) throws TigerTypeException {
+	public TigerType getElementType(/* Context c */) throws TigerTypeException {
     	/*
         if (this.subType == complexArray) {
             return baseType;
@@ -57,8 +70,8 @@ public abstract class TigerType
         }
         throw new TigerTypeException("unexpected status: getMemberType");
         */
-    	return null;
-    }
+		return null;
+	}
     /*
     // record
     private ArrayList<TigerType> fields;
@@ -71,6 +84,6 @@ public abstract class TigerType
 
     private Context aliasContext;
     */
-    
-    // TODO operator equal and hash --> coerce
+
+	// TODO operator equal and hash --> coerce
 }
