@@ -22,7 +22,7 @@ public abstract class Exp
     ///     variable/function can't find 
     ///     type is not available (does it matter? we could look for the type later when all the definitions are available)
     ///     or compile time type check failed
-    abstract TigerType getType(Context c) throws TigerTypeException;
+    public abstract TigerType getType(Context c) throws TigerTypeException;
 
     abstract String getTypeName();
     

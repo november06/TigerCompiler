@@ -10,7 +10,7 @@ public abstract class Declaration extends Exp
         super(pos);
     }
 
-    abstract TigerType getType(Context c) throws TigerTypeException ;
+    public abstract TigerType getType(Context c) throws TigerTypeException ;
 
     abstract String getTypeName();
 }

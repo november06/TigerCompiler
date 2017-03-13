@@ -1,0 +1,98 @@
+batch file error level
+
+how to fix the parser error?
+  a) use a simplified grammar
+  b) try reading the debug logs ???
+  c) make the state machine available in drawings
+  d) use simpilfied program
+  e) use latest cup
+  f) use latest flex
+Why not working? reduce
+
+d) is correct to better understand the problem. 
+turn out to be a very simple error: a redundant comma in a grammar declaration
+  
+  
+1) fix the print
+2) fix the grammar errors
+3) type check
+
+a) function return ? is it ok to return ?
+b) break is it ok to break?
+c) type of each expression
+d) type table  scope
+e) id table  scope
+f) lvalue/rvalue
+
+
+
+drive for result!
+  read all the answers on SO
+  read the text book
+  ask self and try to find a way to solve it my self
+  
+  
+  
+  1) context? where
+2) null/tigernull/no value, when to use which?
+    java null    no value
+    
+
+
+
+no value: 
+    procedure call
+    assignments
+    if-then
+    while
+    break
+    sometimes if-then-else
+    let with nothing between in and end
+    seq exp: () (empty seq exp)
+ 
+ return: 
+     seq exp: return value of final expression, if any
+     record literal: field name, expression types, order check, return record literal
+     array literal: array of type with length of ...
+     let: last expression
+
+array/record compare/assignment/(function call) are by refernece
+     
+     
+scope: 
+     function call scope (only in function body)
+     record/array created -> end of the program
+     record can be assigned with nil, but the type of the record must be clear
+     
+   type could be redefined!
+     
+   
+   Type expressions (e.g., {x:int}, array of ty) create distinct types, so two array types with the same base or two records with identical fields are different. Type a=b is an alias. 
+   
+   A sequence of type declarations (i.e., with no intervening variable or function declarations) may be mutually recursive. No two defined types in such a sequence may have the same name. Each recursion cycle must pass through a record or array type. 
+
+1) type should have a name property
+2) scope: 
+    1) variable table
+    2) function table (function sequence, on finish handling function sequence, we should check whether one of the functions were undefined)  (stack of let/in) 
+    3) type table (stack of let/in), type sequence start, on type sequence end, redefinable
+    
+    
+    
+1) for all the declarations, check the type
+    - context stack of function/variable/types
+    - type sequence/function sequence on end of the sequence, validate the function/type using the current function/type sequence
+2) for all the exp, verify the check type are implemented
+
+
+3) fix all todos
+
+True or false?  do we have built in type of true/false?
+
+1) type implementation check 
+2) coerce
+3) go through all the expression types
+
+single test case runner
+
+create test cases first is a good way to achieve type checker and more

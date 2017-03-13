@@ -6,6 +6,20 @@ import java.util.ArrayList;
 
 public class Context 
 {
+	// TODO put built in function into context on constructing
+	/*
+	function print(s : string) 
+	function printi(i : int) 
+	function flush() 
+	function getchar() : string 
+	function ord(s : string) : int
+	function chr(i : int) : string
+	function size(s : string) : int 
+	function substring(s:string,f:int,n:int):string
+	function concat (s1:string, s2:string):string 
+	function not(i : int) : int 
+	function exit(i : int)
+	 */
     public Context()
     {
         this.indent = 0;
@@ -50,16 +64,6 @@ public class Context
     
     public void endScope() {
     	scopes.remove(scopes.size() - 1);
-    }
-    
-    
-    // TODO add type, remove type
-    public void addVariableInCurrentVariableScope()
-    {
-    	// TODO 
-    	//     let
-    	//     function
-    	//     for index variable (readonly)
     }
     
     // TODO end type declaration sequence: resolve all the type alias, multiple names map to 1 type
@@ -109,6 +113,15 @@ public class Context
     public void addVariable(String name, TigerType t)
     {
     	// TODO
+    }
+    
+    // TODO add type, remove type
+    public void addVariableInCurrentVariableScope()
+    {
+    	// TODO 
+    	//     let
+    	//     function
+    	//     for index variable (readonly)
     }
 
     
