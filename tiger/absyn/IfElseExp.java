@@ -35,9 +35,9 @@ public class IfElseExp extends Exp
         }
         else 
         {
-        	if (executeIf.getType(c) != executeIf.getType(c))
+        	if (executeIf.getType(c) != executeElse.getType(c))
         	{
-        		throw new TigerTypeException("the return type of if should be the same as the return type of else");
+        		throw new TigerTypeException("the return type of then should be the same as the return type of else");
         	}
         	return executeIf.getType(c);
         }

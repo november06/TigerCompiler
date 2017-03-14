@@ -96,3 +96,7 @@ True or false?  do we have built in type of true/false?
 single test case runner
 
 create test cases first is a good way to achieve type checker and more
+
+run test -> check what's wrong
+
+print the type with the ast

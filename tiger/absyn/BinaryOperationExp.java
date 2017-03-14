@@ -39,6 +39,9 @@ public class BinaryOperationExp extends Exp
     	 || this.operation == DIVIDE)
     	{
     		// arithmetic
+    		if (left == null || right == null) {
+    			throw new TigerTypeException("Left or right expression of the binary operator is no value.");
+    		}
     		// require integer and return integer
     		if (!left.isInteger() || !right.isInteger()) {
     			throw new TigerTypeException("arithmetic paramaters should be both integer");
@@ -48,7 +51,7 @@ public class BinaryOperationExp extends Exp
     	else if (this.operation == EQ
     	      || this.operation == NE)
     	{
-    		if (left.equals(right))
+    		if (left.coerce(right) || right.coerce(left))
     		{
     			return TigerSimpleType.TigerIntegerType;
     		}

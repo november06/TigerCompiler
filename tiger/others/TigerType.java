@@ -8,6 +8,13 @@ public abstract class TigerType {
 		return null;
 	}
 	
+	public boolean coerce(TigerType t) {
+		if (this == t) {
+			return true;
+		}
+		
+		return false;
+	}
 	
 	// simple type
 	public Boolean isInteger() {

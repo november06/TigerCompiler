@@ -97,7 +97,18 @@ public class Context
 
     public TigerType findType(String typeName)
     {
-        // TODO 
+        int index = scopes.size() - 1;
+        while (index >= 0)
+        {
+        	ScopeContext sc = scopes.get(index);
+        	TigerType potentialResult = sc.findType(typeName);
+        	if (potentialResult != null)
+        	{
+        		return potentialResult;
+        	}
+        	
+        	index--;
+        }
         return null;
     }
     

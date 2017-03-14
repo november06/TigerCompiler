@@ -15,6 +15,18 @@ public class TigerRecordType extends TigerType {
 		// TODO Shane
 	//}
 	
+	@Override
+	public boolean coerce(TigerType t) {
+		if (this == t) {
+			return true;
+		}
+		else if (t == TigerNilType) {
+			return true;
+		}
+		
+		return false;
+	}
+	
 	public TigerRecordType(ArrayList<RecordField> recordFields)
 	{
 		this.recordFields = recordFields;

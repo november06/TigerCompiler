@@ -76,6 +76,11 @@ public class ScopeContext {
     {
         return variableFunctions.get(identifierName);
     }
+    
+    public TigerType findType(String typeName)
+    {
+    	return types.get(typeName);
+    }
 	
 	Map<String, TigerType> variableFunctions;
     Map<String, TigerType> types;

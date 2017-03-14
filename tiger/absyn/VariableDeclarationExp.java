@@ -25,13 +25,16 @@ public class VariableDeclarationExp extends Declaration
     	// try end function sequence
     	c.onVariableDeclaration();
     	if (typeid == null) {
+    		if (exp.getType(c) == TigerRecordType.TigerNilType) {
+    			throw new TigerTypeException("When setting a variable to nil, we need specifying the variable type.");
+    		}
     	    c.addVariable(id, exp.getType(c));
     	}
     	else 
     	{
     		// check type
     		TigerType expType = exp.getType(c);
-    		if (expType != c.findType(typeid))
+    		if (!c.findType(typeid).coerce(expType))
     		{
     			throw new TigerTypeException("variable initialization exp should be of the same type of the type specified.");
     		}

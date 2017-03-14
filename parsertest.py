@@ -26,7 +26,13 @@ if __name__ == '__main__':
     tempfile = os.path.join(sys.argv[1], ".\\testoutput")
     mainEntryPoint = sys.argv[2]
 
-    resultfile = os.path.join(sys.argv[1], ".\\testresult.txt")
+    single_case_mode = len(sys.argv) >= 4
+
+    resultfile = ""
+    if single_case_mode:
+        resultfile = os.path.join(sys.argv[1], ".\\testresultsingle.txt")
+    else :
+        resultfile = os.path.join(sys.argv[1], ".\\testresult.txt")
     if os.path.isfile(resultfile):
         os.remove(resultfile)
 
